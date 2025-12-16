@@ -1,0 +1,256 @@
+/* ==========================================================================
+   5.5 MEGA MENU (Salesforce-inspired)
+   ==========================================================================
+   Enterprise-grade navigational surface with hover intent,
+   panel transitions, and keyboard accessibility.
+   ========================================================================== */
+
+/* Menu item with chevron */
+.menu-item.has-megamenu>a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.menu-chevron {
+    opacity: 0.6;
+    transition: transform var(--motion-smooth) var(--ease-out-expo);
+    flex-shrink: 0;
+}
+
+.menu-item.has-megamenu.is-active .menu-chevron {
+    transform: rotate(180deg);
+}
+
+/* Mega Menu Container */
+.megamenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: var(--z-dropdown);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--motion-smooth) var(--ease-out-expo),
+        visibility 0ms linear var(--motion-smooth);
+}
+
+.megamenu.is-open {
+    pointer-events: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--motion-smooth) var(--ease-out-expo),
+        visibility 0ms linear 0ms;
+}
+
+/* Backdrop */
+.megamenu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: -1;
+    pointer-events: none;
+    transition: background-color var(--motion-smooth) var(--ease-out-expo);
+}
+
+.megamenu.is-open .megamenu-backdrop {
+    background-color: rgba(0, 0, 0, 0.06);
+    pointer-events: auto;
+    cursor: default;
+}
+
+/* Mega Menu Content Container */
+.megamenu-container {
+    background-color: var(--surface-elevated);
+    border-bottom: 1px solid var(--border-primary);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-12px);
+    opacity: 0;
+    transition: transform var(--motion-smooth) var(--ease-out-expo),
+        opacity var(--motion-smooth) var(--ease-out-expo);
+}
+
+.megamenu.is-open .megamenu-container {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.megamenu-inner {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    min-height: 360px;
+}
+
+/* Left Panel - Navigation Index */
+.megamenu-left {
+    padding: var(--spacing-10) var(--spacing-8);
+    border-right: 1px solid var(--border-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.megamenu-section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-6);
+    letter-spacing: -0.02em;
+}
+
+.megamenu-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.megamenu-nav-item {
+    margin-bottom: var(--spacing-1);
+}
+
+.megamenu-nav-item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-tertiary);
+    border-radius: var(--radius-lg);
+    transition: color var(--motion-fast) var(--ease-out-expo),
+        background-color var(--motion-fast) var(--ease-out-expo);
+}
+
+.megamenu-nav-item a:hover,
+.megamenu-nav-item.active a {
+    color: var(--text-primary);
+    background-color: var(--hover-bg);
+}
+
+.megamenu-nav-arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity var(--motion-fast) var(--ease-out-expo),
+        transform var(--motion-fast) var(--ease-out-expo);
+}
+
+.megamenu-nav-item a:hover .megamenu-nav-arrow,
+.megamenu-nav-item.active .megamenu-nav-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.megamenu-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-6);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--border-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+    transition: gap var(--motion-micro) var(--ease-out-expo);
+}
+
+.megamenu-view-all:hover {
+    gap: var(--spacing-3);
+}
+
+/* Right Panel - Contextual Content */
+.megamenu-right {
+    position: relative;
+    padding: var(--spacing-10) var(--spacing-12);
+    background-color: var(--bg-secondary);
+}
+
+.megamenu-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-10);
+    align-items: center;
+    opacity: 0;
+    transform: translateX(16px);
+}
+
+.megamenu-panel.active {
+    display: grid;
+    animation: megamenuPanelFadeIn var(--motion-smooth) var(--ease-out-expo) forwards;
+}
+
+@keyframes megamenuPanelFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(16px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.megamenu-panel-image {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.megamenu-panel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.megamenu-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary-dark));
+}
+
+.megamenu-panel-content {
+    max-width: 400px;
+}
+
+.megamenu-panel-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-3);
+}
+
+.megamenu-panel-desc {
+    font-size: var(--font-size-base);
+    color: var(--text-tertiary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-6);
+}
+
+/* Mega Menu focus states for accessibility */
+.megamenu-nav-item a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.megamenu-panel .btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Mega Menu Hidden on Mobile */
+@media (max-width: 1023px) {
+    .megamenu {
+        display: none;
+    }
+
+    .menu-chevron {
+        display: none;
+    }
+}
+

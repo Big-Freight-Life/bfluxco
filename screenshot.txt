@@ -1,0 +1,22 @@
+SCREENSHOT PLACEHOLDER
+=====================
+
+To add a theme screenshot:
+
+1. Create an image that is 1200x900 pixels (4:3 ratio)
+2. Name it "screenshot.png"
+3. Place it in this directory (wp-content/themes/bfluxco/)
+4. Delete this text file
+
+The screenshot will appear in WordPress Admin > Appearance > Themes
+
+Requirements:
+- File name: screenshot.png
+- Dimensions: 1200x900 pixels (recommended)
+- Format: PNG or JPG
+- Maximum file size: 1MB
+
+Tips:
+- Show a preview of your homepage design
+- Include both desktop and mobile views if possible
+- Keep text readable at thumbnail size
