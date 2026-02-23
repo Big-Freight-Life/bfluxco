@@ -24,6 +24,7 @@ $cta_url = isset($args['cta_url']) ? $args['cta_url'] : '';
 $cta_icon = isset($args['cta_icon']) ? $args['cta_icon'] : 'arrow-right';
 $class = isset($args['class']) ? $args['class'] : '';
 $centered = isset($args['centered']) && $args['centered'];
+$heading_tag = isset($args['heading_tag']) ? $args['heading_tag'] : 'h2';
 
 $header_classes = 'section-header reveal-text';
 if ($centered) {
@@ -41,12 +42,12 @@ if (!empty($class)) {
         <?php endif; ?>
 
         <?php if (!empty($subtitle)) : ?>
-            <p class="section-subtitle"><?php echo esc_html($subtitle); ?></p>
+            <p class="section-subtitle"><?php echo wp_kses_post($subtitle); ?></p>
         <?php endif; ?>
     </div>
 
     <?php if (!empty($cta_text) && !empty($cta_url)) : ?>
-        <a href="<?php echo esc_url($cta_url); ?>" class="btn btn-quad btn-icon">
+        <a href="<?php echo esc_url($cta_url); ?>" class="btn btn-tertiary btn-icon">
             <span><?php echo esc_html($cta_text); ?></span>
             <?php bfluxco_icon($cta_icon, array('size' => 16)); ?>
         </a>

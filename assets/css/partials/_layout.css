@@ -1,0 +1,165 @@
+/* ==========================================================================
+   4. LAYOUT & GRID
+   ========================================================================== */
+
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+.section {
+    padding-top: var(--spacing-16);
+    padding-bottom: var(--spacing-16);
+}
+
+/* Flexbox Grid */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(var(--spacing-4) * -1);
+    margin-right: calc(var(--spacing-4) * -1);
+}
+
+.col {
+    flex: 1;
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
+}
+
+/* CSS Grid */
+.grid {
+    display: grid;
+    gap: var(--spacing-6);
+}
+
+.grid-2 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+    .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ==========================================================================
+   SMALL SCREEN LAYOUT
+   ========================================================================== */
+
+/* Tablet and below (768px) */
+@media (max-width: 768px) {
+    .section {
+        padding-top: var(--spacing-8);  /* 32px */
+        padding-bottom: var(--spacing-8);
+    }
+
+    .grid {
+        gap: var(--spacing-5); /* 20px */
+    }
+}
+
+/* Small screens (480px and below) */
+@media (max-width: 480px) {
+    .section {
+        padding-top: var(--spacing-6);  /* 24px */
+        padding-bottom: var(--spacing-6);
+    }
+
+    .grid {
+        gap: var(--spacing-4); /* 16px */
+    }
+}
+
+/* Extra small screens (360px and below) */
+@media (max-width: 360px) {
+    .section {
+        padding-top: var(--spacing-5);  /* 20px */
+        padding-bottom: var(--spacing-5);
+    }
+
+    .grid {
+        gap: var(--spacing-3); /* 12px */
+    }
+}
+
+/* ==========================================================================
+   LANDSCAPE ORIENTATION HANDLING
+   Compact layout for mobile devices in landscape mode
+   ========================================================================== */
+
+/* Mobile landscape - reduce vertical spacing */
+@media (max-height: 500px) and (orientation: landscape) {
+    .section {
+        padding-top: var(--spacing-8);
+        padding-bottom: var(--spacing-8);
+    }
+
+    .hero {
+        min-height: 100vh;
+        padding-top: calc(56px + var(--spacing-4));
+        padding-bottom: var(--spacing-4);
+    }
+
+    .hero-title {
+        margin-bottom: var(--spacing-4);
+    }
+
+    .hero-cta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-2);
+    }
+
+    /* Smaller orbits animation in landscape */
+    .orbits-animation {
+        width: 180px;
+        height: 180px;
+    }
+
+    .orbit-1 { width: 70px; height: 70px; }
+    .orbit-2 { width: 120px; height: 120px; }
+    .orbit-3 { width: 160px; height: 160px; }
+}
+
+/* Tablet landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero {
+        min-height: 80vh;
+    }
+
+    .section {
+        padding-top: var(--spacing-12);
+        padding-bottom: var(--spacing-12);
+    }
+}
+

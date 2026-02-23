@@ -45,7 +45,7 @@ get_header();
                 <!-- Step 1 -->
                 <div class="methodology-step grid grid-2 items-center gap-8 mb-12">
                     <div class="step-content">
-                        <div class="step-number text-primary text-sm font-semibold mb-2">01</div>
+                        <div class="step-number text-primary text-base font-semibold mb-2">01</div>
                         <h3><?php esc_html_e('Discover', 'bfluxco'); ?></h3>
                         <p class="text-gray-600">
                             <?php esc_html_e('We begin by deeply understanding your challenge, context, and constraints. This involves stakeholder interviews, research, and analysis to ensure we\'re solving the right problem.', 'bfluxco'); ?>
@@ -63,7 +63,7 @@ get_header();
                 <div class="methodology-step grid grid-2 items-center gap-8 mb-12">
                     <div class="step-image hide-mobile" style="background: var(--color-gray-200); aspect-ratio: 4/3; border-radius: var(--radius-xl);"></div>
                     <div class="step-content">
-                        <div class="step-number text-primary text-sm font-semibold mb-2">02</div>
+                        <div class="step-number text-primary text-base font-semibold mb-2">02</div>
                         <h3><?php esc_html_e('Define', 'bfluxco'); ?></h3>
                         <p class="text-gray-600">
                             <?php esc_html_e('With a clear understanding of the problem, we define success criteria and explore potential directions. This phase ensures alignment before committing to a direction.', 'bfluxco'); ?>
@@ -79,7 +79,7 @@ get_header();
                 <!-- Step 3 -->
                 <div class="methodology-step grid grid-2 items-center gap-8 mb-12">
                     <div class="step-content">
-                        <div class="step-number text-primary text-sm font-semibold mb-2">03</div>
+                        <div class="step-number text-primary text-base font-semibold mb-2">03</div>
                         <h3><?php esc_html_e('Design', 'bfluxco'); ?></h3>
                         <p class="text-gray-600">
                             <?php esc_html_e('This is where ideas take shape. Through iterative design and prototyping, we develop solutions that address the core challenge while meeting business objectives.', 'bfluxco'); ?>
@@ -97,7 +97,7 @@ get_header();
                 <div class="methodology-step grid grid-2 items-center gap-8">
                     <div class="step-image hide-mobile" style="background: var(--color-gray-200); aspect-ratio: 4/3; border-radius: var(--radius-xl);"></div>
                     <div class="step-content">
-                        <div class="step-number text-primary text-sm font-semibold mb-2">04</div>
+                        <div class="step-number text-primary text-base font-semibold mb-2">04</div>
                         <h3><?php esc_html_e('Deliver', 'bfluxco'); ?></h3>
                         <p class="text-gray-600">
                             <?php esc_html_e('The final phase focuses on implementation support and knowledge transfer. I ensure your team has everything needed to move forward successfully.', 'bfluxco'); ?>

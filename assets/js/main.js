@@ -26,13 +26,10 @@
         initHidingHeader();
         initMegaMenu();
         initMobileNav();
-        initDropdownMenus();
-        initKeyboardNavigation();
         initCaseCarousel();
         initFilterButtons();
         initLazyLoading();
         initBrandStrokeAnimation();
-        initInterviewModal();
 
     });
 
@@ -168,7 +165,7 @@
         function updateHeader() {
             const currentScrollY = window.scrollY;
 
-            // Add/remove is-scrolled class based on scroll position
+            // Add/remove scrolled state class (for background color change)
             if (currentScrollY > 0) {
                 header.classList.add('is-scrolled');
             } else {
@@ -460,6 +457,7 @@
             mobileNav.classList.add('is-open');
             menuToggle.classList.add('is-active');
             menuToggle.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('mobile-nav-open');
             document.body.style.overflow = 'hidden';
         }
 
@@ -467,6 +465,7 @@
             mobileNav.classList.remove('is-open');
             menuToggle.classList.remove('is-active');
             menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('mobile-nav-open');
             document.body.style.overflow = '';
 
             // Close all accordions
@@ -482,15 +481,6 @@
             toggle.addEventListener('click', function() {
                 const parent = this.closest('.mobile-menu-item');
                 const isOpen = parent.classList.contains('is-open');
-
-                // Close other accordions (optional - for exclusive behavior)
-                // accordionToggles.forEach(function(otherToggle) {
-                //     const otherParent = otherToggle.closest('.mobile-menu-item');
-                //     if (otherParent !== parent) {
-                //         otherParent.classList.remove('is-open');
-                //         otherToggle.setAttribute('aria-expanded', 'false');
-                //     }
-                // });
 
                 if (isOpen) {
                     parent.classList.remove('is-open');
@@ -548,8 +538,18 @@
             return 450;
         };
 
-        // Start at the first card (default behavior)
-        carousel.scrollLeft = 0;
+        // Center the second card on load
+        var cards = carousel.querySelectorAll('.case-card');
+        if (cards.length >= 2) {
+            var secondCard = cards[1];
+            // Get the second card's position relative to the carousel
+            var cardRect = secondCard.getBoundingClientRect();
+            var carouselRect = carousel.getBoundingClientRect();
+            var cardCenter = secondCard.offsetLeft + (secondCard.offsetWidth / 2);
+            var viewportCenter = carousel.offsetWidth / 2;
+            var scrollToCenter = cardCenter - viewportCenter;
+            carousel.scrollLeft = Math.max(0, scrollToCenter);
+        }
 
         // Scroll functions
         const scrollPrev = function() {
@@ -586,6 +586,38 @@
             }
         });
 
+        // Mouse drag to scroll
+        var isDown = false;
+        var startX;
+        var scrollLeft;
+
+        carousel.addEventListener('mousedown', function(e) {
+            isDown = true;
+            carousel.style.cursor = 'grabbing';
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener('mouseleave', function() {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
+
+        carousel.addEventListener('mouseup', function() {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
+
+        carousel.addEventListener('mousemove', function(e) {
+            if (!isDown) return;
+            e.preventDefault();
+            var x = e.pageX - carousel.offsetLeft;
+            var walk = (x - startX) * 1.5; // Scroll speed multiplier
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Set initial cursor style
+        carousel.style.cursor = 'grab';
     }
 
     /**
@@ -784,218 +816,6 @@
         });
 
         observer.observe(brandElement);
-    }
-
-    /**
-     * Dropdown Menus (Desktop)
-     *
-     * Handles dropdown menu behavior for desktop navigation.
-     * Touch-friendly with proper hover states.
-     */
-    function initDropdownMenus() {
-        const dropdownParents = document.querySelectorAll('.menu-item-has-children');
-
-        dropdownParents.forEach(function(parent) {
-            const link = parent.querySelector('a');
-            const submenu = parent.querySelector('.sub-menu');
-
-            if (!submenu) {
-                return;
-            }
-
-            // For touch devices, first tap opens submenu
-            let touchOpened = false;
-
-            link.addEventListener('touchstart', function(e) {
-                if (!touchOpened) {
-                    e.preventDefault();
-                    dropdownParents.forEach(function(other) {
-                        if (other !== parent) {
-                            other.classList.remove('is-open');
-                        }
-                    });
-                    parent.classList.toggle('is-open');
-                    touchOpened = parent.classList.contains('is-open');
-                } else {
-                    touchOpened = false;
-                }
-            });
-
-            // Mouse enter/leave for desktop
-            parent.addEventListener('mouseenter', function() {
-                this.classList.add('is-hover');
-            });
-
-            parent.addEventListener('mouseleave', function() {
-                this.classList.remove('is-hover');
-            });
-        });
-
-        // Close dropdowns when clicking elsewhere
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.menu-item-has-children')) {
-                dropdownParents.forEach(function(parent) {
-                    parent.classList.remove('is-open');
-                });
-            }
-        });
-    }
-
-    /**
-     * Keyboard Navigation
-     *
-     * Improves accessibility for keyboard users navigating menus.
-     */
-    function initKeyboardNavigation() {
-        const menuItems = document.querySelectorAll('.primary-nav .menu-item-has-children');
-
-        menuItems.forEach(function(item) {
-            const link = item.querySelector('a');
-            const submenu = item.querySelector('.sub-menu');
-
-            if (!link || !submenu) {
-                return;
-            }
-
-            // Open submenu on Enter or Space
-            link.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    item.classList.toggle('is-open');
-
-                    if (item.classList.contains('is-open')) {
-                        const firstSubmenuLink = submenu.querySelector('a');
-                        if (firstSubmenuLink) {
-                            firstSubmenuLink.focus();
-                        }
-                    }
-                }
-
-                if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    item.classList.add('is-open');
-                    const firstSubmenuLink = submenu.querySelector('a');
-                    if (firstSubmenuLink) {
-                        firstSubmenuLink.focus();
-                    }
-                }
-            });
-
-            // Navigate within submenu
-            submenu.querySelectorAll('a').forEach(function(submenuLink, index, links) {
-                submenuLink.addEventListener('keydown', function(e) {
-                    if (e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        const nextLink = links[index + 1];
-                        if (nextLink) {
-                            nextLink.focus();
-                        }
-                    }
-
-                    if (e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        const prevLink = links[index - 1];
-                        if (prevLink) {
-                            prevLink.focus();
-                        } else {
-                            link.focus();
-                            item.classList.remove('is-open');
-                        }
-                    }
-
-                    if (e.key === 'Escape') {
-                        e.preventDefault();
-                        item.classList.remove('is-open');
-                        link.focus();
-                    }
-                });
-            });
-        });
-
-        // Close all open menus when Tab moves away
-        document.addEventListener('focusin', function(e) {
-            if (!e.target.closest('.primary-nav')) {
-                document.querySelectorAll('.menu-item-has-children.is-open').forEach(function(item) {
-                    item.classList.remove('is-open');
-                });
-            }
-        });
-    }
-
-    /**
-     * Interview Modal
-     *
-     * Handles the interview session code modal popup.
-     */
-    function initInterviewModal() {
-        const triggerBtn = document.getElementById('interview-ray-btn');
-        const modal = document.getElementById('interview-modal');
-
-        if (!triggerBtn || !modal) return;
-
-        const closeBtn = modal.querySelector('.modal-close');
-        const form = document.getElementById('interview-form');
-        const codeInput = document.getElementById('interview-code');
-
-        // Open modal
-        function openModal() {
-            modal.classList.add('is-open');
-            document.body.classList.add('modal-open');
-
-            // Focus the input after animation
-            setTimeout(function() {
-                if (codeInput) codeInput.focus();
-            }, 100);
-        }
-
-        // Close modal
-        function closeModal() {
-            modal.classList.remove('is-open');
-            document.body.classList.remove('modal-open');
-
-            // Clear input
-            if (codeInput) codeInput.value = '';
-
-            // Return focus to trigger
-            triggerBtn.focus();
-        }
-
-        // Event: Open button click
-        triggerBtn.addEventListener('click', openModal);
-
-        // Event: Close button click
-        if (closeBtn) {
-            closeBtn.addEventListener('click', closeModal);
-        }
-
-        // Event: Click outside modal (on overlay)
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Event: Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-                closeModal();
-            }
-        });
-
-        // Event: Form submission
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const code = codeInput ? codeInput.value.trim() : '';
-
-                if (code) {
-                    // Redirect to interview page with code
-                    // You can customize this URL as needed
-                    window.location.href = '/interview?code=' + encodeURIComponent(code);
-                }
-            });
-        }
     }
 
     /**

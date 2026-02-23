@@ -1,0 +1,184 @@
+/* ==========================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+
+/* Base heading styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+}
+
+/* Mobile-first heading sizes */
+h1 {
+    font-size: var(--font-size-3xl);
+    letter-spacing: var(--letter-spacing-tight);
+    margin-bottom: var(--spacing-6);
+}
+
+h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    margin-bottom: var(--spacing-5);
+}
+
+h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-4);
+}
+
+h4 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-3);
+}
+
+h5 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-2);
+}
+
+h6 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--spacing-2);
+}
+
+p {
+    font-size: var(--font-size-base); /* 16px - never smaller for body text */
+    margin-bottom: var(--spacing-4);
+    max-width: 70ch;
+}
+
+/* Ensure body text elements maintain 16px minimum */
+p,
+li,
+dd,
+blockquote,
+.body-text,
+.content p,
+.entry-content p {
+    font-size: var(--font-size-base);
+}
+
+/* Lead paragraph */
+.lead {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+}
+
+/* Strong/Bold - Poppins 600 looks better than 700 for inline bold */
+strong,
+b {
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Small text */
+small,
+.small {
+    font-size: var(--font-size-sm);
+}
+
+/* Tablet breakpoint (768px) */
+@media (min-width: 768px) {
+    h1 {
+        font-size: var(--font-size-4xl);
+    }
+
+    h2 {
+        font-size: var(--font-size-3xl);
+    }
+
+    h3 {
+        font-size: var(--font-size-2xl);
+    }
+
+    h4 {
+        font-size: var(--font-size-xl);
+    }
+}
+
+/* Desktop breakpoint (1024px) */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: var(--font-size-5xl);
+    }
+
+    h2 {
+        font-size: var(--font-size-4xl);
+    }
+
+    h3 {
+        font-size: var(--font-size-3xl);
+    }
+
+    h4 {
+        font-size: var(--font-size-2xl);
+    }
+
+    h5 {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* Large desktop (1280px) */
+@media (min-width: 1280px) {
+    h1 {
+        font-size: var(--font-size-6xl);
+        letter-spacing: -0.025em;
+    }
+}
+
+/* ==========================================================================
+   SMALL SCREEN TYPOGRAPHY
+   Reduced sizes for very small devices while maintaining readability
+   ========================================================================== */
+
+/* Small screens (480px and below) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: var(--font-size-2xl);  /* 24px - reduced from 30px */
+        margin-bottom: var(--spacing-4);
+    }
+
+    h2 {
+        font-size: var(--font-size-xl);   /* 20px - reduced from 24px */
+        margin-bottom: var(--spacing-4);
+    }
+
+    h3 {
+        font-size: var(--font-size-lg);   /* 18px - reduced from 20px */
+        margin-bottom: var(--spacing-3);
+    }
+
+    /* Lead paragraph - slightly smaller */
+    .lead {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* Extra small screens (360px and below - iPhone SE, Galaxy S8) */
+@media (max-width: 360px) {
+    h1 {
+        font-size: var(--font-size-xl);   /* 20px */
+    }
+
+    h2 {
+        font-size: var(--font-size-lg);   /* 18px */
+    }
+
+    h3 {
+        font-size: var(--font-size-base); /* 16px */
+    }
+}
+

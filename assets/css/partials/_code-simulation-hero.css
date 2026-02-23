@@ -1,0 +1,351 @@
+/* ==========================================================================
+   CODE SIMULATION HERO
+   IDE-like coding simulation background for Products page
+   Supports light/dark mode and responsive design
+   ========================================================================== */
+
+.code-simulation-hero {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--code-bg, #1e1e1e);
+}
+
+/* CSS custom properties for theming */
+:root {
+    --code-bg: #1e1e1e;
+    --code-gutter: #252526;
+    --code-text: #d4d4d4;
+    --code-accent: #4ec9b0;
+}
+
+/* Light mode overrides - detect via prefers-color-scheme or data attribute */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+        --code-bg: #f5f5f5;
+        --code-gutter: #e8e8e8;
+        --code-text: #383a42;
+        --code-accent: #0184bc;
+    }
+}
+
+[data-theme="light"] {
+    --code-bg: #f5f5f5;
+    --code-gutter: #e8e8e8;
+    --code-text: #383a42;
+    --code-accent: #0184bc;
+}
+
+/* Claude Terminal fills the entire hero */
+.code-simulation-hero .claude-terminal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 0;
+}
+
+/* Legacy canvas support */
+#code-simulation-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Content layer sits on top of canvas */
+.code-simulation-hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: var(--spacing-10) 0 var(--spacing-8);
+    text-align: center;
+}
+
+/* Title styling - dark mode */
+.code-simulation-hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    margin-bottom: var(--spacing-4);
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 40px rgba(78, 201, 176, 0.3),
+                 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Description styling */
+.code-simulation-hero-description {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Light mode text adjustments */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .code-simulation-hero-title {
+        color: #1a1a2e;
+        text-shadow: 0 0 40px rgba(1, 132, 188, 0.2),
+                     0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    :root:not([data-theme="dark"]) .code-simulation-hero-description {
+        color: rgba(26, 26, 46, 0.8);
+        text-shadow: none;
+    }
+}
+
+[data-theme="light"] .code-simulation-hero-title {
+    color: #1a1a2e;
+    text-shadow: 0 0 40px rgba(1, 132, 188, 0.2),
+                 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .code-simulation-hero-description {
+    color: rgba(26, 26, 46, 0.8);
+    text-shadow: none;
+}
+
+/* Breadcrumbs override for dark background */
+.code-simulation-hero .breadcrumbs {
+    justify-content: center;
+    margin-bottom: var(--spacing-6);
+}
+
+.code-simulation-hero .breadcrumbs a,
+.code-simulation-hero .breadcrumbs span {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.code-simulation-hero .breadcrumbs a:hover {
+    color: var(--code-accent);
+}
+
+.code-simulation-hero .breadcrumbs-separator {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Light mode breadcrumbs */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .code-simulation-hero .breadcrumbs a,
+    :root:not([data-theme="dark"]) .code-simulation-hero .breadcrumbs span {
+        color: rgba(26, 26, 46, 0.6);
+    }
+
+    :root:not([data-theme="dark"]) .code-simulation-hero .breadcrumbs-separator {
+        color: rgba(26, 26, 46, 0.4);
+    }
+}
+
+[data-theme="light"] .code-simulation-hero .breadcrumbs a,
+[data-theme="light"] .code-simulation-hero .breadcrumbs span {
+    color: rgba(26, 26, 46, 0.6);
+}
+
+[data-theme="light"] .code-simulation-hero .breadcrumbs-separator {
+    color: rgba(26, 26, 46, 0.4);
+}
+
+/* Gradient fade at bottom */
+.code-simulation-hero-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Subtle scan line effect (IDE feel) - dark mode */
+.code-simulation-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(78, 201, 176, 0.008) 2px,
+        rgba(78, 201, 176, 0.008) 4px
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Light mode scan lines */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .code-simulation-hero::before {
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(1, 132, 188, 0.015) 2px,
+            rgba(1, 132, 188, 0.015) 4px
+        );
+    }
+}
+
+[data-theme="light"] .code-simulation-hero::before {
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(1, 132, 188, 0.015) 2px,
+        rgba(1, 132, 188, 0.015) 4px
+    );
+}
+
+/* Vignette effect */
+.code-simulation-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 40%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Light mode vignette - softer */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .code-simulation-hero::after {
+        background: radial-gradient(
+            ellipse at center,
+            transparent 50%,
+            rgba(0, 0, 0, 0.15) 100%
+        );
+    }
+}
+
+[data-theme="light"] .code-simulation-hero::after {
+    background: radial-gradient(
+        ellipse at center,
+        transparent 50%,
+        rgba(0, 0, 0, 0.15) 100%
+    );
+}
+
+/* Responsive adjustments - Tablet */
+@media (max-width: 1024px) {
+    .code-simulation-hero {
+        min-height: 45vh;
+    }
+
+    .code-simulation-hero-content {
+        padding: var(--spacing-8) 0 var(--spacing-6);
+    }
+}
+
+/* Responsive adjustments - Large Mobile */
+@media (max-width: 768px) {
+    .code-simulation-hero {
+        min-height: 40vh;
+    }
+
+    .code-simulation-hero-description {
+        font-size: var(--font-size-base);
+        padding: 0 var(--spacing-4);
+    }
+}
+
+/* Reduced motion - show static code */
+@media (prefers-reduced-motion: reduce) {
+    .code-simulation-hero::before {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   MOBILE: Stacked layout with code above content
+   ========================================================================== */
+@media (max-width: 767px) {
+    .code-simulation-hero {
+        flex-direction: column;
+        min-height: auto;
+        background-color: var(--bg-primary);
+    }
+
+    #code-simulation-canvas {
+        position: relative;
+        width: 100%;
+        height: 55vw;
+        min-height: 220px;
+        max-height: 320px;
+        border-radius: 0;
+    }
+
+    .code-simulation-hero-content {
+        position: relative;
+        z-index: 2;
+        padding: var(--spacing-8) 0 var(--spacing-12);
+        background-color: var(--bg-primary);
+    }
+
+    .code-simulation-hero-title {
+        color: var(--text-primary);
+        text-shadow: none;
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+    }
+
+    .code-simulation-hero-description {
+        color: var(--text-secondary);
+        text-shadow: none;
+        font-size: var(--font-size-base);
+    }
+
+    .code-simulation-hero .breadcrumbs a,
+    .code-simulation-hero .breadcrumbs span {
+        color: var(--text-muted);
+    }
+
+    .code-simulation-hero .breadcrumbs {
+        display: none;
+    }
+
+    .code-simulation-hero-fade {
+        display: none;
+    }
+
+    /* Hide the scan line and vignette effects on mobile */
+    .code-simulation-hero::before,
+    .code-simulation-hero::after {
+        display: none;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    #code-simulation-canvas {
+        height: 60vw;
+        min-height: 180px;
+        max-height: 280px;
+    }
+
+    .code-simulation-hero-title {
+        font-size: clamp(1.5rem, 8vw, 2rem);
+    }
+
+    .code-simulation-hero-content {
+        padding: var(--spacing-6) 0 var(--spacing-10);
+    }
+}

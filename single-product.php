@@ -29,7 +29,7 @@ get_header();
                         if ($product_type) :
                         ?>
                             <div class="product-type-badge mb-4">
-                                <span class="type-tag text-primary text-sm"><?php echo esc_html($product_type); ?></span>
+                                <span class="type-tag text-primary text-base"><?php echo esc_html($product_type); ?></span>
                             </div>
                         <?php endif; ?>
 
@@ -49,14 +49,14 @@ get_header();
 
                             <?php if ($product_type) : ?>
                                 <div class="meta-item">
-                                    <span class="meta-label text-sm text-gray-500"><?php esc_html_e('Type', 'bfluxco'); ?></span>
+                                    <span class="meta-label text-base text-gray-500"><?php esc_html_e('Type', 'bfluxco'); ?></span>
                                     <span class="meta-value font-medium"><?php echo esc_html($product_type); ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if ($price) : ?>
                                 <div class="meta-item">
-                                    <span class="meta-label text-sm text-gray-500"><?php esc_html_e('Price', 'bfluxco'); ?></span>
+                                    <span class="meta-label text-base text-gray-500"><?php esc_html_e('Price', 'bfluxco'); ?></span>
                                     <span class="meta-value font-medium"><?php echo esc_html($price); ?></span>
                                 </div>
                             <?php endif; ?>
@@ -120,7 +120,8 @@ get_header();
         'post_type' => 'product',
         'posts_per_page' => 3,
         'post__not_in' => array(get_the_ID()),
-        'orderby' => 'rand',
+        'orderby' => 'date',
+        'order' => 'DESC',
     ));
 
     if ($related->have_posts()) :

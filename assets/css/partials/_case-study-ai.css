@@ -1,0 +1,779 @@
+/* ==========================================================================
+   CASE STUDY: Portfolio in the AI World
+   Custom template styles for the meta case study about designing in AI era
+   ========================================================================== */
+
+/* ==========================================================================
+   Layout Reset - Ensure vertical stacking
+   ========================================================================== */
+
+.case-study-ai-world {
+    display: block !important;
+    background-color: var(--bg-primary);
+}
+
+.case-study-ai-world article.cs-ai-article {
+    display: block !important;
+    width: 100%;
+}
+
+/* Force all sections to stack vertically */
+.case-study-ai-world .cs-ai-hero,
+.case-study-ai-world .cs-ai-paradox,
+.case-study-ai-world .cs-ai-section,
+.case-study-ai-world .cs-ai-meta-lesson,
+.case-study-ai-world .cs-ai-footer,
+.case-study-ai-world .cs-ai-cta {
+    display: block !important;
+    width: 100%;
+    float: none;
+    flex: none;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.cs-ai-hero {
+    padding: var(--spacing-20) 0 var(--spacing-16);
+    background-color: var(--bg-primary);
+}
+
+.cs-ai-hero-inner {
+    max-width: 900px;
+}
+
+.cs-ai-label {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.cs-ai-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-6);
+}
+
+.cs-ai-subtitle {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    max-width: 700px;
+}
+
+/* Meta Strip */
+.cs-ai-meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-8);
+    margin-top: var(--spacing-10);
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--border-primary);
+}
+
+.cs-ai-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.cs-ai-meta-item .meta-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.cs-ai-meta-item .meta-value {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   The Paradox Section (Opening Statement)
+   ========================================================================== */
+
+.cs-ai-paradox {
+    padding: var(--spacing-20) 0;
+    background-color: var(--bg-secondary);
+}
+
+.cs-ai-paradox-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cs-ai-paradox-mark {
+    font-size: 8rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 0.5;
+    color: var(--color-primary);
+    opacity: 0.15;
+    margin-bottom: var(--spacing-4);
+}
+
+.cs-ai-paradox-text {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-8);
+}
+
+.cs-ai-paradox-question {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Section Styles
+   ========================================================================== */
+
+.cs-ai-section {
+    padding: var(--spacing-20) 0;
+}
+
+.cs-ai-section:nth-child(even) {
+    background-color: var(--bg-secondary);
+}
+
+.cs-ai-section-header {
+    margin-bottom: var(--spacing-12);
+}
+
+.cs-ai-section-number {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-3);
+}
+
+.cs-ai-section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.cs-ai-section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-tertiary);
+    margin-top: var(--spacing-2);
+}
+
+/* ==========================================================================
+   Prose Content
+   ========================================================================== */
+
+.cs-ai-prose {
+    max-width: 700px;
+}
+
+.cs-ai-prose p {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-6);
+}
+
+.cs-ai-prose p.lead {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+}
+
+.cs-ai-prose p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   The Brief Grid
+   ========================================================================== */
+
+.cs-ai-brief-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+    .cs-ai-brief-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.cs-ai-brief-item {
+    padding: var(--spacing-8);
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-2xl);
+}
+
+.cs-ai-brief-item h3 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.cs-ai-brief-item p {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Callout
+   ========================================================================== */
+
+.cs-ai-callout {
+    margin-top: var(--spacing-12);
+    padding: var(--spacing-10);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-2xl);
+    border-left: 4px solid var(--color-primary);
+}
+
+.cs-ai-callout p {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin: 0 0 var(--spacing-4);
+}
+
+.cs-ai-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.cs-ai-callout-emphasis {
+    font-size: var(--font-size-xl) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ==========================================================================
+   Principles (Strategy Section)
+   ========================================================================== */
+
+.cs-ai-principles {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-12);
+}
+
+@media (min-width: 768px) {
+    .cs-ai-principles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.cs-ai-principle {
+    display: flex;
+    gap: var(--spacing-5);
+    padding: var(--spacing-6);
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+}
+
+.cs-ai-principle-number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+}
+
+.cs-ai-principle-content h4 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.cs-ai-principle-content p {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-tertiary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Design System Grid
+   ========================================================================== */
+
+.cs-ai-design-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-10);
+}
+
+@media (min-width: 768px) {
+    .cs-ai-design-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.cs-ai-design-item {
+    padding: var(--spacing-6);
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+}
+
+.cs-ai-design-item h4 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-3);
+}
+
+.cs-ai-design-item p {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-tertiary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   AI Collaboration Split View
+   ========================================================================== */
+
+.cs-ai-split {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-10);
+}
+
+@media (min-width: 768px) {
+    .cs-ai-split {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.cs-ai-split-panel {
+    padding: var(--spacing-8);
+    border-radius: var(--radius-2xl);
+}
+
+.cs-ai-split-ai {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+}
+
+.cs-ai-split-human {
+    background-color: var(--bg-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.cs-ai-split-panel h3 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-6);
+}
+
+.cs-ai-split-ai h3 {
+    color: var(--text-muted);
+}
+
+.cs-ai-split-human h3 {
+    color: var(--color-primary);
+}
+
+.cs-ai-split-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cs-ai-split-panel li {
+    position: relative;
+    padding-left: var(--spacing-6);
+    margin-bottom: var(--spacing-3);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+}
+
+.cs-ai-split-panel li:last-child {
+    margin-bottom: 0;
+}
+
+.cs-ai-split-panel li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.cs-ai-split-ai li::before {
+    background-color: var(--text-muted);
+}
+
+.cs-ai-split-human li::before {
+    background-color: var(--color-primary);
+}
+
+/* Insight Box */
+.cs-ai-insight {
+    margin-top: var(--spacing-10);
+    padding: var(--spacing-8);
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border-radius: var(--radius-2xl);
+    text-align: center;
+}
+
+.cs-ai-insight p {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-primary);
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   Lessons Learned Grid
+   ========================================================================== */
+
+.cs-ai-lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-6);
+}
+
+@media (min-width: 768px) {
+    .cs-ai-lessons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.cs-ai-lesson {
+    padding: var(--spacing-8);
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-2xl);
+    transition: border-color var(--motion-fast) var(--ease-out-expo),
+                transform var(--motion-fast) var(--ease-out-expo);
+}
+
+.cs-ai-lesson:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.cs-ai-lesson-number {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    opacity: 0.3;
+    margin-bottom: var(--spacing-4);
+}
+
+.cs-ai-lesson h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-3);
+}
+
+.cs-ai-lesson p {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-tertiary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Results Section
+   ========================================================================== */
+
+.cs-ai-results-content {
+    max-width: 700px;
+}
+
+.cs-ai-results-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cs-ai-results-content li {
+    position: relative;
+    padding-left: var(--spacing-8);
+    margin-bottom: var(--spacing-4);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+}
+
+.cs-ai-results-content li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+.cs-ai-results-content li::after {
+    content: '\2713';
+    position: absolute;
+    left: 3px;
+    top: 0.45em;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Meta Lesson (Conclusion)
+   ========================================================================== */
+
+.cs-ai-meta-lesson {
+    background-color: var(--bg-inverse) !important;
+    color: var(--text-inverse);
+}
+
+.cs-ai-meta-lesson-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cs-ai-meta-lesson h2 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-8);
+}
+
+.cs-ai-meta-lesson-text {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-inverse);
+    opacity: 0.8;
+    margin-bottom: var(--spacing-6);
+}
+
+.cs-ai-meta-lesson-emphasis {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    color: var(--text-inverse);
+    margin-bottom: var(--spacing-6);
+}
+
+.cs-ai-meta-lesson-close {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-inverse);
+    opacity: 0.8;
+    margin-bottom: var(--spacing-8);
+}
+
+.cs-ai-meta-lesson-statement {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Principles Summary
+   ========================================================================== */
+
+.cs-ai-principles-summary .cs-ai-section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+}
+
+.cs-ai-principles-summary .cs-ai-section-title {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cs-ai-principles-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cs-ai-summary-principle {
+    display: flex;
+    gap: var(--spacing-5);
+    padding: var(--spacing-5) 0;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.cs-ai-summary-principle:last-child {
+    border-bottom: none;
+}
+
+.cs-ai-sp-number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.cs-ai-summary-principle p {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin: 0;
+    padding-top: var(--spacing-1);
+}
+
+.cs-ai-summary-principle p strong {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.cs-ai-footer {
+    padding: var(--spacing-16) 0;
+    background-color: var(--bg-secondary);
+    text-align: center;
+}
+
+.cs-ai-footer-note {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    color: var(--text-tertiary);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-8);
+}
+
+.cs-ai-services {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-6);
+}
+
+.cs-ai-services strong {
+    color: var(--text-secondary);
+}
+
+.cs-ai-share {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-4);
+}
+
+/* ==========================================================================
+   CTA Section
+   ========================================================================== */
+
+.cs-ai-cta {
+    padding: var(--spacing-20) 0;
+    text-align: center;
+    background-color: var(--bg-primary);
+}
+
+.cs-ai-cta h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.cs-ai-cta p {
+    font-size: var(--font-size-lg);
+    color: var(--text-tertiary);
+    margin-bottom: var(--spacing-8);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    .cs-ai-hero {
+        padding: var(--spacing-12) 0 var(--spacing-10);
+    }
+
+    .cs-ai-section {
+        padding: var(--spacing-12) 0;
+    }
+
+    .cs-ai-paradox {
+        padding: var(--spacing-12) 0;
+    }
+
+    .cs-ai-paradox-mark {
+        font-size: 5rem;
+    }
+
+    .cs-ai-meta-strip {
+        gap: var(--spacing-6);
+    }
+
+    .cs-ai-callout {
+        padding: var(--spacing-6);
+    }
+
+    .cs-ai-meta-lesson-inner {
+        padding: 0 var(--spacing-4);
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .cs-ai-lesson {
+        transition: none;
+    }
+}

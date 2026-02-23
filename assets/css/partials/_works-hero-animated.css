@@ -1,0 +1,326 @@
+/* ==========================================================================
+   WORKS PAGE - HERO & EDITORIAL LIST
+   Clean styles for the works page hero and featured list.
+   Uses site theme variables for consistent light/dark mode support.
+   ========================================================================== */
+
+/* ---------------------------------------------
+   Hero Container
+   --------------------------------------------- */
+.works-hero.works-featured-hero {
+    background-color: var(--bg-secondary);
+    background-image: none;
+    padding: 120px 0 80px;
+    min-height: auto;
+    height: auto;
+}
+
+/* Remove overlay from base .works-hero */
+.works-hero.works-featured-hero::before {
+    display: none;
+}
+
+/* Hide previous hero elements */
+.works-featured-hero .works-hero-bg,
+.works-featured-hero .works-hero-canvas {
+    display: none;
+}
+
+/* ---------------------------------------------
+   Editorial List Section
+   --------------------------------------------- */
+.works-editorial-list {
+    background-color: var(--bg-primary);
+    padding: 80px 0;
+}
+
+/* ---------------------------------------------
+   Editorial Layout - Two Column Grid
+   --------------------------------------------- */
+.editorial-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 60px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ---------------------------------------------
+   Left Column - Heading
+   --------------------------------------------- */
+.editorial-heading {
+    align-self: start;
+}
+
+.editorial-heading h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+}
+
+/* Dropdown */
+.editorial-dropdown {
+    margin-top: 12px;
+}
+
+/* Help Text */
+.editorial-help {
+    margin: 16px 0 8px 0;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.editorial-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    padding: 8px 32px 8px 12px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color 0.15s ease;
+}
+
+.editorial-select:hover {
+    border-color: var(--border-secondary);
+}
+
+.editorial-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+[data-theme="dark"] .editorial-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------
+   Right Column - Featured List
+   --------------------------------------------- */
+.editorial-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Column Headers */
+.editorial-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 32px;
+    padding: 0 0 12px 0;
+    border-bottom: 1px solid var(--border-primary);
+    align-items: baseline;
+}
+
+.editorial-header span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.editorial-header span {
+    text-align: left;
+}
+
+.editorial-header-category {
+    min-width: 100px;
+}
+
+.editorial-header-meta {
+    min-width: 120px;
+}
+
+/* Individual Item */
+.editorial-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 32px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-primary);
+    text-decoration: none;
+    color: inherit;
+    align-items: baseline;
+    transition: opacity 0.15s ease;
+}
+
+/* Header provides top border, so no border on first item */
+
+/* Hover effect - dim other items */
+.editorial-list:hover .editorial-item:not(:hover) {
+    opacity: 0.5;
+}
+
+.editorial-item:hover {
+    opacity: 1;
+}
+
+/* Item Title */
+.editorial-item-title {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    transition: text-decoration 0.15s ease;
+}
+
+/* Lock icon inherits text color */
+.editorial-item-title .lock-icon {
+    fill: currentColor;
+}
+
+.editorial-item:hover .editorial-item-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Item Category */
+.editorial-item-category {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    text-align: left;
+    min-width: 100px;
+}
+
+/* Item Meta (Date/Client) */
+.editorial-item-meta {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    text-align: left;
+    min-width: 120px;
+}
+
+/* ---------------------------------------------
+   Responsive Styles
+   --------------------------------------------- */
+@media (max-width: 1024px) {
+    .works-hero.works-featured-hero {
+        padding: 100px 0 60px;
+    }
+
+    .works-editorial-list {
+        padding: 60px 0;
+    }
+
+    .editorial-layout {
+        grid-template-columns: 150px 1fr;
+        gap: 40px;
+    }
+
+    .editorial-header,
+    .editorial-item {
+        gap: 24px;
+    }
+
+    .editorial-header-meta,
+    .editorial-item-meta {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .editorial-header {
+        display: none;
+    }
+    .works-hero.works-featured-hero {
+        padding: 80px 0 40px;
+    }
+
+    .works-editorial-list {
+        padding: 48px 0;
+    }
+
+    .editorial-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .editorial-heading {
+        position: static;
+    }
+
+    .editorial-heading h2 {
+        font-size: 1.25rem;
+    }
+
+    .editorial-item {
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        padding: 16px 0;
+    }
+
+    .editorial-item-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        grid-column: 1 / -1;
+        order: 1;
+    }
+
+    .editorial-item-category {
+        font-size: 0.8125rem;
+        order: 2;
+    }
+
+    .editorial-item-meta {
+        font-size: 0.8125rem;
+        order: 3;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .works-hero.works-featured-hero {
+        padding: 60px 0 32px;
+    }
+
+    .works-editorial-list {
+        padding: 40px 0;
+    }
+
+    .editorial-layout {
+        gap: 24px;
+    }
+
+    .editorial-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .editorial-item-title,
+    .editorial-item-category,
+    .editorial-item-meta {
+        font-size: 0.8125rem;
+    }
+
+    .editorial-item-meta {
+        text-align: left;
+    }
+}
+
+/* ---------------------------------------------
+   Reduced Motion Support
+   --------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .editorial-item,
+    .editorial-item-title {
+        transition: none;
+    }
+}

@@ -3,8 +3,7 @@
  * Template Name: Works
  * Template Post Type: page
  *
- * This template displays the Works archive page - a collection of all works
- * including case studies not featured on the homepage.
+ * Portfolio showcase with featured projects and filterable grid.
  * URL: /works
  *
  * @package BFLUXCO
@@ -13,194 +12,204 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main">
+<main id="main-content" class="site-main works-page">
 
-    <?php
-    get_template_part('template-parts/page-header', null, array(
-        'description' => __('A collection of case studies, projects, and design work spanning industries and disciplines.', 'bfluxco'),
-        'use_excerpt' => true,
-    ));
-    ?>
-
-    <!-- Works Section with Filter Bar -->
-    <section class="section works-archive">
+    <!-- Page Hero - Spotlight Project -->
+    <header class="works-hero works-featured-hero">
         <div class="container">
-            <!-- Filter Bar -->
-            <div class="filter-bar reveal mb-8" data-delay="2">
-                <button class="filter-btn active" data-filter="all"><?php esc_html_e('All Work', 'bfluxco'); ?></button>
-                <?php
-                // Get all industries from case studies
-                $industries = get_terms(array(
-                    'taxonomy' => 'industry',
-                    'hide_empty' => true,
-                ));
-
-                if (!empty($industries) && !is_wp_error($industries)) :
-                    foreach ($industries as $industry) :
-                ?>
-                    <button class="filter-btn" data-filter="<?php echo esc_attr($industry->slug); ?>">
-                        <?php echo esc_html($industry->name); ?>
-                    </button>
-                <?php
-                    endforeach;
-                else :
-                    // Placeholder filters when no taxonomies exist yet
-                ?>
-                    <button class="filter-btn" data-filter="fintech"><?php esc_html_e('Fintech', 'bfluxco'); ?></button>
-                    <button class="filter-btn" data-filter="healthcare"><?php esc_html_e('Healthcare', 'bfluxco'); ?></button>
-                    <button class="filter-btn" data-filter="enterprise"><?php esc_html_e('Enterprise', 'bfluxco'); ?></button>
-                    <button class="filter-btn" data-filter="ai"><?php esc_html_e('AI/ML', 'bfluxco'); ?></button>
-                <?php endif; ?>
+            <div class="section-header">
+                <span class="section-label"><?php esc_html_e('Featured', 'bfluxco'); ?></span>
+                <h2 class="section-title"><?php esc_html_e('Spotlight Project', 'bfluxco'); ?></h2>
             </div>
+
             <?php
-            $case_studies = new WP_Query(array(
+            // Get a featured case study (most recent or a specific one)
+            $featured = new WP_Query(array(
                 'post_type'      => 'case_study',
-                'posts_per_page' => -1,
-                'orderby'        => 'menu_order date',
-                'order'          => 'ASC',
+                'posts_per_page' => 1,
+                'meta_key'       => '_is_featured',
+                'meta_value'     => '1',
             ));
 
-            if ($case_studies->have_posts()) :
-            ?>
-            <div class="works-grid">
-                <?php
-                $index = 0;
-                while ($case_studies->have_posts()) : $case_studies->the_post();
-                    $index++;
-                    $client = get_post_meta(get_the_ID(), 'case_study_client', true);
-                    $industries = get_the_terms(get_the_ID(), 'industry');
-                    $industry_classes = '';
-                    if ($industries && !is_wp_error($industries)) {
-                        $industry_classes = implode(' ', wp_list_pluck($industries, 'slug'));
-                    }
-                ?>
-                <article class="work-card reveal-up <?php echo esc_attr($industry_classes); ?>" data-delay="<?php echo min($index, 6); ?>" data-categories="<?php echo esc_attr($industry_classes); ?>">
-                    <a href="<?php the_permalink(); ?>" class="work-card-inner">
-                        <div class="work-card-image">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <?php the_post_thumbnail('large'); ?>
-                            <?php else : ?>
-                                <div class="work-card-placeholder"></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="work-card-content">
-                            <?php if ($client) : ?>
-                                <span class="work-card-client"><?php echo esc_html($client); ?></span>
-                            <?php endif; ?>
-                            <h2 class="work-card-title"><?php the_title(); ?></h2>
-                            <p class="work-card-excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 20)); ?></p>
-                            <?php if ($industries && !is_wp_error($industries)) : ?>
-                                <div class="work-card-tags">
-                                    <?php foreach ($industries as $industry) : ?>
-                                        <span class="work-tag"><?php echo esc_html($industry->name); ?></span>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </a>
-                </article>
-                <?php
-                endwhile;
-                wp_reset_postdata();
-                ?>
-            </div>
-            <?php else : ?>
-            <!-- Placeholder Works -->
-            <div class="works-grid">
-                <?php
-                $placeholder_works = array(
-                    array(
-                        'client' => 'Global Bank',
-                        'title' => 'Reimagining Digital Banking',
-                        'excerpt' => 'A complete digital transformation of the retail banking experience, from mobile app to branch integration.',
-                        'industry' => 'Fintech',
-                        'filter' => 'fintech'
-                    ),
-                    array(
-                        'client' => 'HealthTech Startup',
-                        'title' => 'Patient Portal Redesign',
-                        'excerpt' => 'Simplifying complex medical information into an intuitive patient experience.',
-                        'industry' => 'Healthcare',
-                        'filter' => 'healthcare'
-                    ),
-                    array(
-                        'client' => 'Enterprise SaaS',
-                        'title' => 'Design System at Scale',
-                        'excerpt' => 'Building a unified design language across 12 products and 200+ engineers.',
-                        'industry' => 'Enterprise',
-                        'filter' => 'enterprise'
-                    ),
-                    array(
-                        'client' => 'AI Research Lab',
-                        'title' => 'Conversational AI Interface',
-                        'excerpt' => 'Designing human-centered interactions for generative AI applications.',
-                        'industry' => 'AI/ML',
-                        'filter' => 'ai'
-                    ),
-                    array(
-                        'client' => 'Insurance Co.',
-                        'title' => 'Claims Process Optimization',
-                        'excerpt' => 'Reducing claims processing time by 60% through thoughtful UX improvements.',
-                        'industry' => 'Fintech',
-                        'filter' => 'fintech'
-                    ),
-                    array(
-                        'client' => 'Telehealth Platform',
-                        'title' => 'Virtual Care Experience',
-                        'excerpt' => 'Creating seamless video consultations that feel personal and professional.',
-                        'industry' => 'Healthcare',
-                        'filter' => 'healthcare'
-                    ),
-                    array(
-                        'client' => 'Logistics Giant',
-                        'title' => 'Supply Chain Dashboard',
-                        'excerpt' => 'Visualizing complex logistics data for real-time decision making.',
-                        'industry' => 'Enterprise',
-                        'filter' => 'enterprise'
-                    ),
-                    array(
-                        'client' => 'EdTech Company',
-                        'title' => 'Adaptive Learning Platform',
-                        'excerpt' => 'Personalizing education through AI-driven content recommendations.',
-                        'industry' => 'AI/ML',
-                        'filter' => 'ai'
-                    ),
-                );
+            // Fallback to most recent if no featured
+            if (!$featured->have_posts()) {
+                $featured = new WP_Query(array(
+                    'post_type'      => 'case_study',
+                    'posts_per_page' => 1,
+                    'orderby'        => 'date',
+                    'order'          => 'DESC',
+                ));
+            }
 
-                $index = 0;
-                foreach ($placeholder_works as $work) :
-                    $index++;
-                ?>
-                <article class="work-card reveal-up <?php echo esc_attr($work['filter']); ?>" data-delay="<?php echo min($index, 6); ?>" data-categories="<?php echo esc_attr($work['filter']); ?>">
-                    <div class="work-card-inner">
-                        <div class="work-card-image">
-                            <div class="work-card-placeholder"></div>
-                        </div>
-                        <div class="work-card-content">
-                            <span class="work-card-client"><?php echo esc_html($work['client']); ?></span>
-                            <h2 class="work-card-title"><?php echo esc_html($work['title']); ?></h2>
-                            <p class="work-card-excerpt"><?php echo esc_html($work['excerpt']); ?></p>
-                            <div class="work-card-tags">
-                                <span class="work-tag"><?php echo esc_html($work['industry']); ?></span>
+            if ($featured->have_posts()) :
+                while ($featured->have_posts()) : $featured->the_post();
+                    $client = get_post_meta(get_the_ID(), 'case_study_client', true);
+            ?>
+            <a href="<?php the_permalink(); ?>" class="featured-project">
+                <div class="featured-project-image">
+                    <?php if (has_post_thumbnail()) : ?>
+                        <?php the_post_thumbnail('large'); ?>
+                    <?php else : ?>
+                        <div class="featured-project-placeholder">
+                            <div class="featured-placeholder-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
                             </div>
                         </div>
+                    <?php endif; ?>
+                </div>
+                <div class="featured-project-content">
+                    <div class="featured-project-meta">
+                        <span class="featured-project-type"><?php esc_html_e('Case Study', 'bfluxco'); ?></span>
+                        <?php if ($client) : ?>
+                            <span class="featured-project-client"><?php echo esc_html($client); ?></span>
+                        <?php endif; ?>
                     </div>
-                </article>
-                <?php endforeach; ?>
-            </div>
+                    <h3 class="featured-project-title"><?php the_title(); ?></h3>
+                    <p class="featured-project-excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 35)); ?></p>
+                    <span class="featured-project-cta">
+                        <?php esc_html_e('View case study', 'bfluxco'); ?>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+            ?>
+            <!-- Placeholder featured project -->
+            <a href="#" class="featured-project">
+                <div class="featured-project-image">
+                    <div class="featured-project-placeholder">
+                        <div class="featured-placeholder-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-project-content">
+                    <div class="featured-project-meta">
+                        <span class="featured-project-type"><?php esc_html_e('Case Study', 'bfluxco'); ?></span>
+                        <span class="featured-project-client">Hyland Software</span>
+                    </div>
+                    <h3 class="featured-project-title"><?php esc_html_e('Enterprise Content Platform Transformation', 'bfluxco'); ?></h3>
+                    <p class="featured-project-excerpt"><?php esc_html_e('How we redesigned information architecture and user workflows to reduce complexity and improve decision-making across a global enterprise platform.', 'bfluxco'); ?></p>
+                    <span class="featured-project-cta">
+                        <?php esc_html_e('View case study', 'bfluxco'); ?>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
             <?php endif; ?>
         </div>
-    </section><!-- Works Grid -->
+    </header>
 
-    <?php
-    get_template_part('template-parts/section-cta', null, array(
-        'heading' => __('Have a Project in Mind?', 'bfluxco'),
-        'description' => __("Let's discuss how strategic design can help solve your business challenges.", 'bfluxco'),
-        'button_text' => __('Start a Conversation', 'bfluxco'),
-    ));
-    ?>
+    <!-- Editorial List Section -->
+    <section class="works-editorial-list">
+        <div class="container">
+            <div class="editorial-layout">
+                <!-- Left Column - Heading -->
+                <div class="editorial-heading">
+                    <h2><?php esc_html_e('Selected Works', 'bfluxco'); ?></h2>
+                    <p class="editorial-help"><?php esc_html_e('Choose a designer', 'bfluxco'); ?></p>
+                    <div class="editorial-dropdown">
+                        <select id="works-author-filter" class="editorial-select">
+                            <option value="ray-butler" selected><?php esc_html_e('Ray Butler', 'bfluxco'); ?></option>
+                        </select>
+                    </div>
+                </div>
 
-</main><!-- #main-content -->
+                <!-- Right Column - Featured List -->
+                <div class="editorial-list">
+                    <!-- Column Headers -->
+                    <div class="editorial-header">
+                        <span class="editorial-header-title"><?php esc_html_e('Title', 'bfluxco'); ?></span>
+                        <span class="editorial-header-category"><?php esc_html_e('Type', 'bfluxco'); ?></span>
+                        <span class="editorial-header-meta"><?php esc_html_e('Date', 'bfluxco'); ?></span>
+                    </div>
+                    <?php
+                    // Query featured case studies
+                    $featured_works = new WP_Query(array(
+                        'post_type'      => array('case_study', 'special_project'),
+                        'posts_per_page' => 7,
+                        'orderby'        => 'date',
+                        'order'          => 'DESC',
+                        'meta_query'     => array(
+                            'relation' => 'OR',
+                            array(
+                                'key'     => '_is_featured',
+                                'value'   => '1',
+                                'compare' => '='
+                            ),
+                            array(
+                                'key'     => '_is_featured',
+                                'compare' => 'NOT EXISTS'
+                            )
+                        )
+                    ));
 
-<?php
-get_footer();
+                    if ($featured_works->have_posts()) :
+                        while ($featured_works->have_posts()) : $featured_works->the_post();
+                            $post_type = get_post_type();
+                            $post_type_obj = get_post_type_object($post_type);
+                            $category_label = $post_type_obj ? $post_type_obj->labels->singular_name : 'Project';
+                            $client = get_post_meta(get_the_ID(), 'case_study_client', true);
+                            $date = get_the_date('M j, Y');
+                    ?>
+                    <a href="<?php the_permalink(); ?>" class="editorial-item">
+                        <span class="editorial-item-title"><?php the_title(); ?></span>
+                        <span class="editorial-item-category"><?php echo esc_html($category_label); ?></span>
+                        <span class="editorial-item-meta"><?php echo $client ? esc_html($client) : esc_html($date); ?></span>
+                    </a>
+                    <?php
+                        endwhile;
+                        wp_reset_postdata();
+                    else :
+                    ?>
+                    <!-- Placeholder items when no posts exist -->
+                    <a href="#" class="editorial-item">
+                        <span class="editorial-item-title">Enterprise Content Platform Transformation</span>
+                        <span class="editorial-item-category">Case Study</span>
+                        <span class="editorial-item-meta">Hyland Software</span>
+                    </a>
+                    <a href="#" class="editorial-item">
+                        <span class="editorial-item-title">AI-Powered Customer Support Redesign</span>
+                        <span class="editorial-item-category">Case Study</span>
+                        <span class="editorial-item-meta">TechCorp</span>
+                    </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="works-cta">
+        <div class="container">
+            <div class="works-cta-content reveal-up">
+                <h2 class="works-cta-title"><?php esc_html_e('Have a Complex Challenge?', 'bfluxco'); ?></h2>
+                <p class="works-cta-description">
+                    <?php esc_html_e("Let's discuss how systems thinking and thoughtful design can help your organization navigate complexity.", 'bfluxco'); ?>
+                </p>
+                <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn btn-primary btn-lg">
+                    <?php esc_html_e('Start a Conversation', 'bfluxco'); ?>
+                    <?php bfluxco_icon('arrow-right', array('size' => 16)); ?>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<?php get_footer(); ?>

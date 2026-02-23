@@ -14,10 +14,12 @@
  */
 
 // Get args with defaults
+$title = isset($args['title']) ? $args['title'] : '';
 $description = isset($args['description']) ? $args['description'] : '';
 $show_animations = isset($args['show_animations']) ? $args['show_animations'] : true;
 $desc_delay = isset($args['desc_delay']) ? $args['desc_delay'] : '1';
 $use_excerpt = isset($args['use_excerpt']) ? $args['use_excerpt'] : false;
+$show_breadcrumbs = isset($args['show_breadcrumbs']) ? $args['show_breadcrumbs'] : true;
 
 // Build classes
 $title_class = 'page-title' . ($show_animations ? ' reveal-hero' : '');
@@ -31,8 +33,8 @@ $has_desc_content = ($use_excerpt && has_excerpt()) || $description;
 <!-- Page Header -->
 <header class="page-header">
     <div class="container">
-        <?php bfluxco_breadcrumbs(); ?>
-        <h1 class="<?php echo esc_attr($title_class); ?>"><?php the_title(); ?></h1>
+        <?php if ($show_breadcrumbs) : bfluxco_breadcrumbs(); endif; ?>
+        <h1 class="<?php echo esc_attr($title_class); ?>"><?php echo $title ? esc_html($title) : get_the_title(); ?></h1>
         <?php if ($has_desc_content) : ?>
             <p class="<?php echo esc_attr($desc_class); ?>"<?php echo $desc_attrs; ?>>
                 <?php

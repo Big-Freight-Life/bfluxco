@@ -244,8 +244,8 @@ get_header();
 
             <!-- Takeaway -->
             <section class="case-chapter case-takeaway-split">
-                <blockquote class="final-quote">
-                    <p>When systems are designed to work together seamlessly, users stop thinking about tools and start focusing on outcomes.</p>
+                <blockquote class="featured-quote">
+                    <p class="quote-emphasis">When systems are designed to work together seamlessly, users stop thinking about tools and start focusing on outcomes.</p>
                 </blockquote>
                 <p>By combining Hyland's industry-leading content management with Salesforce's CRM power, we created an integration that enterprises actually want to use—not work around.</p>
             </section>
@@ -266,10 +266,10 @@ get_header();
                         <span class="case-pagination-title">Seamless Salesforce Migration</span>
                     </div>
                 </a>
-                <a href="<?php echo esc_url(home_url('/case-study-style-3/')); ?>" class="case-pagination-link case-pagination-next">
+                <a href="<?php echo esc_url(home_url('/work/case-studies/hyland-for-workday-integration/')); ?>" class="case-pagination-link case-pagination-next">
                     <div class="case-pagination-text">
                         <span class="case-pagination-label">Next</span>
-                        <span class="case-pagination-title">AtlasMed Transformation</span>
+                        <span class="case-pagination-title">Hyland for Workday</span>
                     </div>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14"/>

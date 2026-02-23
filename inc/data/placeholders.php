@@ -38,12 +38,12 @@ function bfluxco_get_placeholder_case_studies() {
             'gradient' => 'linear-gradient(135deg, #7c3aed, #4f46e5)',
         ),
         array(
-            'label'    => 'Digital Transformation',
-            'title'    => 'AtlasMed Transformation',
-            'excerpt'  => 'When systems are designed around people, adoption follows. 81% daily active users in 90 days.',
+            'label'    => 'Enterprise Integration',
+            'title'    => 'Hyland for Workday',
+            'excerpt'  => 'Unified content management embedded directly into Workday screens. No middleware. No custom code.',
             'year'     => '2024',
             'image'    => 'system',
-            'link'     => '/case-study-style-3/',
+            'link'     => '/work/case-studies/hyland-for-workday-integration/',
             'gradient' => 'linear-gradient(180deg, #0f172a, #1e293b)',
         ),
         array(
@@ -103,20 +103,26 @@ function bfluxco_get_placeholder_blog_posts() {
 function bfluxco_get_placeholder_services() {
     return array(
         array(
-            'title'       => 'Workshops',
-            'description' => 'Collaborative sessions that align teams and accelerate decision-making.',
-            'icon'        => 'users',
-            'link'        => '/work/workshops',
-        ),
-        array(
-            'title'       => 'Products',
-            'description' => 'Tools and frameworks to help you work smarter, not harder.',
+            'title'       => 'Clarity before automation',
+            'description' => 'We help teams understand their system before adding intelligence—surfacing assumptions, constraints, and hidden dependencies.',
             'icon'        => 'layout',
-            'link'        => '/work/products',
+            'link'        => '/work/methodology',
         ),
         array(
-            'title'       => 'Methodology',
-            'description' => 'A proven approach to solving complex business challenges.',
+            'title'       => 'Decision-ready systems',
+            'description' => 'We design experiences and architectures that make consequences visible, so teams can act with confidence, not guesswork.',
+            'icon'        => 'arrow-right',
+            'link'        => '/work/methodology',
+        ),
+        array(
+            'title'       => 'Human–AI collaboration',
+            'description' => 'We design agentic systems that know when to act, when to assist, and when to defer to human judgment.',
+            'icon'        => 'users',
+            'link'        => '/work/methodology',
+        ),
+        array(
+            'title'       => 'Scalability without fragility',
+            'description' => 'We design systems that evolve without breaking—across workflows, roles, and time.',
             'icon'        => 'layers',
             'link'        => '/work/methodology',
         ),

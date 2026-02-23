@@ -17,7 +17,7 @@ get_header();
                 <?php
                 printf(
                     esc_html__('Search Results for: %s', 'bfluxco'),
-                    '<span>' . get_search_query() . '</span>'
+                    '<span>' . esc_html( get_search_query() ) . '</span>'
                 );
                 ?>
             </h1>

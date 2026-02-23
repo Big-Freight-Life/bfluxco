@@ -17,6 +17,7 @@ get_header();
     <?php
     get_template_part('template-parts/page-header', null, array(
         'description' => __('Strategic design services that help organizations navigate complexity and create meaningful solutions.', 'bfluxco'),
+        'show_breadcrumbs' => false,
     ));
     ?>
 

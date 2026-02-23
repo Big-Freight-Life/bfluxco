@@ -1,0 +1,451 @@
+/* ==========================================================================
+   7. BUTTONS & LINKS
+   Note: Design system specifies font-weight: normal (400) for buttons.
+   Current implementation uses semibold (600) per project preference.
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    padding: 16px 24px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color var(--motion-micro) var(--ease-out-expo),
+        color var(--motion-micro) var(--ease-out-expo);
+}
+
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+}
+
+.btn-secondary:hover {
+    background-color: var(--btn-secondary-hover);
+}
+
+.btn-tertiary {
+    background-color: var(--btn-tertiary-bg);
+    color: var(--btn-tertiary-text) !important;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.btn-tertiary:hover {
+    background-color: var(--btn-tertiary-hover);
+}
+
+.btn-quad {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-quad:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--btn-primary-bg);
+    border: 2px solid var(--btn-primary-bg);
+}
+
+.btn-outline:hover {
+    background-color: var(--btn-primary-bg);
+    color: var(--color-white);
+}
+
+.btn-lg {
+    padding: var(--spacing-4) var(--spacing-8);
+    font-size: var(--font-size-base);
+}
+
+.btn-sm {
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--font-size-xs);
+}
+
+/* Disabled State */
+.btn-disabled,
+.btn[disabled],
+.btn.is-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Text Links */
+.link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--transition-fast);
+}
+
+.link:hover {
+    color: var(--color-primary-dark);
+}
+
+/* ---------------------------------------------
+   Form Inputs
+   --------------------------------------------- */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+textarea,
+select,
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: var(--spacing-3);
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-primary) !important;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus,
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--btn-primary-bg);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-tertiary);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-4);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   7.5 MODAL
+   ========================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-4);
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--motion-fast) var(--ease-out-expo),
+                visibility var(--motion-fast) var(--ease-out-expo);
+}
+
+.modal-overlay[hidden] {
+    display: flex;
+}
+
+.modal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(0.95) translateY(10px);
+    transition: transform var(--motion-fast) var(--ease-out-expo);
+}
+
+.modal-overlay.is-open .modal {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-4);
+    right: var(--spacing-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background-color var(--motion-micro) var(--ease-out-expo),
+                color var(--motion-micro) var(--ease-out-expo);
+}
+
+.modal-close:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.modal-content {
+    padding: var(--spacing-10);
+}
+
+.modal-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+    padding-right: var(--spacing-8);
+}
+
+.modal-description {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-6);
+}
+
+/* Interview Form */
+.interview-form .form-group {
+    margin-bottom: var(--spacing-6);
+}
+
+.interview-form .form-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.interview-form .form-input {
+    width: 100%;
+    padding: var(--spacing-4);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--motion-micro) var(--ease-out-expo),
+                box-shadow var(--motion-micro) var(--ease-out-expo);
+}
+
+.interview-form .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
+}
+
+.interview-form .form-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Full width button utility */
+.w-full {
+    width: 100%;
+}
+
+/* Body scroll lock when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   MOBILE TOUCH OPTIMIZATION
+   ========================================================================== */
+
+/* Minimum touch target size on mobile (WCAG 2.1 AAA: 44px) */
+@media (max-width: 767px) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .btn-lg {
+        padding: var(--spacing-4) var(--spacing-6);
+    }
+
+    .btn-sm {
+        min-height: 44px;
+        padding: var(--spacing-2) var(--spacing-4);
+    }
+}
+
+/* Touch feedback - active states */
+.btn:active {
+    transform: scale(0.97);
+    transition-duration: 50ms;
+}
+
+.btn-primary:active {
+    background-color: var(--btn-primary-hover);
+}
+
+.btn-secondary:active {
+    background-color: var(--btn-secondary-hover);
+}
+
+.btn-tertiary:active {
+    background-color: var(--btn-tertiary-hover);
+}
+
+.btn-outline:active {
+    background-color: var(--btn-primary-bg);
+    color: var(--color-white);
+}
+
+.btn-quad:active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Prevent sticky hover on touch devices */
+@media (hover: none) {
+    .btn:hover {
+        transform: none;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--btn-primary-bg);
+    }
+
+    .btn-secondary:hover {
+        background-color: var(--btn-secondary-bg);
+    }
+
+    .btn-tertiary:hover {
+        background-color: var(--btn-tertiary-bg);
+    }
+
+    .btn-outline:hover {
+        background-color: transparent;
+        color: var(--btn-primary-bg);
+    }
+
+    .btn-quad:hover {
+        background-color: transparent;
+        color: var(--color-primary);
+    }
+}
+
+/* ==========================================================================
+   SMALL SCREEN BUTTON OPTIMIZATION
+   ========================================================================== */
+
+/* Small screens (480px and below) */
+@media (max-width: 480px) {
+    .btn {
+        padding: 14px 20px;
+        min-height: 48px;
+        font-size: var(--font-size-sm);
+    }
+
+    .btn-lg {
+        padding: 16px 24px;
+        font-size: var(--font-size-sm);
+    }
+
+    .btn-sm {
+        padding: var(--spacing-2) var(--spacing-3);
+        min-height: 44px;
+        font-size: var(--font-size-sm);
+    }
+
+    .btn-tertiary {
+        font-size: var(--font-size-sm);
+    }
+
+    /* Icon buttons need adequate spacing */
+    .btn-icon {
+        gap: var(--spacing-2);
+    }
+
+    .btn-icon svg,
+    .btn svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+
+    /* Modal adjustments */
+    .modal {
+        max-width: calc(100vw - 32px);
+    }
+
+    .modal-content {
+        padding: var(--spacing-6);
+    }
+
+    .modal-title {
+        font-size: var(--font-size-xl);
+    }
+}
+
+/* Extra small screens (360px and below) */
+@media (max-width: 360px) {
+    .btn {
+        padding: 12px 16px;
+        font-size: var(--font-size-xs);
+    }
+
+    .btn-lg {
+        padding: 14px 20px;
+    }
+
+    /* Full-width buttons in CTA contexts */
+    .hero-cta .btn,
+    .cta-section .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-content {
+        padding: var(--spacing-4);
+    }
+}
+

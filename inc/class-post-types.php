@@ -33,20 +33,20 @@ class BFLUXCO_Post_Types {
             'menu_icon'     => 'dashicons-portfolio',
             'has_archive'   => false,
         ),
-        'workshop' => array(
-            'singular'      => 'Workshop',
-            'plural'        => 'Workshops',
-            'slug'          => 'work/workshops',
-            'menu_position' => 6,
-            'menu_icon'     => 'dashicons-welcome-learn-more',
-            'has_archive'   => false,
-        ),
         'product' => array(
             'singular'      => 'Product',
             'plural'        => 'Products',
             'slug'          => 'work/products',
             'menu_position' => 7,
             'menu_icon'     => 'dashicons-products',
+            'has_archive'   => false,
+        ),
+        'special_project' => array(
+            'singular'      => 'Special Project',
+            'plural'        => 'Special Projects',
+            'slug'          => 'work/special-projects',
+            'menu_position' => 8,
+            'menu_icon'     => 'dashicons-star-filled',
             'has_archive'   => false,
         ),
     );

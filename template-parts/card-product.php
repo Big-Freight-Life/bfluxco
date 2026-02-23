@@ -28,7 +28,7 @@ $product_price = get_post_meta(get_the_ID(), 'product_price', true);
             <?php if ($product_type) : ?>
                 <span class="product-type"><?php echo esc_html($product_type); ?></span>
             <?php endif; ?>
-            <h2 class="product-title"><?php the_title(); ?></h2>
+            <h2 class="product-title"><?php echo esc_html(get_the_title()); ?></h2>
             <p class="product-excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 20)); ?></p>
             <div class="product-footer">
                 <?php if ($product_price) : ?>

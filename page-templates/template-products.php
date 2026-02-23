@@ -14,11 +14,19 @@ get_header();
 
 <main id="main-content" class="site-main">
 
-    <?php
-    get_template_part('template-parts/page-header', null, array(
-        'description' => __('Tools, templates, and frameworks designed to help teams work smarter and move faster.', 'bfluxco'),
-    ));
-    ?>
+    <!-- Products Hero Section -->
+    <header class="page-hero page-hero--products">
+        <div class="page-hero-bg" style="background-image: url('<?php echo esc_url(home_url('/wp-content/uploads/2026/01/envato-labs-image-edit-11-scaled.png')); ?>');"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="page-hero-title reveal-hero"><?php the_title(); ?></h1>
+                <p class="page-hero-description reveal" data-delay="1">
+                    <?php esc_html_e('Tools, templates, and frameworks designed to help teams work smarter and move faster.', 'bfluxco'); ?>
+                </p>
+            </div>
+        </div>
+    </header><!-- .page-hero -->
 
     <!-- Products Grid -->
     <section class="section products-section">
@@ -50,11 +58,12 @@ get_header();
                 $placeholder_products = array(
                     array(
                         'type' => 'iOS App',
-                        'title' => 'Low Ox Life (List)',
-                        'excerpt' => 'Browse the 2023 Harvard food oxalate database on the go. Search, filter by oxalate level, and mark favorites to support a low-oxalate lifestyle.',
-                        'price' => 'Free',
-                        'url' => home_url('/products/low-ox-life-list'),
-                        'image' => '/wp-content/uploads/2025/12/low-ox-life-logo.png'
+                        'title' => 'Low Ox Life',
+                        'excerpt' => 'Browse the Harvard 2023 Oxalate Table for free. Upgrade to Starter for food logging, journal history, and cloud sync.',
+                        'price' => 'Free / $4.99/mo',
+                        'url' => home_url('/products/low-ox-life'),
+                        'image' => '/wp-content/uploads/2026/01/lowOxLife-foods.png',
+                        'image_class' => 'product-image--phone'
                     ),
                     array(
                         'type' => 'Template',
@@ -103,9 +112,10 @@ get_header();
                 $is_external = isset($product['url']) && strpos($product['url'], 'http') === 0;
                 $link_target = $is_external ? ' target="_blank" rel="noopener"' : '';
                 ?>
+                <?php $image_class = isset($product['image_class']) ? ' ' . $product['image_class'] : ''; ?>
                 <article class="product-card reveal-up" data-delay="<?php echo min($index, 4); ?>">
                     <a href="<?php echo esc_url($product_url); ?>"<?php echo $link_target; ?> class="product-card-inner">
-                        <div class="product-image">
+                        <div class="product-image<?php echo esc_attr($image_class); ?>">
                             <?php if (!empty($product['image'])) : ?>
                                 <img src="<?php echo esc_url($product['image']); ?>" alt="<?php echo esc_attr($product['title']); ?>">
                             <?php else : ?>

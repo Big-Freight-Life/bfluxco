@@ -261,8 +261,8 @@ get_header();
             <!-- Takeaway -->
             <section class="case-section case-takeaway">
                 <div class="container container-narrow">
-                    <blockquote class="case-quote reveal-scale">
-                        <p>When systems are designed around people, adoption follows.</p>
+                    <blockquote class="featured-quote reveal-scale">
+                        <p class="quote-emphasis">When systems are designed around people, adoption follows.</p>
                     </blockquote>
                     <div class="case-content reveal" data-delay="1">
                         <p>By combining thoughtful architecture, deliberate UX, and continuous measurement, AtlasMed didn't just migrate to Salesforce—they changed how the organization worked.</p>
@@ -276,14 +276,14 @@ get_header();
     <nav class="case-pagination">
         <div class="container">
             <div class="case-pagination-inner">
-                <a href="<?php echo esc_url(home_url('/case-study-style-3/')); ?>" class="case-pagination-link case-pagination-prev">
+                <a href="<?php echo esc_url(home_url('/work/case-studies/hyland-for-workday-integration/')); ?>" class="case-pagination-link case-pagination-prev">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 12H5"/>
                         <path d="M12 19l-7-7 7-7"/>
                     </svg>
                     <div class="case-pagination-text">
                         <span class="case-pagination-label">Previous</span>
-                        <span class="case-pagination-title">AtlasMed Transformation</span>
+                        <span class="case-pagination-title">Hyland for Workday</span>
                     </div>
                 </a>
                 <a href="<?php echo esc_url(home_url('/case-study-style-2/')); ?>" class="case-pagination-link case-pagination-next">

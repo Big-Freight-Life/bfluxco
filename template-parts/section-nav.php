@@ -35,10 +35,10 @@ if (!empty($class)) {
 
     <div class="section-nav-arrows">
         <button class="section-nav-arrow <?php echo esc_attr($prev_class); ?>" aria-label="<?php echo esc_attr($prev_label); ?>">
-            <?php bfluxco_icon('chevron-left', array('size' => 18)); ?>
+            <?php bfluxco_icon('chevron-left', array('size' => 24)); ?>
         </button>
         <button class="section-nav-arrow <?php echo esc_attr($next_class); ?>" aria-label="<?php echo esc_attr($next_label); ?>">
-            <?php bfluxco_icon('chevron-right', array('size' => 18)); ?>
+            <?php bfluxco_icon('chevron-right', array('size' => 24)); ?>
         </button>
     </div>
 </div>

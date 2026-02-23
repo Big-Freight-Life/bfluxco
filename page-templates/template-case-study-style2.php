@@ -206,8 +206,8 @@ get_header();
                     </div>
                 </div>
 
-                <blockquote class="case-quote-inline">
-                    Salesforce became the system teams relied on—not worked around.
+                <blockquote class="featured-quote featured-quote--compact">
+                    <p class="quote-emphasis">Salesforce became the system teams relied on—not worked around.</p>
                 </blockquote>
             </section>
 
@@ -237,8 +237,8 @@ get_header();
 
             <!-- Takeaway -->
             <section class="case-chapter case-takeaway-split">
-                <blockquote class="final-quote">
-                    <p>When systems are designed around people, adoption follows.</p>
+                <blockquote class="featured-quote">
+                    <p class="quote-emphasis">When systems are designed around people, adoption follows.</p>
                 </blockquote>
                 <p>By combining thoughtful architecture, deliberate UX, and continuous measurement, AtlasMed didn't just migrate to Salesforce—they changed how the organization worked.</p>
             </section>
@@ -259,10 +259,10 @@ get_header();
                         <span class="case-pagination-title">Seamless Salesforce Migration</span>
                     </div>
                 </a>
-                <a href="<?php echo esc_url(home_url('/case-study-style-3/')); ?>" class="case-pagination-link case-pagination-next">
+                <a href="<?php echo esc_url(home_url('/work/case-studies/hyland-for-workday-integration/')); ?>" class="case-pagination-link case-pagination-next">
                     <div class="case-pagination-text">
                         <span class="case-pagination-label">Next</span>
-                        <span class="case-pagination-title">AtlasMed Transformation</span>
+                        <span class="case-pagination-title">Hyland for Workday</span>
                     </div>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14"/>

@@ -1,0 +1,40 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node (if used for build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compiled assets (if using build process)
+/dist/
+
+# Logs
+*.log
+debug.log
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# Local development
+.local/
+
+# Sensitive/internal project files
+CLAUDE.md
+case-study-hyland-onbase.md
+CASE-STUDY-PORTFOLIO.md
+blog-drafts/

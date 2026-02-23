@@ -54,7 +54,7 @@ if ($is_placeholder) :
         </a>
         <div class="blog-card-content">
             <h3 class="blog-card-title">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                <a href="<?php the_permalink(); ?>"><?php echo esc_html(get_the_title()); ?></a>
             </h3>
             <div class="blog-card-meta">
                 <span class="blog-date"><?php echo get_the_date('M j, Y'); ?></span>

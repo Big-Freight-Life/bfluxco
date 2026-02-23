@@ -1,0 +1,409 @@
+/* ==========================================================================
+   CLAUDE CODE TERMINAL SIMULATION
+   Interactive terminal-style UI for agent workflow demonstration
+   ========================================================================== */
+
+.claude-terminal {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+    background-color: #6b6b6b;
+    font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #cccccc;
+    display: flex !important;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+/* Dark mode terminal background */
+[data-theme="dark"] .claude-terminal,
+.dark .claude-terminal {
+    background-color: #0e0e0e;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .claude-terminal {
+        background-color: #0e0e0e;
+    }
+}
+
+/* Scrollable output region */
+.claude-terminal-output {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 16px 20px;
+    scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+.claude-terminal-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+.claude-terminal-output::-webkit-scrollbar-track {
+    background: #252526;
+}
+
+.claude-terminal-output::-webkit-scrollbar-thumb {
+    background: #3e3e42;
+    border-radius: 4px;
+}
+
+.claude-terminal-output::-webkit-scrollbar-thumb:hover {
+    background: #4e4e52;
+}
+
+/* Claude Code header/banner */
+.claude-terminal-header {
+    margin-bottom: 16px;
+}
+
+.claude-terminal-header img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Terminal prompt line */
+.claude-terminal-prompt-line {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 4px;
+    white-space: nowrap;
+}
+
+.claude-terminal-circle {
+    color: #6b7280;
+}
+
+.claude-terminal-user {
+    color: #4ec9b0;
+}
+
+.claude-terminal-dir {
+    color: #569cd6;
+    margin-left: 4px;
+}
+
+.claude-terminal-percent {
+    color: #cccccc;
+    margin-left: 4px;
+}
+
+.claude-terminal-command {
+    color: #569cd6;
+    margin-left: 4px;
+}
+
+/* Output lines */
+.claude-terminal-line {
+    min-height: 21px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.claude-terminal-line.empty {
+    height: 21px;
+}
+
+/* User input prompt */
+.claude-terminal-user-prompt {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 8px;
+}
+
+.claude-terminal-user-prompt .prompt-symbol {
+    color: #cccccc;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.claude-terminal-user-prompt .prompt-text {
+    color: #cccccc;
+}
+
+/* Thinking indicator */
+.claude-terminal-thinking {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280;
+}
+
+.claude-terminal-thinking .dot {
+    color: #e5c07b;
+}
+
+/* Response text */
+.claude-terminal-response {
+    color: #cccccc;
+    margin: 8px 0;
+}
+
+/* Action line (Write, Read, etc.) */
+.claude-terminal-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280;
+    margin-left: 16px;
+}
+
+.claude-terminal-action .action-verb {
+    color: #6b7280;
+}
+
+.claude-terminal-action .action-file {
+    color: #56b6c2;
+}
+
+/* Success indicator */
+.claude-terminal-success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.claude-terminal-success .checkmark {
+    color: #98c379;
+}
+
+.claude-terminal-success .message {
+    color: #6b7280;
+}
+
+/* Code blocks */
+.claude-terminal-code {
+    margin: 8px 0;
+    padding-left: 16px;
+}
+
+.claude-terminal-code .keyword {
+    color: #c586c0;
+}
+
+.claude-terminal-code .string {
+    color: #ce9178;
+}
+
+.claude-terminal-code .function {
+    color: #dcdcaa;
+}
+
+.claude-terminal-code .type {
+    color: #4ec9b0;
+}
+
+.claude-terminal-code .variable {
+    color: #9cdcfe;
+}
+
+.claude-terminal-code .operator {
+    color: #d4d4d4;
+}
+
+.claude-terminal-code .comment {
+    color: #6a9955;
+}
+
+/* Help hint */
+.claude-terminal-help {
+    color: #6b7280;
+    margin-top: 8px;
+    padding-left: 16px;
+}
+
+/* Fixed input field at bottom */
+.claude-terminal-input-container {
+    flex-shrink: 0;
+    border-top: 1px solid #3e3e42;
+    border-bottom: 1px solid #3e3e42;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background-color: #252526;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.claude-terminal-input-symbol {
+    color: #cccccc;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.claude-terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #cccccc;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.2;
+    height: 20px;
+    padding: 0;
+    caret-color: #aeafad;
+}
+
+.claude-terminal-input::placeholder {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* Blinking cursor */
+.claude-terminal-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 16px;
+    background-color: #aeafad;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Typing animation for text */
+.typing-text {
+    display: inline;
+}
+
+.typing-text::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 14px;
+    background-color: #aeafad;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+.typing-complete::after {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .claude-terminal {
+        font-size: 12px;
+        min-height: 250px;
+    }
+
+    .claude-terminal-output {
+        padding: 12px 16px;
+    }
+
+    .claude-terminal-input-container {
+        padding: 5px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .claude-terminal {
+        font-size: 11px;
+        min-height: 220px;
+    }
+
+    .claude-terminal-output {
+        padding: 10px 12px;
+    }
+
+    .claude-terminal-input-container {
+        padding: 4px 10px;
+    }
+}
+
+/* Light mode support */
+[data-theme="light"] .claude-terminal {
+    background-color: #fafafa;
+    color: #383a42;
+}
+
+[data-theme="light"] .claude-terminal-output::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+[data-theme="light"] .claude-terminal-output::-webkit-scrollbar-thumb {
+    background: #c8c8c8;
+}
+
+[data-theme="light"] .claude-terminal-input-container {
+    background-color: #f0f0f0;
+    border-top-color: #e0e0e0;
+    border-bottom-color: #e0e0e0;
+}
+
+[data-theme="light"] .claude-terminal-circle {
+    color: #9ca3af;
+}
+
+[data-theme="light"] .claude-terminal-user {
+    color: #0e7490;
+}
+
+[data-theme="light"] .claude-terminal-dir {
+    color: #4078f2;
+}
+
+[data-theme="light"] .claude-terminal-command {
+    color: #4078f2;
+}
+
+[data-theme="light"] .claude-terminal-thinking .dot {
+    color: #d97706;
+}
+
+[data-theme="light"] .claude-terminal-success .checkmark {
+    color: #16a34a;
+}
+
+[data-theme="light"] .claude-terminal-action .action-file {
+    color: #0891b2;
+}
+
+[data-theme="light"] .claude-terminal-code .keyword {
+    color: #a626a4;
+}
+
+[data-theme="light"] .claude-terminal-code .string {
+    color: #50a14f;
+}
+
+[data-theme="light"] .claude-terminal-code .function {
+    color: #4078f2;
+}
+
+[data-theme="light"] .claude-terminal-code .type {
+    color: #c18401;
+}
+
+[data-theme="light"] .claude-terminal-code .variable {
+    color: #e45649;
+}
+
+[data-theme="light"] .claude-terminal-input,
+[data-theme="light"] .claude-terminal-input::placeholder {
+    color: #383a42;
+}
+
+[data-theme="light"] .claude-terminal-input::placeholder {
+    color: #9ca3af;
+}
+
+[data-theme="light"] .claude-terminal-cursor,
+[data-theme="light"] .typing-text::after {
+    background-color: #526fff;
+}

@@ -35,7 +35,7 @@ class BFLUXCO_Taxonomies {
         'service_type' => array(
             'singular'     => 'Service Type',
             'plural'       => 'Service Types',
-            'post_types'   => array('case_study', 'workshop'),
+            'post_types'   => array('case_study'),
             'hierarchical' => false,
             'slug'         => 'service-type',
         ),

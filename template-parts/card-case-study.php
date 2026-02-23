@@ -31,7 +31,7 @@
         ?>
             <div class="case-study-industries mb-2">
                 <?php foreach (array_slice($industries, 0, 2) as $industry) : ?>
-                    <span class="industry-tag text-primary text-sm">
+                    <span class="industry-tag text-primary text-base">
                         <?php echo esc_html($industry->name); ?>
                     </span>
                 <?php endforeach; ?>
@@ -40,7 +40,7 @@
 
         <!-- Title -->
         <h3 class="card-title">
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+            <a href="<?php the_permalink(); ?>"><?php echo esc_html(get_the_title()); ?></a>
         </h3>
 
         <!-- Excerpt -->

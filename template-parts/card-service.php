@@ -26,11 +26,10 @@ $delay = isset($args['delay']) ? intval($args['delay']) : 1;
         <div class="card-icon mb-4">
             <?php bfluxco_icon($icon, array('size' => 48)); ?>
         </div>
-        <h3 class="card-title"><?php echo esc_html($title); ?></h3>
+        <h3 class="card-title"><?php echo wp_kses_post($title); ?></h3>
         <p class="card-description"><?php echo esc_html($description); ?></p>
-        <a href="<?php echo esc_url(home_url($link)); ?>" class="btn btn-tertiary btn-sm btn-icon">
-            <span><?php esc_html_e('Learn More', 'bfluxco'); ?></span>
-            <?php bfluxco_icon('arrow-right', array('size' => 16)); ?>
+        <a href="<?php echo esc_url(home_url($link)); ?>" class="btn btn-tertiary">
+            <?php esc_html_e('Learn More', 'bfluxco'); ?>
         </a>
     </div>
 </div>

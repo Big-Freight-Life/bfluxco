@@ -42,12 +42,12 @@
 
         <!-- Post Title -->
         <h2 class="card-title">
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+            <a href="<?php the_permalink(); ?>"><?php echo esc_html(get_the_title()); ?></a>
         </h2>
 
         <!-- Post Excerpt -->
         <p class="card-description text-gray-600">
-            <?php echo bfluxco_truncate(get_the_excerpt(), 120); ?>
+            <?php echo esc_html(bfluxco_truncate(get_the_excerpt(), 120)); ?>
         </p>
 
         <!-- Post Meta -->

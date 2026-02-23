@@ -21,9 +21,9 @@ get_header();
         </div>
         <div class="case-hero-content">
             <div class="container">
-                <span class="case-category-pill">Healthcare SaaS</span>
-                <h1 class="case-hero-title-large">Seamless Salesforce Migration</h1>
-                <p class="case-hero-subtitle">Designed for clarity. Built for adoption.</p>
+                <span class="case-category-pill">Enterprise Integration</span>
+                <h1 class="case-hero-title-large">Hyland for Workday Integration</h1>
+                <p class="case-hero-subtitle">Unified content management. Seamless user experience.</p>
                 <div class="scroll-indicator">
                     <span>Scroll to explore</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -39,25 +39,25 @@ get_header();
         <div class="container">
             <div class="overview-grid">
                 <div class="overview-main">
-                    <p class="overview-lead">AtlasMed Solutions had reached the limits of its legacy systems. Sales operated in Zoho CRM. Support relied on a custom ERP. Marketing data lived elsewhere.</p>
-                    <p>Teams worked hard—but not together. They needed a single system people would actually use.</p>
+                    <p class="overview-lead">Workday customers needed a way to capture, index, search, view, and manage content directly from their Workday screens—without custom development or middleware.</p>
+                    <p>Documents lived in silos. HR and Finance teams toggled between systems. Content governance was fragmented. Hyland partnered with Workday to change that.</p>
                 </div>
                 <div class="overview-meta">
                     <div class="meta-block">
                         <span class="meta-label">Client</span>
-                        <span class="meta-value">AtlasMed Solutions</span>
+                        <span class="meta-value">Hyland Software</span>
                     </div>
                     <div class="meta-block">
                         <span class="meta-label">Industry</span>
-                        <span class="meta-value">Healthcare SaaS</span>
+                        <span class="meta-value">Enterprise Software</span>
                     </div>
                     <div class="meta-block">
                         <span class="meta-label">Duration</span>
-                        <span class="meta-value">6 Months</span>
+                        <span class="meta-value">18 Months</span>
                     </div>
                     <div class="meta-block">
                         <span class="meta-label">Services</span>
-                        <span class="meta-value">Strategy, UX, Migration</span>
+                        <span class="meta-value">Integration Design, UX Strategy</span>
                     </div>
                 </div>
             </div>
@@ -69,20 +69,20 @@ get_header();
         <div class="container">
             <div class="numbers-grid">
                 <div class="number-item">
-                    <span class="number-value">1.2M</span>
-                    <span class="number-label">Records Migrated</span>
+                    <span class="number-value">Zero</span>
+                    <span class="number-label">Custom Code Required</span>
                 </div>
                 <div class="number-item">
-                    <span class="number-value">98.9%</span>
-                    <span class="number-label">Data Fidelity</span>
+                    <span class="number-value">SSO</span>
+                    <span class="number-label">Single Sign-On</span>
                 </div>
                 <div class="number-item">
-                    <span class="number-value">81%</span>
-                    <span class="number-label">Daily Active Users</span>
+                    <span class="number-value">2</span>
+                    <span class="number-label">Platforms Unified</span>
                 </div>
                 <div class="number-item">
-                    <span class="number-value">30%</span>
-                    <span class="number-label">Productivity Boost</span>
+                    <span class="number-value">AI</span>
+                    <span class="number-label">Ready Architecture</span>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@ get_header();
             <section id="challenge" class="case-statement">
                 <div class="container container-narrow">
                     <h2 class="statement-label">The Challenge</h2>
-                    <p class="statement-text">Leadership lacked a clear, real-time view of the business. Users struggled with inconsistent workflows. And the systems weren't built to scale.</p>
+                    <p class="statement-text">Enterprise organizations running Workday HCM and Financial Management had content scattered across disconnected systems. Users left Workday to find documents, breaking workflows and creating compliance risks.</p>
                 </div>
             </section>
 
@@ -122,8 +122,8 @@ get_header();
             <section id="goal" class="case-statement">
                 <div class="container container-narrow">
                     <h2 class="statement-label">The Goal</h2>
-                    <p class="statement-text">Replace fragmented tools with a unified Salesforce platform—without losing data, disrupting teams, or sacrificing usability.</p>
-                    <p class="statement-note">Success wouldn't be measured by go-live alone, but by how people worked afterward.</p>
+                    <p class="statement-text">Create a native integration that brings content management directly into Workday screens—no middleware, no custom development, no context switching.</p>
+                    <p class="statement-note">Users should access, upload, and manage documents without ever leaving their workflow.</p>
                 </div>
             </section>
 
@@ -131,28 +131,28 @@ get_header();
             <section id="approach" class="case-approach-cards">
                 <div class="container">
                     <h2 class="section-title-center">The Approach</h2>
-                    <p class="section-subtitle">We treated Salesforce as a product—not just infrastructure.</p>
+                    <p class="section-subtitle">Built on Workday. Designed for humans.</p>
 
                     <div class="approach-cards-grid">
                         <div class="approach-card">
                             <span class="approach-number">01</span>
-                            <h3>Understanding the System</h3>
-                            <p>Full audit of AtlasMed's environment—Zoho CRM, custom ERP modules, and supporting tools. Data models mapped. Relationships clarified. Future-state architecture defined.</p>
+                            <h3>Native Integration</h3>
+                            <p>Leveraged the Built on Workday program to embed content management directly into Workday screens. No Workday Extend required. No custom development needed.</p>
                         </div>
                         <div class="approach-card">
                             <span class="approach-number">02</span>
-                            <h3>Moving the Data</h3>
-                            <p>Over 1.2 million records migrated with Talend. Automated checks and manual review achieved 98.9% data fidelity with full historical context.</p>
+                            <h3>Unified Repository</h3>
+                            <p>Single repository to manage and retain content across Workday HCM and Financial Management. Documents linked to multiple entities, accessible from anywhere.</p>
                         </div>
                         <div class="approach-card">
                             <span class="approach-number">03</span>
-                            <h3>Connecting the Ecosystem</h3>
-                            <p>Integrated HubSpot, QuickBooks, and custom BI. MuleSoft orchestrated APIs for resilience, scalability, and flexibility.</p>
+                            <h3>Security by Design</h3>
+                            <p>SSO authentication through Workday credentials. Granular permissions mapped to Workday security roles. Retention policies, legal holds, and version control built in.</p>
                         </div>
                         <div class="approach-card">
                             <span class="approach-number">04</span>
-                            <h3>Designing the Experience</h3>
-                            <p>Role-specific dashboards, simplified layouts, interactive onboarding. The system taught itself through contextual guidance.</p>
+                            <h3>AI-Ready Architecture</h3>
+                            <p>Documents structured for intelligent search, governance, and contextual insights—laying groundwork for agentic automation and knowledge discovery.</p>
                         </div>
                     </div>
                 </div>
@@ -167,30 +167,30 @@ get_header();
             <section id="results" class="case-results-immersive">
                 <div class="container">
                     <h2 class="section-title-center">Measuring What Matters</h2>
-                    <p class="section-subtitle">After launch, we tracked real usage—not assumptions. Within 90 days:</p>
+                    <p class="section-subtitle">The integration delivered immediate, measurable impact:</p>
 
                     <div class="results-showcase">
                         <div class="result-showcase-item">
                             <div class="result-circle">
-                                <span class="result-number">81%</span>
+                                <span class="result-number">60%</span>
                             </div>
-                            <span class="result-text">Daily active users</span>
+                            <span class="result-text">Fewer clicks to capture</span>
                         </div>
                         <div class="result-showcase-item">
                             <div class="result-circle">
-                                <span class="result-number">93%</span>
+                                <span class="result-number">100%</span>
                             </div>
-                            <span class="result-text">User retention</span>
+                            <span class="result-text">Compliance coverage</span>
                         </div>
                         <div class="result-showcase-item">
                             <div class="result-circle">
-                                <span class="result-number">42%</span>
+                                <span class="result-number">0</span>
                             </div>
-                            <span class="result-text">Stickiness rate</span>
+                            <span class="result-text">Context switches</span>
                         </div>
                     </div>
 
-                    <p class="results-note">These weren't vanity metrics. They were signals of trust.</p>
+                    <p class="results-note">Users stayed in Workday. Documents stayed governed. IT stayed happy.</p>
                 </div>
             </section>
 
@@ -201,20 +201,20 @@ get_header();
 
                     <div class="impact-list-large">
                         <div class="impact-row">
-                            <span class="impact-metric">+30%</span>
-                            <p>Sales teams moved faster—productivity increased significantly</p>
+                            <span class="impact-metric">Faster</span>
+                            <p>HR onboarding accelerated with instant document access</p>
                         </div>
                         <div class="impact-row">
-                            <span class="impact-metric">+25%</span>
-                            <p>Support resolved cases quicker through automation</p>
+                            <span class="impact-metric">Simpler</span>
+                            <p>Invoice processing streamlined through AP automation</p>
                         </div>
                         <div class="impact-row">
-                            <span class="impact-metric">Real-time</span>
-                            <p>Marketing gained insight to iterate campaigns with confidence</p>
+                            <span class="impact-metric">Governed</span>
+                            <p>Retention policies and legal holds applied automatically</p>
                         </div>
                         <div class="impact-row">
-                            <span class="impact-metric">Unified</span>
-                            <p>Executives finally saw the full picture</p>
+                            <span class="impact-metric">Future-proof</span>
+                            <p>AI-ready document structure enables intelligent automation</p>
                         </div>
                     </div>
                 </div>
@@ -223,8 +223,8 @@ get_header();
             <!-- Big Quote -->
             <section class="case-quote-full">
                 <div class="container">
-                    <blockquote class="quote-massive">
-                        <p>Salesforce became the system teams relied on—not worked around.</p>
+                    <blockquote class="featured-quote featured-quote--large">
+                        <p class="quote-emphasis">Content management became invisible—exactly as it should be.</p>
                     </blockquote>
                 </div>
             </section>
@@ -235,10 +235,10 @@ get_header();
                     <h2 class="section-title-center">What We Learned</h2>
 
                     <ol class="learnings-ordered">
-                        <li>Migration is a behavioral challenge, not just a technical one</li>
-                        <li>UX-driven onboarding dramatically reduces resistance</li>
-                        <li>Analytics are essential—but only when paired with intent</li>
-                        <li>The real work begins after launch</li>
+                        <li>Native integrations outperform middleware every time</li>
+                        <li>Security that follows existing roles reduces friction</li>
+                        <li>Single repositories eliminate content silos</li>
+                        <li>AI-readiness is a design decision, not an afterthought</li>
                     </ol>
                 </div>
             </section>
@@ -246,8 +246,8 @@ get_header();
             <!-- Final Takeaway -->
             <section class="case-takeaway-immersive">
                 <div class="container container-narrow">
-                    <p class="takeaway-lead">When systems are designed around people, adoption follows.</p>
-                    <p>By combining thoughtful architecture, deliberate UX, and continuous measurement, AtlasMed didn't just migrate to Salesforce—they changed how the organization worked.</p>
+                    <p class="takeaway-lead">The best integrations disappear into the workflow.</p>
+                    <p>By embedding content management directly into Workday, Hyland created an experience where documents are always accessible, always governed, and never in the way.</p>
                 </div>
             </section>
         </div>
@@ -264,13 +264,13 @@ get_header();
                     </svg>
                     <div class="case-pagination-text">
                         <span class="case-pagination-label">Previous</span>
-                        <span class="case-pagination-title">Salesforce Migration</span>
+                        <span class="case-pagination-title">Previous Case Study</span>
                     </div>
                 </a>
                 <a href="<?php echo esc_url(home_url('/case-study-style-1/')); ?>" class="case-pagination-link case-pagination-next">
                     <div class="case-pagination-text">
                         <span class="case-pagination-label">Next</span>
-                        <span class="case-pagination-title">Seamless Salesforce Migration</span>
+                        <span class="case-pagination-title">Next Case Study</span>
                     </div>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14"/>
@@ -285,7 +285,7 @@ get_header();
     <section class="case-cta-immersive">
         <div class="container">
             <div class="cta-immersive-content">
-                <h2>Let's build something together</h2>
+                <h2>Let's Build the Future Together</h2>
                 <p>Ready to transform how your team works?</p>
                 <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn btn-white btn-lg">Start a Conversation</a>
             </div>
