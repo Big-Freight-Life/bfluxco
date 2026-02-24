@@ -1,0 +1,392 @@
+/* ==========================================================================
+   MOBILE TAB BAR & MORE DRAWER
+   ==========================================================================
+   Bottom navigation bar for mobile screens (< 1024px) with a slide-up
+   "More" drawer for secondary navigation, theme toggle, and utility links.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. TAB BAR HEIGHT VARIABLE
+   ========================================================================== */
+
+:root {
+    --tab-bar-height: 64px;
+}
+
+/* ==========================================================================
+   2. TAB BAR
+   ========================================================================== */
+
+.mobile-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 350;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    background-color: rgba(var(--bg-primary-rgb), 0.85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-top: 1px solid var(--border-primary);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    transition: transform var(--motion-fast) var(--ease-out-expo);
+}
+
+/* Hide on desktop */
+@media (min-width: 1024px) {
+    .mobile-tab-bar {
+        display: none;
+    }
+}
+
+/* Scroll-hide state */
+.mobile-tab-bar.is-hidden {
+    transform: translateY(100%);
+}
+
+/* ==========================================================================
+   3. TAB ITEMS
+   ========================================================================== */
+
+.mobile-tab-bar__tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+    padding: var(--spacing-1) var(--spacing-2);
+    color: var(--text-muted);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: color var(--motion-micro) var(--ease-out-expo),
+                transform var(--motion-micro) var(--ease-out-expo),
+                opacity var(--motion-micro) var(--ease-out-expo);
+    font-family: inherit;
+}
+
+.mobile-tab-bar__tab:hover {
+    text-decoration: none;
+    color: var(--text-muted);
+}
+
+/* Tap feedback */
+.mobile-tab-bar__tab:active {
+    transform: scale(0.92);
+    opacity: 0.7;
+}
+
+/* Icon */
+.mobile-tab-bar__icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+/* Label */
+.mobile-tab-bar__label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* Active state */
+.mobile-tab-bar__tab.is-active {
+    color: var(--btn-primary-bg);
+}
+
+.mobile-tab-bar__tab.is-active:hover {
+    color: var(--btn-primary-bg);
+}
+
+/* ==========================================================================
+   4. DRAWER BACKDROP
+   ========================================================================== */
+
+.mobile-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: calc(350 + 1);
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--motion-fast) var(--ease-out-expo);
+}
+
+.mobile-drawer-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Hide on desktop */
+@media (min-width: 1024px) {
+    .mobile-drawer-backdrop {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   5. DRAWER
+   ========================================================================== */
+
+.mobile-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-modal);
+    background-color: var(--surface-elevated);
+    border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
+    box-shadow: var(--shadow-xl);
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    transform: translateY(100%);
+    transition: transform var(--motion-smooth) var(--ease-out-expo);
+    padding-bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom, 0px));
+}
+
+.mobile-drawer.is-open {
+    transform: translateY(0);
+}
+
+/* Hide on desktop */
+@media (min-width: 1024px) {
+    .mobile-drawer {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   6. DRAWER HANDLE
+   ========================================================================== */
+
+.mobile-drawer-handle {
+    width: 36px;
+    height: 4px;
+    background-color: var(--border-secondary);
+    border-radius: var(--radius-full);
+    margin: var(--spacing-3) auto;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   7. DRAWER NAVIGATION LINKS
+   ========================================================================== */
+
+.mobile-drawer-list {
+    list-style: none;
+    margin: 0;
+    padding: var(--spacing-2) var(--spacing-4);
+}
+
+.mobile-drawer-item {
+    margin: 0;
+}
+
+.mobile-drawer-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: background-color var(--motion-micro) var(--ease-out-expo);
+}
+
+.mobile-drawer-link:hover,
+.mobile-drawer-link:active {
+    background-color: var(--hover-bg);
+    text-decoration: none;
+}
+
+/* Nav link icons */
+.mobile-drawer-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+}
+
+/* Sub-items */
+.mobile-drawer-sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-drawer-sublink {
+    display: block;
+    padding: var(--spacing-2) var(--spacing-4);
+    padding-left: calc(var(--spacing-4) + 22px + var(--spacing-3));
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: background-color var(--motion-micro) var(--ease-out-expo);
+}
+
+.mobile-drawer-sublink:hover,
+.mobile-drawer-sublink:active {
+    background-color: var(--hover-bg);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   8. DRAWER THEME TOGGLE
+   ========================================================================== */
+
+.mobile-theme-toggle-section {
+    padding: var(--spacing-4) var(--spacing-4) var(--spacing-2);
+}
+
+.mobile-theme-toggle-label {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    margin-bottom: var(--spacing-2);
+    padding-left: var(--spacing-1);
+}
+
+.mobile-theme-toggle {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    padding: 4px;
+}
+
+.mobile-theme-toggle-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-1);
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    font-family: inherit;
+    color: var(--text-tertiary);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background-color var(--motion-micro) var(--ease-out-expo),
+                color var(--motion-micro) var(--ease-out-expo),
+                box-shadow var(--motion-micro) var(--ease-out-expo);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-theme-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.mobile-theme-toggle-btn.is-active {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   9. DRAWER UTILITY LINKS
+   ========================================================================== */
+
+.mobile-drawer-utility {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-6);
+    padding: var(--spacing-4) var(--spacing-4) var(--spacing-2);
+    margin-top: var(--spacing-2);
+    border-top: 1px solid var(--border-primary);
+}
+
+.mobile-drawer-utility-link {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--motion-micro) var(--ease-out-expo);
+}
+
+.mobile-drawer-utility-link:hover {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   10. BODY & FOOTER ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+    body {
+        padding-bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+/* ==========================================================================
+   11. SMALL SCREEN ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 480px) {
+    .mobile-tab-bar__label {
+        font-size: 0.625rem; /* 10px */
+    }
+
+    .mobile-tab-bar__tab {
+        padding: var(--spacing-1) var(--spacing-1);
+    }
+}
+
+@media (max-width: 360px) {
+    .mobile-tab-bar__label {
+        font-size: 0.5625rem; /* 9px */
+    }
+
+    .mobile-tab-bar__icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ==========================================================================
+   12. REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-tab-bar,
+    .mobile-tab-bar.is-hidden,
+    .mobile-tab-bar__tab,
+    .mobile-drawer,
+    .mobile-drawer.is-open,
+    .mobile-drawer-backdrop,
+    .mobile-drawer-backdrop.is-open,
+    .mobile-theme-toggle-btn,
+    .mobile-drawer-link,
+    .mobile-drawer-sublink,
+    .mobile-drawer-utility-link {
+        transition: none;
+    }
+
+    .mobile-tab-bar__tab:active {
+        transform: none;
+    }
+}

@@ -485,6 +485,17 @@ body.menu-open {
     color: var(--text-primary);
 }
 
+/* Hide hamburger on mobile/tablet — tab bar takes over navigation below desktop */
+@media (max-width: 1023px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+}
+
 /* Desktop Navigation Visibility */
 @media (min-width: 1024px) {
     .header-inner {

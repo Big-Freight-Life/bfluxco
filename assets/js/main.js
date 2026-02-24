@@ -26,6 +26,7 @@
         initHidingHeader();
         initMegaMenu();
         initMobileNav();
+        initMobileTabBar();
         initCaseCarousel();
         initFilterButtons();
         initLazyLoading();
@@ -514,6 +515,165 @@
                 closeMobileMenu();
             }
         }, 100));
+    }
+
+    /**
+     * Mobile Tab Bar & Drawer
+     *
+     * Bottom tab bar with scroll-hide behavior and "More" drawer.
+     * Syncs theme toggle with the desktop toggle.
+     */
+    function initMobileTabBar() {
+        var tabBar = document.getElementById('mobile-tab-bar');
+        var drawer = document.getElementById('mobile-drawer');
+        var backdrop = document.getElementById('mobile-drawer-backdrop');
+        var moreBtn = tabBar ? tabBar.querySelector('.mobile-tab-bar__tab--more') : null;
+
+        if (!tabBar) return;
+
+        // --- Scroll hide/show (mirrors header behavior) ---
+        var lastScrollY = window.scrollY;
+        var scrollTicking = false;
+
+        function updateTabBar() {
+            var currentScrollY = window.scrollY;
+            var tabBarHeight = tabBar.offsetHeight;
+
+            // Don't hide if drawer is open
+            if (drawer && drawer.classList.contains('is-open')) {
+                tabBar.classList.remove('is-hidden');
+                lastScrollY = currentScrollY;
+                scrollTicking = false;
+                return;
+            }
+
+            // Near top — always show
+            if (currentScrollY < tabBarHeight) {
+                tabBar.classList.remove('is-hidden');
+                lastScrollY = currentScrollY;
+                scrollTicking = false;
+                return;
+            }
+
+            // Scrolling down — hide
+            if (currentScrollY > lastScrollY + 10) {
+                tabBar.classList.add('is-hidden');
+            }
+            // Scrolling up — show
+            else if (currentScrollY < lastScrollY - 5) {
+                tabBar.classList.remove('is-hidden');
+            }
+
+            lastScrollY = currentScrollY;
+            scrollTicking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!scrollTicking) {
+                requestAnimationFrame(updateTabBar);
+                scrollTicking = true;
+            }
+        }, { passive: true });
+
+        // --- Drawer toggle ---
+        if (!moreBtn || !drawer || !backdrop) return;
+
+        function openDrawer() {
+            drawer.classList.add('is-open');
+            backdrop.classList.add('is-open');
+            drawer.setAttribute('aria-hidden', 'false');
+            moreBtn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            drawer.classList.remove('is-open');
+            backdrop.classList.remove('is-open');
+            drawer.setAttribute('aria-hidden', 'true');
+            moreBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        moreBtn.addEventListener('click', function() {
+            if (drawer.classList.contains('is-open')) {
+                closeDrawer();
+            } else {
+                openDrawer();
+            }
+        });
+
+        // Close on backdrop click
+        backdrop.addEventListener('click', closeDrawer);
+
+        // Close on ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+                closeDrawer();
+                moreBtn.focus();
+            }
+        });
+
+        // Close on link click within drawer
+        drawer.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                setTimeout(closeDrawer, 100);
+            });
+        });
+
+        // Close on resize to desktop
+        window.addEventListener('resize', debounce(function() {
+            if (window.innerWidth >= 1024 && drawer.classList.contains('is-open')) {
+                closeDrawer();
+            }
+        }, 100));
+
+        // --- Mobile Theme Toggle (sync with desktop) ---
+        var mobileToggle = drawer.querySelector('.mobile-theme-toggle');
+        if (mobileToggle) {
+            var mobileButtons = mobileToggle.querySelectorAll('.mobile-theme-toggle-btn');
+            var desktopButtons = document.querySelectorAll('.theme-toggle .theme-toggle-btn');
+            var STORAGE_KEY = 'bfluxco-theme';
+
+            function applyTheme(theme) {
+                var html = document.documentElement;
+                if (theme === 'system') {
+                    html.removeAttribute('data-theme');
+                } else {
+                    html.setAttribute('data-theme', theme);
+                }
+            }
+
+            function updateAllToggleButtons(activeTheme) {
+                // Update mobile buttons
+                mobileButtons.forEach(function(btn) {
+                    var btnTheme = btn.getAttribute('data-theme');
+                    var isActive = btnTheme === activeTheme;
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+                });
+                // Update desktop buttons (keep in sync)
+                desktopButtons.forEach(function(btn) {
+                    var btnTheme = btn.getAttribute('data-theme');
+                    var isActive = btnTheme === activeTheme;
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+                });
+            }
+
+            // Initialize mobile toggle state
+            var savedTheme = localStorage.getItem(STORAGE_KEY) || 'system';
+            updateAllToggleButtons(savedTheme);
+
+            // Handle mobile toggle clicks
+            mobileButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var theme = this.getAttribute('data-theme');
+                    localStorage.setItem(STORAGE_KEY, theme);
+                    applyTheme(theme);
+                    updateAllToggleButtons(theme);
+                });
+            });
+        } // end if (mobileToggle)
     }
 
     /**
