@@ -20,13 +20,6 @@ $apps_support = array(
         'description' => 'Premium oxalate tracking and health insights',
         'support_url' => home_url('/support/low-ox-life'),
     ),
-    array(
-        'name' => 'Recipe Calculator',
-        'type' => 'iOS App',
-        'slug' => 'recipe-calculator',
-        'description' => 'AI-powered recipe scaling and measurement conversion',
-        'support_url' => home_url('/support/recipe-calculator'),
-    ),
 );
 ?>
 

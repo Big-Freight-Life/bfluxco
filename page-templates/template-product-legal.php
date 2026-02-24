@@ -21,14 +21,6 @@ $products_legal = array(
         'privacy' => home_url('/legal/low-ox-life-privacy'),
         'terms' => home_url('/legal/low-ox-life-terms'),
     ),
-    array(
-        'name' => 'Recipe Calculator',
-        'type' => 'iOS App',
-        'slug' => 'recipe-calculator',
-        'description' => 'AI-powered recipe scaling and measurement conversion',
-        'privacy' => home_url('/legal/recipe-calculator-privacy'),
-        'terms' => home_url('/legal/recipe-calculator-terms'),
-    ),
 );
 ?>
 

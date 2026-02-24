@@ -4,7 +4,7 @@
  * Template Post Type: page
  *
  * Individual app support page with details, FAQs, and contact options.
- * URLs: /support/low-ox-life, /support/recipe-calculator
+ * URLs: /support/low-ox-life
  *
  * HOW TO USE:
  * 1. Create a new page in WordPress (e.g., "Low Ox Life Support")
