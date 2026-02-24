@@ -115,12 +115,6 @@ $product = array(
             'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>',
         ),
         array(
-            'title' => 'Barcode Scanner',
-            'desc'  => 'Scan product barcodes to quickly find and log foods.',
-            'tier'  => 'Pro',
-            'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5v14"/><path d="M8 5v14"/><path d="M12 5v14"/><path d="M17 5v14"/><path d="M21 5v14"/></svg>',
-        ),
-        array(
             'title' => 'Grocery Lists',
             'desc'  => 'Create and manage low-oxalate shopping lists.',
             'tier'  => 'Pro',
@@ -175,7 +169,7 @@ $product = array(
         ),
         array(
             'question' => 'What about Pro and Elite subscriptions?',
-            'answer'   => 'Pro ($9.99/month) adds custom food list imports, barcode scanning, and grocery lists. Elite tier is coming soon and will include insights, recipes, Oscar AI assistant, and data export.',
+            'answer'   => 'Pro ($9.99/month) adds custom food list imports and grocery lists. Elite tier is coming soon and will include insights, recipes, Oscar AI assistant, and data export.',
         ),
         array(
             'question' => 'Is Low Ox Life medical advice?',
