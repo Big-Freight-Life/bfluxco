@@ -273,7 +273,7 @@ get_header();
 
         <!-- Mobile: "View All Work" below carousel -->
         <div class="case-studies-mobile-cta">
-            <a href="<?php echo esc_url(home_url('/work')); ?>" class="btn btn-tertiary btn-icon">
+            <a href="<?php echo esc_url(home_url('/work')); ?>" class="btn btn-secondary btn-icon">
                 <span><?php esc_html_e('View All Work', 'bfluxco'); ?></span>
                 <?php bfluxco_icon('arrow-right', array('size' => 16)); ?>
             </a>
