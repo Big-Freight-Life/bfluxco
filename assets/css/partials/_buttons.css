@@ -40,7 +40,8 @@
 }
 
 .btn-tertiary {
-    background-color: var(--btn-tertiary-bg);
+    background: none;
+    border: none;
     color: var(--btn-tertiary-text) !important;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
@@ -313,6 +314,11 @@ body.modal-open {
     .btn-sm {
         min-height: 44px;
         padding: var(--spacing-2) var(--spacing-4);
+    }
+
+    .btn-tertiary {
+        padding: var(--spacing-2) var(--spacing-4);
+        border-radius: var(--radius-md);
     }
 }
 

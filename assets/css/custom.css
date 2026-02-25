@@ -1188,23 +1188,23 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
     color: #d4d4d4;
 }
 
-.case-card {
-    /* Fluid width: scales from 85vw on mobile to 939px max on desktop */
-    width: clamp(280px, 85vw, 939px) !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-    max-width: none !important;
-    flex: 0 0 auto !important;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    border-radius: var(--radius-4xl) !important;
-}
+/* Desktop-only card sizing (mobile handled in style.css ≤480px) */
+@media (min-width: 481px) {
+    .case-card {
+        width: clamp(280px, 85vw, 939px);
+        height: auto;
+        max-width: none;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        border-radius: var(--radius-4xl);
+    }
 
-/* Adjust carousel track padding for fluid cards */
-.case-carousel-track {
-    --carousel-inset: max(24px, calc((100vw - var(--container-max-width)) / 2 + var(--container-padding)));
-    padding-left: var(--carousel-inset) !important;
-    padding-right: 24px !important;
+    .case-carousel-track {
+        --carousel-inset: max(24px, calc((100vw - var(--container-max-width)) / 2 + var(--container-padding)));
+        padding-left: var(--carousel-inset);
+        padding-right: 24px;
+    }
 }
 
 /* ==========================================================================
@@ -1954,7 +1954,12 @@ section.about-preview-section {
 /* Case studies header - ensure vertical centering */
 .case-studies-header {
     align-items: center;
-    margin-bottom: 16px;
+}
+
+@media (min-width: 769px) {
+    .case-studies-header {
+        margin-bottom: 16px;
+    }
 }
 
 /* Remove background from section header tertiary buttons */
@@ -4805,12 +4810,6 @@ section.about-preview-section {
         padding-right: var(--spacing-3);
     }
 
-    /* Section titles smaller */
-    .section-title {
-        font-size: 1.25rem;
-        margin-bottom: var(--spacing-4);
-    }
-
     /* CTA buttons - stack vertically */
     .hero-cta {
         flex-direction: column;
@@ -4820,21 +4819,6 @@ section.about-preview-section {
     .hero-cta .btn {
         width: 100%;
         justify-content: center;
-    }
-
-    /* Case card mobile adjustments */
-    .case-card {
-        padding: var(--spacing-4);
-        aspect-ratio: 16 / 9 !important;
-    }
-
-    .case-title {
-        font-size: var(--font-size-base);
-    }
-
-    .case-excerpt {
-        font-size: var(--font-size-base); /* Keep at 16px */
-        -webkit-line-clamp: 2;
     }
 
     /* Service cards */
@@ -4937,11 +4921,6 @@ section.about-preview-section {
     .btn-lg {
         padding: var(--spacing-3) var(--spacing-5);
         font-size: var(--font-size-sm);
-    }
-
-    .section-title {
-        font-size: 1.125rem;
-        margin-bottom: var(--spacing-3);
     }
 
     /* Even tighter padding */
