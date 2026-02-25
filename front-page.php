@@ -195,7 +195,7 @@ get_header();
                     <?php esc_html_e('AI is not a feature.', 'bfluxco'); ?><br>
                     <?php esc_html_e('Design is not decoration.', 'bfluxco'); ?>
                 </h2>
-                <p class="principles-body">
+                <p class="principles-body principles-body--intro">
                     <?php esc_html_e('Behind every system are professionals navigating trade-offs, exceptions, and consequences. Our work starts there.', 'bfluxco'); ?>
                 </p>
                 <p class="principles-body">

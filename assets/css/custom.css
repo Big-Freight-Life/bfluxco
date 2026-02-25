@@ -4795,7 +4795,8 @@ section.about-preview-section {
     }
 
     .hero-description {
-        font-size: var(--font-size-base); /* Keep at 16px */
+        font-size: var(--font-size-lg); /* Phase B: Larger on mobile */
+        line-height: 1.7;
     }
 
     /* Container tighter padding */
@@ -5572,21 +5573,74 @@ section.about-preview-section {
         aspect-ratio: 16/9;
         height: auto !important;
     }
-}
 
-/* Extra small screens (480px and below) */
-@media (max-width: 480px) {
-    /* Hero Chat Actions - Stack buttons on very small screens */
+    /* ===== Phase B: Homepage Mobile Redesign ===== */
+
+    /* Larger body text on mobile */
+    .about-preview-section .about-preview-content p {
+        font-size: var(--font-size-lg) !important;
+        line-height: 1.7;
+    }
+
+    .card-description {
+        font-size: var(--font-size-lg);
+        line-height: 1.7;
+    }
+
+    .cta-section p {
+        font-size: var(--font-size-lg);
+        line-height: 1.7;
+    }
+
+    /* Larger section headings on mobile */
+    .section-title,
+    .cta-section h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        letter-spacing: -0.02em;
+    }
+
+    /* Hide intro paragraph on mobile */
+    .principles-body--intro {
+        display: none;
+    }
+
+    /* Stack CTA buttons vertically on all mobile */
     .hero-chat-actions {
         flex-direction: column !important;
         width: 100%;
-        gap: var(--spacing-2) !important;
+        gap: var(--spacing-3) !important;
+        align-items: center;
     }
 
     .hero-chat-actions .btn {
         width: 100% !important;
+        max-width: 300px;
     }
 
+    /* Reduce heavy section padding on mobile */
+    .services-section {
+        padding-bottom: var(--spacing-8) !important;
+    }
+
+    .cta-section {
+        padding-bottom: var(--spacing-8) !important;
+    }
+
+    .principles-section {
+        padding-top: var(--spacing-8);
+        padding-bottom: var(--spacing-8);
+    }
+
+    /* Better card contrast on mobile */
+    .services-section .card {
+        background-color: var(--bg-tertiary);
+        border: 1px solid var(--border-primary);
+        box-shadow: none;
+    }
+}
+
+/* Extra small screens (480px and below) */
+@media (max-width: 480px) {
     /* Case Studies Carousel - Full bleed cards */
     .case-carousel-track {
         padding-left: var(--spacing-4) !important;

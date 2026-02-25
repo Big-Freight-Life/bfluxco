@@ -83,20 +83,30 @@ Replace the plain hamburger → full-screen drawer navigation with a modern mobi
 
 ---
 
-## Phase B: Homepage Mobile Redesign (NEXT)
+## Phase B: Homepage Mobile Redesign (COMPLETE)
 
 ### Goal
 Optimize the front-page.php hero and sections for mobile.
 
-### Planned Changes
-- Replace video background with static poster image on mobile
-- Move AI chat to floating button → bottom sheet pattern
-- Stack CTA buttons vertically
-- Keep case study carousel (horizontal scroll works well on mobile)
-- Remove Claude terminal from About Preview section
-- Reduce section padding
+### Changes Made
+- [x] Replace video background with static poster image on mobile (already existed)
+- [x] Stack CTA buttons vertically on all mobile (moved from 480px to 767px breakpoint)
+- [x] Keep case study carousel (horizontal scroll, image-on-top layout at ≤480px)
+- [x] Remove Claude terminal from About Preview section (already existed)
+- [x] Reduce section padding on mobile (services, CTA, principles)
+- [x] Larger body text on mobile (`font-size-lg` / 1.125rem, line-height 1.7)
+- [x] Larger section headings on mobile (`clamp(1.75rem, 4vw, 2.5rem)`)
+- [x] Hide "Behind every system..." intro paragraph on mobile
+- [x] Better card contrast on mobile (`bg-tertiary` + border)
+- [ ] Move AI chat to floating button → bottom sheet pattern (deferred to Phase D)
 
-### Status: NOT STARTED
+### Files Modified
+| File | Change |
+|------|--------|
+| `front-page.php` | Added `principles-body--intro` class to first principles paragraph |
+| `assets/css/custom.css` | Added Phase B mobile rules in `@media (max-width: 767px)` block, updated 480px hero-description override |
+
+### Status: COMPLETE
 
 ---
 
