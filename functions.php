@@ -31,7 +31,7 @@ if (!defined('ABSPATH')) {
 
 // Define theme version constant
 if (!defined('BFLUXCO_THEME_VERSION')) {
-    define('BFLUXCO_THEME_VERSION', '1.2.5');
+    define('BFLUXCO_THEME_VERSION', '1.3.0');
 }
 
 // ==========================================================================
