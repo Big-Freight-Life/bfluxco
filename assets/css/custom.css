@@ -1325,7 +1325,11 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
         margin-bottom: var(--spacing-6) !important;
     }
 
-    /* Hide card icons and "Learn More" links */
+    /* Hide "View All Services" button, card icons, and "Learn More" links */
+    body.home .services-section .section-header .btn-tertiary {
+        display: none !important;
+    }
+
     body.home .services-section .card-icon {
         display: none !important;
     }

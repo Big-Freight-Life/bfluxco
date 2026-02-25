@@ -349,8 +349,6 @@ get_header();
             <?php
             get_template_part('template-parts/section', 'header', array(
                 'title' => __('What we design for', 'bfluxco'),
-                'cta_text' => __('View All Services', 'bfluxco'),
-                'cta_url' => home_url('/work'),
                 'class' => 'services-header',
             ));
             ?>

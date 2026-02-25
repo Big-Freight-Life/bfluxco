@@ -580,29 +580,96 @@
         // --- Drawer toggle ---
         if (!moreBtn || !drawer || !backdrop) return;
 
+        var handle = drawer.querySelector('.mobile-drawer-handle');
+        var drawerContent = drawer.querySelector('.mobile-drawer-content');
+
+        var savedScrollY = 0;
+
+        // Prevent pull-to-refresh and all background scrolling when drawer is open
+        function preventScroll(e) {
+            // Allow scrolling inside drawer content
+            if (drawerContent && drawerContent.contains(e.target)) {
+                // Only prevent if at scroll boundaries (prevents pull-to-refresh)
+                var st = drawerContent.scrollTop;
+                var sh = drawerContent.scrollHeight;
+                var ch = drawerContent.clientHeight;
+                if (st <= 0 && e.touches[0].clientY > touchStartY) {
+                    // At top, pulling down — let swipe-to-close handle it
+                    return;
+                }
+                if (st + ch >= sh && e.touches[0].clientY < touchStartY) {
+                    e.preventDefault(); // At bottom, pulling up
+                    return;
+                }
+                return; // Normal scroll inside drawer
+            }
+            e.preventDefault(); // Block everything else (backdrop, body)
+        }
+
         function openDrawer() {
+            savedScrollY = window.scrollY;
+
+            // Lock body scroll and prevent pull-to-refresh
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            document.body.style.top = '-' + savedScrollY + 'px';
+            document.body.style.touchAction = 'none';
+            document.body.style.overscrollBehavior = 'none';
+
+            // Set starting state without transition
+            drawer.style.transition = 'none';
+            drawer.style.transform = 'translateY(100%)';
+            backdrop.style.transition = 'none';
+            backdrop.style.opacity = '0';
+
             drawer.classList.add('is-open');
             backdrop.classList.add('is-open');
             drawer.setAttribute('aria-hidden', 'false');
             moreBtn.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden';
 
-            // Focus first focusable element inside drawer
-            var firstFocusable = drawer.querySelector('a, button, [tabindex]:not([tabindex="-1"])');
-            if (firstFocusable) {
-                firstFocusable.focus();
-            }
+            // Block background touch events
+            document.addEventListener('touchmove', preventScroll, { passive: false });
+
+            // Animate in on next frame
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    drawer.style.transition = '';
+                    drawer.style.transform = '';
+                    backdrop.style.transition = '';
+                    backdrop.style.opacity = '';
+                });
+            });
         }
 
-        function closeDrawer() {
+        function closeDrawer(returnFocus) {
+            drawer.style.transform = '';
+            drawer.style.transition = '';
+            backdrop.style.opacity = '';
+            backdrop.style.transition = '';
             drawer.classList.remove('is-open');
             backdrop.classList.remove('is-open');
             drawer.setAttribute('aria-hidden', 'true');
             moreBtn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
 
-            // Return focus to the More button
-            moreBtn.focus();
+            // Restore scroll
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+            document.body.style.top = '';
+            document.body.style.touchAction = '';
+            document.body.style.overscrollBehavior = '';
+            window.scrollTo(0, savedScrollY);
+
+            // Remove touch block
+            document.removeEventListener('touchmove', preventScroll);
+
+            // Only refocus More button for keyboard dismissals
+            if (returnFocus) {
+                moreBtn.focus();
+            } else {
+                document.activeElement && document.activeElement.blur();
+            }
         }
 
         moreBtn.addEventListener('click', function() {
@@ -613,14 +680,102 @@
             }
         });
 
+        // --- Tap handle bar to close ---
+        if (handle) {
+            handle.addEventListener('click', function() {
+                if (drawer.classList.contains('is-open')) {
+                    closeDrawer();
+                }
+            });
+            handle.style.cursor = 'pointer';
+        }
+
+        // --- iOS-style swipe-to-close gesture ---
+        var touchStartY = 0;
+        var touchCurrentY = 0;
+        var isDragging = false;
+        var dragThreshold = 80; // px to trigger close
+        var drawerHeight = 0;
+
+        function onTouchStart(e) {
+            if (!drawer.classList.contains('is-open')) return;
+
+            // Only allow drag from the handle area or when drawer content is scrolled to top
+            var target = e.target;
+            var isHandle = handle && handle.contains(target);
+            var isScrolledToTop = !drawerContent || drawerContent.scrollTop <= 0;
+
+            if (!isHandle && !isScrolledToTop) return;
+
+            touchStartY = e.touches[0].clientY;
+            touchCurrentY = touchStartY;
+            isDragging = true;
+            drawerHeight = drawer.offsetHeight;
+
+            // Disable CSS transition during drag for immediate response
+            drawer.style.transition = 'none';
+            backdrop.style.transition = 'none';
+        }
+
+        function onTouchMove(e) {
+            if (!isDragging) return;
+
+            touchCurrentY = e.touches[0].clientY;
+            var deltaY = touchCurrentY - touchStartY;
+
+            // Only allow downward drag (positive deltaY)
+            if (deltaY < 0) {
+                deltaY = 0;
+            }
+
+            // Apply rubber-band resistance at the top
+            drawer.style.transform = 'translateY(' + deltaY + 'px)';
+
+            // Fade scrim proportionally
+            var progress = Math.min(deltaY / drawerHeight, 1);
+            backdrop.style.opacity = 1 - progress;
+
+            // Prevent page scroll while dragging
+            if (deltaY > 0) {
+                e.preventDefault();
+            }
+        }
+
+        function onTouchEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+
+            var deltaY = touchCurrentY - touchStartY;
+
+            // Restore transitions for snap animation
+            drawer.style.transition = 'transform 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
+            backdrop.style.transition = 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
+
+            if (deltaY > dragThreshold) {
+                // Dismiss: slide down fully then close
+                drawer.style.transform = 'translateY(100%)';
+                backdrop.style.opacity = '0';
+                setTimeout(function() {
+                    closeDrawer();
+                }, 400);
+            } else {
+                // Snap back to open position
+                drawer.style.transform = 'translateY(0)';
+                backdrop.style.opacity = '1';
+            }
+        }
+
+        drawer.addEventListener('touchstart', onTouchStart, { passive: true });
+        drawer.addEventListener('touchmove', onTouchMove, { passive: false });
+        drawer.addEventListener('touchend', onTouchEnd, { passive: true });
+
         // Close on backdrop click
         backdrop.addEventListener('click', closeDrawer);
 
-        // Close on ESC
+        // Close on ESC (keyboard — return focus to More button)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
-                closeDrawer();
-                moreBtn.focus();
+                closeDrawer(true);
             }
         });
 
