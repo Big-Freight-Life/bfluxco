@@ -5545,18 +5545,10 @@ section.about-preview-section {
         gap: var(--spacing-4) !important;
     }
 
-    /* Section Headers - Keep inline layout on mobile (title left, CTA right) */
-    .section-header {
-        flex-direction: row !important;
-        align-items: flex-end !important;
-        text-align: left !important;
-        gap: var(--spacing-3) !important;
-        padding: 0 var(--spacing-4) !important;
-    }
-
+    /* Section Headers - align items at baseline on mobile */
     .case-studies-header,
     .services-header {
-        align-items: flex-end !important;
+        align-items: flex-end;
     }
 
     /* CTA Section - Full width button */

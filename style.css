@@ -4,7 +4,7 @@ Theme URI: https://bfluxco.com
 Author: Ray Butler
 Author URI: https://bfluxco.com/about/ray
 Description: Custom WordPress theme for BFLUXCO portfolio website.
-Version: 1.3.1
+Version: 1.3.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bfluxco
@@ -391,25 +391,26 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
     }
 
     .case-label {
-        font-size: 10px;
+        font-size: var(--font-size-sm);
         margin-bottom: var(--spacing-1);
         color: var(--text-secondary);
+        opacity: 1;
         text-transform: uppercase;
         letter-spacing: 0.08em;
     }
 
     .case-title {
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-xl);
         line-height: 1.35;
-        margin-bottom: var(--spacing-1);
+        margin-bottom: var(--spacing-2);
         color: var(--text-primary);
         font-weight: var(--font-weight-medium);
     }
 
     .case-excerpt {
-        font-size: var(--font-size-sm);
-        line-height: 1.5;
-        margin-bottom: var(--spacing-1);
+        font-size: var(--font-size-lg);
+        line-height: 1.7;
+        margin-bottom: var(--spacing-2);
         color: var(--text-secondary);
         -webkit-line-clamp: 2;
         display: -webkit-box;
@@ -420,7 +421,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
     /* Show year/meta on mobile */
     .case-meta {
         display: flex;
-        font-size: 11px;
+        font-size: var(--font-size-sm);
         color: var(--text-tertiary);
     }
 
@@ -467,19 +468,10 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 
     .case-card {
         width: 80vw;
-        border-radius: 12px;
-    }
-
-    .case-card-content {
-        padding: 0;
     }
 
     .case-title {
         font-size: var(--font-size-sm);
-    }
-
-    .case-excerpt {
-        font-size: var(--font-size-xs);
     }
 }
 
@@ -914,9 +906,9 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 
 @media (max-width: 768px) {
     .section-header {
-        flex-direction: column;
         gap: var(--spacing-3);
         margin-bottom: var(--spacing-5);
+        padding: 0 var(--spacing-4);
     }
 
     .section-title {
