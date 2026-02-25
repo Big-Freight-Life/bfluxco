@@ -5545,17 +5545,18 @@ section.about-preview-section {
         gap: var(--spacing-4) !important;
     }
 
-    /* Section Headers - Stack title and CTA link, centered on mobile */
+    /* Section Headers - Keep inline layout on mobile (title left, CTA right) */
     .section-header {
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
+        flex-direction: row !important;
+        align-items: flex-end !important;
+        text-align: left !important;
         gap: var(--spacing-3) !important;
+        padding: 0 var(--spacing-4) !important;
     }
 
     .case-studies-header,
     .services-header {
-        align-items: center !important;
+        align-items: flex-end !important;
     }
 
     /* CTA Section - Full width button */
@@ -5602,6 +5603,11 @@ section.about-preview-section {
     /* Hide intro paragraph on mobile */
     .principles-body--intro {
         display: none;
+    }
+
+    /* Hide "Git In Touch" on mobile — prototype shows only "Transform My Team" */
+    .hero-chat-actions .btn-secondary {
+        display: none !important;
     }
 
     /* Stack CTA buttons vertically on all mobile */
