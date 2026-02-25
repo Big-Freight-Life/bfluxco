@@ -568,12 +568,14 @@
             scrollTicking = false;
         }
 
-        window.addEventListener('scroll', function() {
+        var scrollHandler = function() {
             if (!scrollTicking) {
                 requestAnimationFrame(updateTabBar);
                 scrollTicking = true;
             }
-        }, { passive: true });
+        };
+
+        window.addEventListener('scroll', scrollHandler, { passive: true });
 
         // --- Drawer toggle ---
         if (!moreBtn || !drawer || !backdrop) return;
@@ -584,6 +586,12 @@
             drawer.setAttribute('aria-hidden', 'false');
             moreBtn.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
+
+            // Focus first focusable element inside drawer
+            var firstFocusable = drawer.querySelector('a, button, [tabindex]:not([tabindex="-1"])');
+            if (firstFocusable) {
+                firstFocusable.focus();
+            }
         }
 
         function closeDrawer() {
@@ -592,6 +600,9 @@
             drawer.setAttribute('aria-hidden', 'true');
             moreBtn.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
+
+            // Return focus to the More button
+            moreBtn.focus();
         }
 
         moreBtn.addEventListener('click', function() {
@@ -626,6 +637,46 @@
                 closeDrawer();
             }
         }, 100));
+
+        // --- Cleanup on page unload (Fix 1 & 2) ---
+        // Close drawer and remove scroll listener when navigating away
+        window.addEventListener('beforeunload', function() {
+            closeDrawer();
+            window.removeEventListener('scroll', scrollHandler);
+        });
+
+        // Close drawer when page becomes hidden (e.g. tab switch, navigation)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                closeDrawer();
+            }
+        });
+
+        // --- Focus trap in drawer (Fix 4) ---
+        drawer.addEventListener('keydown', function(e) {
+            if (e.key !== 'Tab') return;
+            if (!drawer.classList.contains('is-open')) return;
+
+            var focusableEls = drawer.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+            if (focusableEls.length === 0) return;
+
+            var firstEl = focusableEls[0];
+            var lastEl = focusableEls[focusableEls.length - 1];
+
+            if (e.shiftKey) {
+                // Shift+Tab: if on first element, wrap to last
+                if (document.activeElement === firstEl) {
+                    e.preventDefault();
+                    lastEl.focus();
+                }
+            } else {
+                // Tab: if on last element, wrap to first
+                if (document.activeElement === lastEl) {
+                    e.preventDefault();
+                    firstEl.focus();
+                }
+            }
+        });
 
         // --- Mobile Theme Toggle (sync with desktop) ---
         var mobileToggle = drawer.querySelector('.mobile-theme-toggle');

@@ -13,7 +13,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="no-js">
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +28,7 @@
     ?>
     <script>
     (function() {
+        document.documentElement.classList.remove('no-js');
         var stored = localStorage.getItem('bfluxco-theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = stored || (prefersDark ? 'dark' : 'light');

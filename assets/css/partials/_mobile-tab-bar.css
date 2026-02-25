@@ -358,17 +358,54 @@
 
 @media (max-width: 360px) {
     .mobile-tab-bar__label {
-        font-size: 0.5625rem; /* 9px */
+        font-size: 0.625rem; /* 10px */
     }
 
     .mobile-tab-bar__icon {
         width: 20px;
         height: 20px;
     }
+
+    .mobile-drawer-list {
+        padding: var(--spacing-2) var(--spacing-3);
+    }
+
+    .mobile-drawer-link {
+        padding: var(--spacing-3) var(--spacing-3);
+    }
+
+    .mobile-drawer-sublink {
+        padding-left: calc(var(--spacing-3) + 20px + var(--spacing-2));
+    }
+
+    .mobile-theme-toggle-section {
+        padding: var(--spacing-4) var(--spacing-3) var(--spacing-2);
+    }
+
+    .mobile-drawer-utility {
+        padding: var(--spacing-4) var(--spacing-3) var(--spacing-2);
+    }
 }
 
 /* ==========================================================================
-   12. REDUCED MOTION
+   12. NO-JS FALLBACK
+   ========================================================================== */
+
+/* Hide the More button and drawer when JavaScript is unavailable,
+   since they require JS to function. The four link-based tabs
+   (Home, Work, Blog, Contact) still work as regular <a> tags. */
+
+.no-js .mobile-tab-bar__tab--more {
+    display: none;
+}
+
+.no-js .mobile-drawer,
+.no-js .mobile-drawer-backdrop {
+    display: none;
+}
+
+/* ==========================================================================
+   13. REDUCED MOTION
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
