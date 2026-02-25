@@ -22,10 +22,13 @@ if ($is_placeholder) :
     $excerpt = isset($data['excerpt']) ? $data['excerpt'] : 'Project description goes here.';
     $year = isset($data['year']) ? $data['year'] : date('Y');
     $gradient = isset($data['gradient']) ? $data['gradient'] : 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+    $image_url = isset($data['image_url']) && $data['image_url'] ? $data['image_url'] : '';
     $link = isset($data['link']) ? $data['link'] : '#';
+    $card_bg = $image_url ? 'background-image: url(' . esc_url($image_url) . ');' : 'background: ' . esc_attr($gradient) . ';';
+    $image_bg = $image_url ? 'background-image: url(' . esc_url($image_url) . ');' : 'background: ' . esc_attr($gradient) . ';';
 ?>
-    <a href="<?php echo esc_url(home_url($link)); ?>" class="case-card" style="background: <?php echo esc_attr($gradient); ?>;">
-        <div class="case-card-image" style="background: <?php echo esc_attr($gradient); ?>;"></div>
+    <a href="<?php echo esc_url(home_url($link)); ?>" class="case-card" style="<?php echo $card_bg; ?>">
+        <div class="case-card-image" style="<?php echo $image_bg; ?>"></div>
         <div class="case-card-content">
             <span class="case-label"><?php echo esc_html($label); ?></span>
             <h3 class="case-title"><?php echo esc_html($title); ?></h3>

@@ -848,14 +848,11 @@ video::-webkit-media-controls-container {
    HERO MOBILE RESPONSIVE
    ========================================================================== */
 
-/* Mobile: Use static image instead of video for performance */
+/* Mobile: Simplified hero — handled by MOBILE HOMEPAGE OVERRIDE section.
+   Video hidden, gradient bg, compact height, solid header. */
 @media (max-width: 767px) {
     .hero {
         height: auto;
-        min-height: 100vh;
-        min-height: 100dvh;
-        padding-top: calc(56px + 60px); /* Header + spacing */
-        padding-bottom: var(--spacing-8); /* Bottom padding for buttons */
         text-align: center;
     }
 
@@ -865,26 +862,9 @@ video::-webkit-media-controls-container {
         align-items: center;
     }
 
-    /* Revert to absolute positioning on mobile */
+    /* Hide video + fallback — gradient replaces both (set in MOBILE HOMEPAGE OVERRIDE) */
     .hero-video-container {
-        position: absolute;
-        height: 100%;
-    }
-
-    .hero-video {
         display: none !important;
-    }
-
-    .hero-video-fallback {
-        display: block !important;
-        background-image: url('../images/hero-eye.jpg') !important;
-        background-position: center center;
-        background-size: cover;
-        background-color: #0a0a0a;
-    }
-
-    .hero-video-overlay {
-        background: rgba(0, 0, 0, 0.6);
     }
 
     /* Hide scroll progress on mobile */
@@ -900,25 +880,6 @@ video::-webkit-media-controls-container {
 
     .about-preview-section .about-preview-content {
         padding: var(--spacing-6) 0 !important;
-    }
-
-    /* Tighter spacing for mobile hero content */
-    .hero-title {
-        margin-bottom: var(--spacing-4);
-    }
-
-    .hero-description {
-        margin-top: var(--spacing-4);
-        margin-bottom: var(--spacing-6);
-    }
-
-    .hero-cta {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .hero-cta .btn {
-        width: 100%;
     }
 }
 
@@ -1104,6 +1065,298 @@ body.home .site-header.is-scrolled .menu-toggle span,
 body.home .site-header.is-scrolled .menu-toggle span::before,
 body.home .site-header.is-scrolled .menu-toggle span::after {
     background-color: var(--text-primary);
+}
+
+/* ==========================================================================
+   MOBILE HOMEPAGE OVERRIDE
+   Match prototype: solid header, gradient hero, single CTA, no chat UI.
+   Desktop keeps transparent header + video hero.
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+    /* --- Header: solid bg instead of transparent overlay --- */
+    body.home .site-header {
+        position: sticky !important;
+        background-color: var(--header-bg) !important;
+        border-bottom: 1px solid var(--border-primary);
+    }
+
+    /* Restore normal text colors (no white-on-transparent) */
+    body.home .site-logo,
+    body.home .logo-primary {
+        color: var(--text-primary);
+    }
+
+    body.home .logo-secondary {
+        color: var(--text-tertiary);
+    }
+
+    body.home .menu-toggle span,
+    body.home .menu-toggle span::before,
+    body.home .menu-toggle span::after {
+        background-color: var(--text-primary);
+    }
+
+    /* --- Hero: gradient bg, compact height, no video --- */
+    body.home .hero {
+        min-height: auto !important;
+        height: auto !important;
+        padding: var(--spacing-16) var(--spacing-4) !important;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        display: block !important;
+        align-items: unset !important;
+        justify-content: unset !important;
+    }
+
+    body.home .hero .container {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Hide video entirely — gradient replaces it */
+    body.home .hero-video-container {
+        display: none !important;
+    }
+
+    /* Hero title: match prototype — font-size-2xl (24px) */
+    body.home .hero-title {
+        margin-bottom: var(--spacing-4);
+        max-width: none;
+    }
+
+    body.home .hero-title-primary,
+    body.home .hero-title-secondary {
+        font-size: var(--font-size-2xl) !important;
+        display: inline;
+        line-height: 1.3;
+    }
+
+    /* Hero description: match prototype — font-size-lg (18px), 1.7 lh */
+    body.home .hero-description {
+        font-size: var(--font-size-lg) !important;
+        line-height: 1.7;
+        margin-top: var(--spacing-4);
+        margin-bottom: var(--spacing-6);
+    }
+
+    /* --- Hide chat UI (not in prototype) --- */
+    body.home .chat-blur-overlay,
+    body.home .chat-input-area,
+    body.home .chat-form,
+    body.home .chat-lead-form,
+    body.home .chat-success {
+        display: none !important;
+    }
+
+    /* Strip spacing from hero-chat wrapper (only button remains) */
+    body.home .hero-chat {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* --- Single CTA: hide "Git In Touch", keep "Transform My Team" --- */
+    body.home .hero-chat-actions .btn-secondary {
+        display: none !important;
+    }
+
+    body.home .hero-chat-actions {
+        display: flex;
+        justify-content: center;
+        flex-direction: row !important;
+        width: auto !important;
+    }
+
+    body.home .hero-chat-actions .btn-primary {
+        width: auto !important;
+        max-width: none !important;
+    }
+
+    /* --- Hide logo carousel (not in prototype) --- */
+    body.home .logo-carousel-section {
+        display: none;
+    }
+
+    /* --- Principles: match prototype spacing (64px top/bottom, centered) --- */
+    body.home .principles-section {
+        padding: var(--spacing-16) var(--spacing-4) !important;
+        border-bottom: none;
+    }
+
+    /* Hide intro paragraph (not in prototype) */
+    body.home .principles-body--intro {
+        display: none;
+    }
+
+    /* --- Case Studies: reduce padding to match prototype (24px 0 32px) --- */
+    body.home .case-studies-section {
+        padding-top: var(--spacing-6) !important;
+        padding-bottom: var(--spacing-8) !important;
+    }
+
+    /* Hide carousel nav arrows on mobile */
+    body.home .case-studies-nav {
+        display: none !important;
+    }
+
+    /* Hide "View All Work" from header on mobile */
+    body.home .case-studies-header .btn-tertiary {
+        display: none !important;
+    }
+
+    /* Show mobile "View All Work" below carousel */
+    body.home .case-studies-mobile-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: calc(-1 * var(--spacing-4));
+    }
+
+
+
+    /* --- About Preview: match prototype plain text section --- */
+    body.home .about-preview-section {
+        margin-top: 0 !important;
+        padding: var(--spacing-8) var(--spacing-4) !important;
+        border-bottom: 1px solid var(--border-primary);
+        background: var(--bg-primary);
+    }
+
+    body.home .about-preview-section .about-preview-code-bg,
+    body.home .about-preview-section .about-preview-overlay {
+        display: none !important;
+    }
+
+    body.home .about-preview-section .hero-announce {
+        display: none;
+    }
+
+    body.home .about-preview-section .about-preview-content {
+        text-align: left !important;
+        padding: 0 !important;
+    }
+
+    body.home .about-preview-section .about-preview-content h4 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem) !important;
+        font-weight: var(--font-weight-bold) !important;
+        letter-spacing: -0.02em;
+        margin-bottom: var(--spacing-4);
+        color: var(--text-primary);
+    }
+
+    body.home .about-preview-section .about-preview-content p {
+        color: var(--text-secondary) !important;
+        font-size: var(--font-size-lg) !important;
+        line-height: 1.7;
+        margin-bottom: var(--spacing-4);
+    }
+
+    /* --- Productivity: hide on mobile (not in prototype) --- */
+    body.home .productivity-section {
+        display: none !important;
+    }
+
+    /* --- Services: match prototype card styling --- */
+    body.home .services-section {
+        padding: var(--spacing-12) var(--spacing-4) !important;
+        border-bottom: 1px solid var(--border-primary);
+    }
+
+    body.home .services-section .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    body.home .services-section .section-header {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom: var(--spacing-6) !important;
+    }
+
+    /* Hide card icons and "Learn More" links */
+    body.home .services-section .card-icon {
+        display: none !important;
+    }
+
+    body.home .services-section .card .btn-tertiary {
+        display: none !important;
+    }
+
+    /* Match prototype card appearance */
+    body.home .services-section .card {
+        background: var(--bg-tertiary) !important;
+        border: 1px solid var(--border-primary) !important;
+        box-shadow: none !important;
+        border-radius: var(--radius-xl);
+    }
+
+    body.home .services-section .card-content {
+        text-align: left !important;
+        align-items: flex-start !important;
+        padding: var(--spacing-6) !important;
+    }
+
+    body.home .services-section .card-title {
+        text-align: left !important;
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--spacing-2);
+    }
+
+    body.home .services-section .card-description {
+        text-align: left !important;
+        font-size: var(--font-size-lg) !important;
+        color: var(--text-tertiary);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+    /* --- Resources: mobile-only section --- */
+    body.home .resources-mobile-section {
+        display: block;
+        padding: var(--spacing-8) var(--spacing-4);
+        border-bottom: 1px solid var(--border-primary);
+    }
+
+    body.home .resources-mobile-section h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: var(--font-weight-bold);
+        margin-bottom: var(--spacing-4);
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+    }
+
+    body.home .resources-mobile-section .resource-card {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-xl);
+        padding: var(--spacing-6);
+        margin-bottom: var(--spacing-4);
+        border: 1px solid var(--border-primary);
+    }
+
+    body.home .resources-mobile-section .resource-card h3 {
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--spacing-2);
+    }
+
+    body.home .resources-mobile-section .resource-card p {
+        font-size: var(--font-size-lg);
+        color: var(--text-tertiary);
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    /* --- CTA: hide on mobile (not in prototype) --- */
+    body.home .cta-section {
+        display: none !important;
+    }
+}
+
+/* Resources section: hidden on desktop, visible only in mobile override above */
+.resources-mobile-section {
+    display: none;
+}
+
+/* Mobile CTA for case studies: hidden on desktop */
+.case-studies-mobile-cta {
+    display: none;
 }
 
 /* ==========================================================================
@@ -5590,7 +5843,7 @@ section.about-preview-section {
     }
 
     .hero-chat-actions .btn {
-        width: 100% !important;
+        width: auto;
         max-width: 300px;
     }
 

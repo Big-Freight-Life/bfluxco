@@ -271,6 +271,14 @@ get_header();
             </div>
         </div>
 
+        <!-- Mobile: "View All Work" below carousel -->
+        <div class="case-studies-mobile-cta">
+            <a href="<?php echo esc_url(home_url('/work')); ?>" class="btn btn-tertiary btn-icon">
+                <span><?php esc_html_e('View All Work', 'bfluxco'); ?></span>
+                <?php bfluxco_icon('arrow-right', array('size' => 16)); ?>
+            </a>
+        </div>
+
         <div class="container">
             <?php
             get_template_part('template-parts/section', 'nav', array(
@@ -363,6 +371,19 @@ get_header();
             </div>
         </div>
     </section><!-- Services Overview -->
+
+    <!-- Resources Section (mobile only — matches prototype) -->
+    <section class="resources-mobile-section">
+        <h2><?php esc_html_e('Resources', 'bfluxco'); ?></h2>
+        <div class="resource-card">
+            <h3><?php esc_html_e('Designing for Decision Complexity', 'bfluxco'); ?></h3>
+            <p><?php esc_html_e('How to build systems that support confident decisions in uncertain environments.', 'bfluxco'); ?></p>
+        </div>
+        <div class="resource-card">
+            <h3><?php esc_html_e('The AI-Human Handoff', 'bfluxco'); ?></h3>
+            <p><?php esc_html_e('Patterns for graceful transitions between automated and human-driven workflows.', 'bfluxco'); ?></p>
+        </div>
+    </section><!-- Resources (mobile) -->
 
     <!-- CTA Section -->
     <section class="section cta-section text-center section-reveal">
