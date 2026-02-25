@@ -22,7 +22,7 @@
         <div class="container" style="padding-bottom: var(--spacing-20);">
             <div class="principles-content">
                 <p class="section-subtitle-body" style="margin-top: var(--spacing-3); max-width: 600px;">
-                    <?php esc_html_e('We focus on the conditions that shape real decisions—fragmented tools, evolving rules, and outcomes that compound over time.', 'bfluxco'); ?>
+                    <?php esc_html_e('Our focus are the conditions that shape real decisions—fragmented tools, evolving rules, and outcomes that compound over time.', 'bfluxco'); ?>
                 </p>
                 <p class="section-subtitle-body" style="margin-top: var(--spacing-3); max-width: 600px; font-weight: var(--font-weight-medium);">
                     <?php esc_html_e('Anyone can build something. Few know what to build and why.', 'bfluxco'); ?>

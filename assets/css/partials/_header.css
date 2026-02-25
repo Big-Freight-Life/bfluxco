@@ -71,10 +71,10 @@
 }
 
 .logo-primary {
-    font-family: 'Anton', sans-serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-bold);
+    text-transform: none;
+    letter-spacing: normal;
     margin-right: 0.3em;
 }
 

@@ -1091,6 +1091,32 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
         color: var(--text-tertiary);
     }
 
+    /* Header text sizing — match prototype (18px text, 28px logo, 56px bar) */
+    body.home .header-inner {
+        height: 56px;
+    }
+
+    body.home .site-logo {
+        font-size: var(--font-size-lg);
+        gap: 0.5em;
+    }
+
+    body.home .logo-primary {
+        font-family: var(--font-family-base);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-lg);
+        text-transform: none;
+        letter-spacing: normal;
+    }
+
+    body.home .logo-secondary {
+        font-size: var(--font-size-lg);
+    }
+
+    body.home .site-logo-img {
+        height: 28px;
+    }
+
     body.home .menu-toggle span,
     body.home .menu-toggle span::before,
     body.home .menu-toggle span::after {
@@ -1182,15 +1208,43 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
         border-bottom: none;
     }
 
+    body.home .principles-section .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    body.home .principles-centered {
+        max-width: none;
+    }
+
     /* Hide intro paragraph (not in prototype) */
     body.home .principles-body--intro {
         display: none;
     }
 
-    /* --- Case Studies: reduce padding to match prototype (24px 0 32px) --- */
+    /* --- Case Studies: edge-to-edge, no horizontal padding --- */
     body.home .case-studies-section {
-        padding-top: var(--spacing-6) !important;
-        padding-bottom: var(--spacing-8) !important;
+        padding: var(--spacing-6) 0 var(--spacing-8) !important;
+    }
+
+    body.home .case-studies-section > .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    body.home .case-studies-header {
+        padding: 0 !important;
+        margin-bottom: var(--spacing-4) !important;
+    }
+
+    body.home .case-studies-section .section-title {
+        padding-left: var(--spacing-4);
+    }
+
+    body.home .case-carousel-track {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: var(--spacing-4);
     }
 
     /* Hide carousel nav arrows on mobile */
@@ -1216,7 +1270,7 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
     body.home .about-preview-section {
         margin-top: 0 !important;
         padding: var(--spacing-8) var(--spacing-4) !important;
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: none;
         background: var(--bg-primary);
     }
 
@@ -1257,7 +1311,7 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
     /* --- Services: match prototype card styling --- */
     body.home .services-section {
         padding: var(--spacing-12) var(--spacing-4) !important;
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: none;
     }
 
     body.home .services-section .container {
@@ -1312,7 +1366,7 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
     body.home .resources-mobile-section {
         display: block;
         padding: var(--spacing-8) var(--spacing-4);
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: none;
     }
 
     body.home .resources-mobile-section h2 {

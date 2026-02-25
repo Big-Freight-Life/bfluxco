@@ -199,7 +199,7 @@ get_header();
                     <?php esc_html_e('Behind every system are professionals navigating trade-offs, exceptions, and consequences. Our work starts there.', 'bfluxco'); ?>
                 </p>
                 <p class="principles-body">
-                    <?php esc_html_e('We focus on the conditions that shape real decisions: fragmented tools, evolving rules, and outcomes that compound over time. As AI reshapes work, we extend human capability.', 'bfluxco'); ?>
+                    <?php esc_html_e('Our focus are the conditions that shape real decisions: fragmented tools, evolving rules, and outcomes that compound over time. As AI reshapes work, we extend human capability.', 'bfluxco'); ?>
                 </p>
                 <p class="principles-body principles-bold">
                     <?php esc_html_e('Anyone can build something. Few know what to build and why.', 'bfluxco'); ?>
@@ -233,7 +233,7 @@ get_header();
         <div class="container">
             <header class="section-header reveal-text case-studies-header">
                 <div class="section-header-content">
-                    <h2 class="section-title"><?php esc_html_e('Real work. Real constraints.', 'bfluxco'); ?></h2>
+                    <h2 class="section-title"><?php esc_html_e('Real work.', 'bfluxco'); ?><br><?php esc_html_e('Real constraints.', 'bfluxco'); ?></h2>
                 </div>
                 <a href="<?php echo esc_url(home_url('/work')); ?>" class="btn btn-tertiary btn-icon">
                     <span><?php esc_html_e('View All Work', 'bfluxco'); ?></span>

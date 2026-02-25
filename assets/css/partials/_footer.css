@@ -2,28 +2,28 @@
    ========================================================================== */
 
 .site-footer {
-    background-color: var(--footer-bg);
+    background-color: transparent;
     color: var(--footer-text);
 }
 
 /* Footer Navigation Section */
 .footer-nav-section {
     padding: var(--spacing-16) 0;
-    background-color: var(--btn-tertiary-bg);
+    background-color: transparent;
 }
 
 [data-theme="dark"] .footer-nav-section {
-    background-color: #050505;
+    background-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
     .footer-nav-section {
-        background-color: #050505;
+        background-color: transparent;
     }
 }
 
 [data-theme="light"] .footer-nav-section {
-    background-color: var(--btn-tertiary-bg);
+    background-color: transparent;
 }
 
 .footer-nav-grid {
@@ -70,21 +70,21 @@
 .footer-brand-large {
     padding: var(--spacing-12) 0 var(--spacing-16);
     overflow: hidden;
-    background-color: var(--btn-tertiary-bg);
+    background-color: transparent;
 }
 
 [data-theme="dark"] .footer-brand-large {
-    background-color: #050505;
+    background-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
     .footer-brand-large {
-        background-color: #050505;
+        background-color: transparent;
     }
 }
 
 [data-theme="light"] .footer-brand-large {
-    background-color: var(--btn-tertiary-bg);
+    background-color: transparent;
 }
 
 .footer-brand-svg {
@@ -132,23 +132,23 @@
 /* Footer Bottom - Copyright section with full-width background */
 .footer-bottom {
     padding: var(--spacing-6) 0;
-    background-color: #0a0a0a;
+    background-color: transparent;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
 }
 
 [data-theme="light"] .footer-bottom {
-    background-color: #f5f5f5;
+    background-color: transparent;
 }
 
 @media (prefers-color-scheme: light) {
     .footer-bottom {
-        background-color: #f5f5f5;
+        background-color: transparent;
     }
 }
 
 [data-theme="dark"] .footer-bottom {
-    background-color: #0a0a0a;
+    background-color: transparent;
 }
 
 .footer-bottom-inner {
@@ -194,6 +194,18 @@
         padding: var(--spacing-10) 0;
     }
 
+    .footer-nav-grid {
+        text-align: center;
+    }
+
+    .footer-nav-title {
+        font-size: var(--font-size-base);
+    }
+
+    .footer-nav-list a {
+        font-size: var(--font-size-lg);
+    }
+
     .footer-brand-large {
         padding: var(--spacing-8) 0 var(--spacing-10);
     }
@@ -223,7 +235,7 @@
     }
 
     .footer-nav-title {
-        font-size: var(--font-size-xs);
+        font-size: var(--font-size-sm);
         margin-bottom: var(--spacing-4);
     }
 
@@ -232,7 +244,7 @@
     }
 
     .footer-nav-list a {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-base);
         /* Ensure touch target */
         padding: var(--spacing-1) 0;
         display: inline-block;

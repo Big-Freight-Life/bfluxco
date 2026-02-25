@@ -749,17 +749,16 @@
             return 450;
         };
 
-        // Center the second card on load
-        var cards = carousel.querySelectorAll('.case-card');
-        if (cards.length >= 2) {
-            var secondCard = cards[1];
-            // Get the second card's position relative to the carousel
-            var cardRect = secondCard.getBoundingClientRect();
-            var carouselRect = carousel.getBoundingClientRect();
-            var cardCenter = secondCard.offsetLeft + (secondCard.offsetWidth / 2);
-            var viewportCenter = carousel.offsetWidth / 2;
-            var scrollToCenter = cardCenter - viewportCenter;
-            carousel.scrollLeft = Math.max(0, scrollToCenter);
+        // Center the second card on load (desktop only)
+        if (window.innerWidth >= 1024) {
+            var cards = carousel.querySelectorAll('.case-card');
+            if (cards.length >= 2) {
+                var secondCard = cards[1];
+                var cardCenter = secondCard.offsetLeft + (secondCard.offsetWidth / 2);
+                var viewportCenter = carousel.offsetWidth / 2;
+                var scrollToCenter = cardCenter - viewportCenter;
+                carousel.scrollLeft = Math.max(0, scrollToCenter);
+            }
         }
 
         // Scroll functions
