@@ -335,6 +335,12 @@ get_header();
     </div>
 </div>
 
-<?php wp_footer(); ?>
+<?php
+// Mobile Tab Bar & Drawer (shown on screens < 1024px via CSS, all pages)
+get_template_part( 'template-parts/mobile-drawer' );
+get_template_part( 'template-parts/mobile-tab-bar' );
+
+wp_footer();
+?>
 </body>
 </html>

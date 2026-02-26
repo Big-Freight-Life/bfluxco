@@ -16,32 +16,32 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
    These files contain the exact CSS that was originally in this file.
    ========================================================================== */
 
-@import url('assets/css/partials/_variables.css');
-@import url('assets/css/partials/_reset.css');
-@import url('assets/css/partials/_typography.css');
-@import url('assets/css/partials/_layout.css');
-@import url('assets/css/partials/_buttons.css');
-@import url('assets/css/partials/_header.css');
-@import url('assets/css/partials/_header-saas-bg.css');
-@import url('assets/css/partials/_page-hero.css');
+@import url('assets/css/partials/_variables.css?v=1.5.0');
+@import url('assets/css/partials/_reset.css?v=1.5.0');
+@import url('assets/css/partials/_typography.css?v=1.5.0');
+@import url('assets/css/partials/_layout.css?v=1.5.0');
+@import url('assets/css/partials/_buttons.css?v=1.5.0');
+@import url('assets/css/partials/_header.css?v=1.5.0');
+@import url('assets/css/partials/_header-saas-bg.css?v=1.5.0');
+@import url('assets/css/partials/_page-hero.css?v=1.5.0');
 @import url('assets/css/partials/_footer.css?v=1.5.0');
-@import url('assets/css/partials/_motion.css');
-@import url('assets/css/partials/_blog-templates.css');
-@import url('assets/css/partials/_blog-home.css');
-@import url('assets/css/partials/_case-study-ai.css');
-@import url('assets/css/partials/_product-premium.css');
-@import url('assets/css/partials/_code-simulation-hero.css');
-@import url('assets/css/partials/_claude-terminal.css');
-@import url('assets/css/partials/_resources.css');
-@import url('assets/css/partials/_works.css');
-@import url('assets/css/partials/_works-hero-animated.css');
-@import url('assets/css/partials/_experience-design.css');
-@import url('assets/css/partials/_conversation-design.css');
-@import url('assets/css/partials/_customer-research.css');
-@import url('assets/css/partials/_transformation.css');
-@import url('assets/css/partials/_genai-architecture.css');
-@import url('assets/css/partials/_about-page.css');
-@import url('assets/css/partials/_interview-raybot.css');
+@import url('assets/css/partials/_motion.css?v=1.5.0');
+@import url('assets/css/partials/_blog-templates.css?v=1.5.0');
+@import url('assets/css/partials/_blog-home.css?v=1.5.0');
+@import url('assets/css/partials/_case-study-ai.css?v=1.5.0');
+@import url('assets/css/partials/_product-premium.css?v=1.5.0');
+@import url('assets/css/partials/_code-simulation-hero.css?v=1.5.0');
+@import url('assets/css/partials/_claude-terminal.css?v=1.5.0');
+@import url('assets/css/partials/_resources.css?v=1.5.0');
+@import url('assets/css/partials/_works.css?v=1.5.0');
+@import url('assets/css/partials/_works-hero-animated.css?v=1.5.0');
+@import url('assets/css/partials/_experience-design.css?v=1.5.0');
+@import url('assets/css/partials/_conversation-design.css?v=1.5.0');
+@import url('assets/css/partials/_customer-research.css?v=1.5.0');
+@import url('assets/css/partials/_transformation.css?v=1.5.0');
+@import url('assets/css/partials/_genai-architecture.css?v=1.5.0');
+@import url('assets/css/partials/_about-page.css?v=1.5.0');
+@import url('assets/css/partials/_interview-raybot.css?v=1.5.0');
 @import url('assets/css/partials/_mobile-tab-bar.css?v=1.5.0');
 /* Note: _chatbot.css is loaded separately via class-assets.php after custom.css */
 
