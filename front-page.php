@@ -67,8 +67,8 @@ get_header();
         </script>
         <div class="container">
             <h1 class="hero-title reveal-hero">
-                <span class="hero-title-primary"><span class="text-accent">People</span> are our</span>
-                <span class="hero-title-secondary" style="font-weight: var(--font-weight-bold);">secret weapon.</span>
+                <span class="hero-title-primary"><span class="text-accent">Lets build</span> something</span>
+                <span class="hero-title-secondary" style="font-weight: var(--font-weight-bold);">wonderful, together.</span>
             </h1>
             <p class="hero-description reveal" data-delay="1">We design scalable systems that make complexity visible
                 and enable confident decisions.</p>
