@@ -126,12 +126,9 @@ get_header();
                                     <textarea id="bfluxco-contact-message" name="bfluxco_contact_message" rows="6" required class="form-textarea" maxlength="5000" placeholder="<?php esc_attr_e('Tell me about your project or idea...', 'bfluxco'); ?>"></textarea>
                                 </div>
 
-                                <button type="submit" class="btn-submit" disabled title="<?php esc_attr_e('Contact form requires plugin setup', 'bfluxco'); ?>">
+                                <button type="submit" class="btn btn-primary" disabled title="<?php esc_attr_e('Contact form requires plugin setup', 'bfluxco'); ?>">
                                     <?php esc_html_e('Send Message', 'bfluxco'); ?>
                                 </button>
-                                <p class="form-note">
-                                    <?php esc_html_e('Form is disabled until a contact plugin is configured.', 'bfluxco'); ?>
-                                </p>
                             </form>
                         <?php
                             endif;
