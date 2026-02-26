@@ -307,7 +307,7 @@ get_header();
         <div class="container about-preview-container">
             <div class="about-preview-content reveal-text">
                 <h4><?php esc_html_e('GenAI Experience Architect', 'bfluxco'); ?></h4>
-                <p><?php esc_html_e('Anyone can build something, few know what to build and why. I design and build full stack modular systems where human judgment, system behavior, and agentic capabilities align.', 'bfluxco'); ?>
+                <p><?php esc_html_e('Anyone can build something, few know what to build and why. I design and build modular systems where human judgment, system behavior, and agentic capabilities align.', 'bfluxco'); ?>
                 </p>
                 <a href="<?php echo esc_url(home_url('/about/ray')); ?>" class="hero-announce">
                     <span class="announce-badge"><?php esc_html_e('New', 'bfluxco'); ?></span>
