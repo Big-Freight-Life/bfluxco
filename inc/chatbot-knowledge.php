@@ -34,7 +34,7 @@ We design scalable systems that make complexity visible and decisions confident.
 
 ## Our Philosophy
 
-"People are our secret weapon."
+"Lets build something wonderful, together."
 
 We believe:
 - AI is not a feature. Design is not decoration.
