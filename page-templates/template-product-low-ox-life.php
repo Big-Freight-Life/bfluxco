@@ -467,7 +467,7 @@ get_header();
     <!-- FAQ Section -->
     <section class="section bg-gray-50">
         <div class="container">
-            <header class="section-header text-center mb-12 reveal-text">
+            <header class="section-header text-center mb-4 reveal-text">
                 <h2><?php esc_html_e('Frequently Asked Questions', 'bfluxco'); ?></h2>
             </header>
 
