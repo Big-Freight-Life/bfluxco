@@ -13,8 +13,10 @@ $request_uri  = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash(
 $is_home      = is_front_page();
 $is_work      = (
 	false !== strpos($request_uri, '/works') ||
+	is_singular('case_study')
+);
+$is_products  = (
 	false !== strpos($request_uri, '/products') ||
-	is_singular('case_study') ||
 	is_singular('product')
 );
 $is_blog      = (

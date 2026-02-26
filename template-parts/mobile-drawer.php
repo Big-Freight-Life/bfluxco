@@ -20,8 +20,12 @@
         <nav class="mobile-drawer-nav" aria-label="<?php esc_attr_e('Drawer Navigation', 'bfluxco'); ?>">
             <ul class="mobile-drawer-list">
                 <!-- Products -->
-                <li class="mobile-drawer-item">
-                    <a href="<?php echo esc_url(home_url('/products')); ?>" class="mobile-drawer-link">
+                <?php
+                $request_uri = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '';
+                $is_products_active = (false !== strpos($request_uri, '/products') || is_singular('product'));
+                ?>
+                <li class="mobile-drawer-item<?php echo $is_products_active ? ' is-active' : ''; ?>">
+                    <a href="<?php echo esc_url(home_url('/products')); ?>" class="mobile-drawer-link<?php echo $is_products_active ? ' is-active' : ''; ?>">
                         <svg class="mobile-drawer-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
                             <line x1="3" y1="6" x2="21" y2="6"/>

@@ -251,6 +251,14 @@
     text-decoration: none;
 }
 
+.mobile-drawer-link.is-active {
+    color: var(--color-primary);
+}
+
+.mobile-drawer-link.is-active .mobile-drawer-icon {
+    color: var(--color-primary);
+}
+
 /* Nav link icons */
 .mobile-drawer-icon {
     width: 22px;
