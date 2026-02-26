@@ -25,7 +25,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 @import url('assets/css/partials/_header-saas-bg.css?v=1.5.0');
 @import url('assets/css/partials/_page-hero.css?v=1.5.0');
 @import url('assets/css/partials/_footer.css?v=1.5.0');
-@import url('assets/css/partials/_motion.css?v=1.5.0');
+@import url('assets/css/partials/_motion.css?v=1.6.0');
 @import url('assets/css/partials/_blog-templates.css?v=1.5.0');
 @import url('assets/css/partials/_blog-home.css?v=1.5.0');
 @import url('assets/css/partials/_case-study-ai.css?v=1.5.0');
@@ -3680,4 +3680,3 @@ pre {
         display: none !important;
     }
 }
-

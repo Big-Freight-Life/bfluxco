@@ -621,11 +621,11 @@
             savedScrollY = window.scrollY;
             isDismissing = false;
 
-            // Clear any leftover inline styles from a previous drag
-            drawer.style.transform = '';
-            drawer.style.transition = '';
-            backdrop.style.opacity = '';
-            backdrop.style.transition = '';
+            // Clear any leftover inline !important styles from a previous drag/close
+            drawer.style.removeProperty('transform');
+            drawer.style.removeProperty('transition');
+            backdrop.style.removeProperty('opacity');
+            backdrop.style.removeProperty('transition');
 
             // Force closed state: remove body class (if stale) and commit the
             // closed position (translate3d(0,120%,0)) to the render pipeline.
@@ -651,9 +651,14 @@
             document.addEventListener('touchmove', preventScroll, { passive: false });
 
             // Double RAF: first frame paints the closed position + scroll lock;
-            // second frame adds the body class triggering CSS transition to open.
+            // second frame sets inline transition + body class to trigger open.
+            // Use setProperty with 'important' so inline !important beats the
+            // nuclear * { transition-duration: 0.01ms !important } in _motion.css
+            // (inline !important always wins over stylesheet !important).
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
+                    drawer.style.setProperty('transition', 'transform 500ms cubic-bezier(0.32, 0.72, 0, 1)', 'important');
+                    backdrop.style.setProperty('transition', 'opacity 220ms ease-out', 'important');
                     document.body.classList.add('mobile-drawer-open');
                     isOpening = false;
                 });
@@ -670,11 +675,12 @@
             drawer.setAttribute('aria-hidden', 'true');
             moreBtn.setAttribute('aria-expanded', 'false');
 
-            // Clear any inline styles left from drag gestures
-            drawer.style.transform = '';
-            drawer.style.transition = '';
-            backdrop.style.opacity = '';
-            backdrop.style.transition = '';
+            // Clear any inline !important styles left from open/close/drag.
+            // removeProperty fully removes the declaration (including !important).
+            drawer.style.removeProperty('transform');
+            drawer.style.removeProperty('transition');
+            backdrop.style.removeProperty('opacity');
+            backdrop.style.removeProperty('transition');
 
             isDismissing = false;
             isOpening = false;
@@ -705,18 +711,18 @@
 
             isDismissing = true;
 
-            // Remove body class — CSS transitions animate drawer offscreen
-            // and backdrop to opacity:0 automatically.
+            // Drive the close animation via inline !important styles so it works
+            // even if the nuclear * { transition-duration: 0.01ms !important }
+            // in _motion.css is active (inline !important beats stylesheet !important).
+            drawer.style.setProperty('transition', 'transform 500ms cubic-bezier(0.32, 0.72, 0, 1)', 'important');
+            backdrop.style.setProperty('transition', 'opacity 220ms ease-out', 'important');
+            drawer.style.setProperty('transform', 'translate3d(0,120%,0)', 'important');
+            backdrop.style.setProperty('opacity', '0', 'important');
+
+            // Remove body class for state tracking (pointer-events, user-select)
             document.body.classList.remove('mobile-drawer-open');
 
-            // If transition duration is 0 (reduced motion or override), clean up now
-            var duration = parseFloat(window.getComputedStyle(drawer).transitionDuration);
-            if (!duration) {
-                cleanupDrawerState(returnFocus);
-                return;
-            }
-
-            // Otherwise wait for transform animation to complete
+            // Clean up after transform animation completes
             function onTransitionDone(e) {
                 if (e.propertyName !== 'transform') return;
                 drawer.removeEventListener('transitionend', onTransitionDone);
@@ -773,8 +779,8 @@
             drawerHeight = drawer.offsetHeight;
 
             // Disable CSS transition during drag for immediate response
-            drawer.style.transition = 'none';
-            backdrop.style.transition = 'none';
+            drawer.style.setProperty('transition', 'none', 'important');
+            backdrop.style.setProperty('transition', 'none', 'important');
         }
 
         function onTouchMove(e) {
@@ -789,11 +795,11 @@
             }
 
             // Apply rubber-band resistance at the top
-            drawer.style.transform = 'translate3d(0,' + deltaY + 'px,0)';
+            drawer.style.setProperty('transform', 'translate3d(0,' + deltaY + 'px,0)', 'important');
 
             // Fade scrim proportionally
             var progress = Math.min(deltaY / drawerHeight, 1);
-            backdrop.style.opacity = 1 - progress;
+            backdrop.style.setProperty('opacity', String(1 - progress), 'important');
 
             // Prevent page scroll while dragging
             if (deltaY > 0) {
@@ -807,15 +813,15 @@
 
             var deltaY = touchCurrentY - touchStartY;
 
-            // Restore transitions with canonical timing values
-            drawer.style.transition = 'transform 650ms cubic-bezier(0.32, 0.72, 0, 1)';
-            backdrop.style.transition = 'opacity 260ms ease-out';
+            // Restore transitions with canonical timing values (inline !important)
+            drawer.style.setProperty('transition', 'transform 500ms cubic-bezier(0.32, 0.72, 0, 1)', 'important');
+            backdrop.style.setProperty('transition', 'opacity 220ms ease-out', 'important');
 
             if (deltaY > dragThreshold) {
                 // Dismiss: animate to fully offscreen, then clean up
                 isDismissing = true;
-                drawer.style.transform = 'translate3d(0,120%,0)';
-                backdrop.style.opacity = '0';
+                drawer.style.setProperty('transform', 'translate3d(0,120%,0)', 'important');
+                backdrop.style.setProperty('opacity', '0', 'important');
 
                 // If no transition (reduced motion), clean up immediately
                 var dur = parseFloat(window.getComputedStyle(drawer).transitionDuration);
@@ -832,18 +838,18 @@
                 drawer.addEventListener('transitionend', onDragDismissDone);
             } else {
                 // Snap back to open position
-                drawer.style.transform = 'translate3d(0,0,0)';
-                backdrop.style.opacity = '1';
+                drawer.style.setProperty('transform', 'translate3d(0,0,0)', 'important');
+                backdrop.style.setProperty('opacity', '1', 'important');
 
                 // After snap animation settles, clear inline styles so CSS
                 // class rules are the authoritative source of truth again.
                 function onSnapBackDone(e) {
                     if (e.propertyName !== 'transform') return;
                     drawer.removeEventListener('transitionend', onSnapBackDone);
-                    drawer.style.transform = '';
-                    drawer.style.transition = '';
-                    backdrop.style.opacity = '';
-                    backdrop.style.transition = '';
+                    drawer.style.removeProperty('transform');
+                    drawer.style.removeProperty('transition');
+                    backdrop.style.removeProperty('opacity');
+                    backdrop.style.removeProperty('transition');
                 }
                 drawer.addEventListener('transitionend', onSnapBackDone);
             }

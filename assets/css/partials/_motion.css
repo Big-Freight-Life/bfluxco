@@ -302,6 +302,17 @@
     .micro-scale:hover {
         transform: none;
     }
+
+    /* Mobile drawer: exempt from the nuclear * rule above.
+       The slide animation provides spatial context that aids usability
+       even for users who prefer reduced motion. These class selectors
+       beat * in specificity, so the longhand !important here wins. */
+    .mobile-drawer {
+        transition-duration: 500ms !important;
+    }
+    .mobile-drawer-backdrop {
+        transition-duration: 220ms !important;
+    }
 }
 
 /* ==========================================================================
