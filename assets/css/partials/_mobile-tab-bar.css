@@ -10,7 +10,7 @@
    ========================================================================== */
 
 :root {
-    --tab-bar-height: 60px;
+    --tab-bar-height: 64px;
 }
 
 /* ==========================================================================
@@ -27,23 +27,23 @@
     justify-content: space-around;
     align-items: stretch;
     height: var(--tab-bar-height);
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: #fff;
     -webkit-backdrop-filter: saturate(180%) blur(25px);
     backdrop-filter: saturate(180%) blur(25px);
     border-top: none;
     box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.08);
-    padding-top: 2px;
+    padding-top: 8px;
     padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     transition: transform var(--motion-fast) var(--ease-out-expo);
 }
 
 [data-theme="dark"] .mobile-tab-bar {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: #000;
 }
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .mobile-tab-bar {
-        background-color: rgba(0, 0, 0, 0.75);
+        background-color: #000;
     }
 }
 
@@ -69,10 +69,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 4px;
     height: 44px;
     padding: 0;
-    color: #666;
+    color: #8E8E93;
     text-decoration: none;
     background: none;
     border: none;
@@ -86,7 +86,7 @@
 
 .mobile-tab-bar__tab:hover {
     text-decoration: none;
-    color: #666;
+    color: #8E8E93;
 }
 
 /* Tap feedback */
@@ -97,8 +97,8 @@
 
 /* Icon */
 .mobile-tab-bar__icon {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
 }
 
@@ -122,7 +122,7 @@
 .mobile-tab-bar__tab.is-active::before {
     content: '';
     position: absolute;
-    top: -2px;
+    top: -8px;
     left: 0;
     right: 0;
     height: 2px;
