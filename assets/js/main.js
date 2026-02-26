@@ -606,8 +606,12 @@
             e.preventDefault(); // Block everything else (backdrop, body)
         }
 
+        // Track whether a dismiss animation is in flight (drag-to-close)
+        var isDismissing = false;
+
         function openDrawer() {
             savedScrollY = window.scrollY;
+            isDismissing = false;
 
             // Lock body scroll and prevent pull-to-refresh
             document.body.style.overflow = 'hidden';
@@ -631,26 +635,27 @@
             // Block background touch events
             document.addEventListener('touchmove', preventScroll, { passive: false });
 
-            // Animate in on next frame
-            requestAnimationFrame(function() {
-                requestAnimationFrame(function() {
-                    drawer.style.transition = '';
-                    drawer.style.transform = '';
-                    backdrop.style.transition = '';
-                    backdrop.style.opacity = '';
-                });
-            });
+            // Force style recalc, then animate in same frame
+            void drawer.offsetHeight;
+            drawer.style.transition = '';
+            drawer.style.transform = '';
+            backdrop.style.transition = '';
+            backdrop.style.opacity = '';
         }
 
-        function closeDrawer(returnFocus) {
-            drawer.style.transform = '';
-            drawer.style.transition = '';
-            backdrop.style.opacity = '';
-            backdrop.style.transition = '';
+        function cleanupDrawerState(returnFocus) {
             drawer.classList.remove('is-open');
             backdrop.classList.remove('is-open');
             drawer.setAttribute('aria-hidden', 'true');
             moreBtn.setAttribute('aria-expanded', 'false');
+
+            // Clear any inline styles from drag/animation
+            drawer.style.transform = '';
+            drawer.style.transition = '';
+            backdrop.style.opacity = '';
+            backdrop.style.transition = '';
+
+            isDismissing = false;
 
             // Restore scroll
             document.body.style.overflow = '';
@@ -670,6 +675,33 @@
             } else {
                 document.activeElement && document.activeElement.blur();
             }
+        }
+
+        function closeDrawer(returnFocus) {
+            if (isDismissing) return; // Already animating out from drag
+            if (!drawer.classList.contains('is-open')) return;
+
+            isDismissing = true;
+
+            // Animate out: set transition, then target offscreen
+            drawer.style.transition = 'transform 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
+            backdrop.style.transition = 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
+            drawer.style.transform = 'translateY(100%)';
+            backdrop.style.opacity = '0';
+
+            // Clean up after animation completes
+            function onTransitionDone(e) {
+                if (e.propertyName !== 'transform') return;
+                drawer.removeEventListener('transitionend', onTransitionDone);
+                cleanupDrawerState(returnFocus);
+            }
+            drawer.addEventListener('transitionend', onTransitionDone);
+
+            // Safety fallback in case transitionend doesn't fire
+            setTimeout(function() {
+                drawer.removeEventListener('transitionend', onTransitionDone);
+                if (isDismissing) cleanupDrawerState(returnFocus);
+            }, 500);
         }
 
         moreBtn.addEventListener('click', function() {
@@ -698,7 +730,7 @@
         var drawerHeight = 0;
 
         function onTouchStart(e) {
-            if (!drawer.classList.contains('is-open')) return;
+            if (!drawer.classList.contains('is-open') || isDismissing) return;
 
             // Only allow drag from the handle area or when drawer content is scrolled to top
             var target = e.target;
@@ -752,12 +784,23 @@
             backdrop.style.transition = 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
 
             if (deltaY > dragThreshold) {
-                // Dismiss: slide down fully then close
+                // Dismiss: animate to offscreen, then clean up via transitionend
+                isDismissing = true;
                 drawer.style.transform = 'translateY(100%)';
                 backdrop.style.opacity = '0';
+
+                function onDragDismissDone(e) {
+                    if (e.propertyName !== 'transform') return;
+                    drawer.removeEventListener('transitionend', onDragDismissDone);
+                    cleanupDrawerState();
+                }
+                drawer.addEventListener('transitionend', onDragDismissDone);
+
+                // Safety fallback
                 setTimeout(function() {
-                    closeDrawer();
-                }, 400);
+                    drawer.removeEventListener('transitionend', onDragDismissDone);
+                    if (isDismissing) cleanupDrawerState();
+                }, 500);
             } else {
                 // Snap back to open position
                 drawer.style.transform = 'translateY(0)';
@@ -770,7 +813,7 @@
         drawer.addEventListener('touchend', onTouchEnd, { passive: true });
 
         // Close on backdrop click
-        backdrop.addEventListener('click', closeDrawer);
+        backdrop.addEventListener('click', function() { closeDrawer(); });
 
         // Close on ESC (keyboard — return focus to More button)
         document.addEventListener('keydown', function(e) {
@@ -796,14 +839,14 @@
         // --- Cleanup on page unload (Fix 1 & 2) ---
         // Close drawer and remove scroll listener when navigating away
         window.addEventListener('beforeunload', function() {
-            closeDrawer();
+            cleanupDrawerState();
             window.removeEventListener('scroll', scrollHandler);
         });
 
         // Close drawer when page becomes hidden (e.g. tab switch, navigation)
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
-                closeDrawer();
+                cleanupDrawerState();
             }
         });
 
