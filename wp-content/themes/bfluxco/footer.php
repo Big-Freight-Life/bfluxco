@@ -20,10 +20,10 @@
                 <div class="footer-nav-col">
                     <h4 class="footer-nav-title"><?php esc_html_e('THE WORK', 'bfluxco'); ?></h4>
                     <ul class="footer-nav-list">
-                        <li><a href="<?php echo esc_url(home_url('/work/case-studies')); ?>"><?php esc_html_e('Case Studies', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/work/workshops')); ?>"><?php esc_html_e('Workshops', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/work/products')); ?>"><?php esc_html_e('Products', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/work/methodology')); ?>"><?php esc_html_e('Methodology', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/works/case-studies')); ?>"><?php esc_html_e('Case Studies', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/works/workshops')); ?>"><?php esc_html_e('Workshops', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/works/products')); ?>"><?php esc_html_e('Products', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/works/methodology')); ?>"><?php esc_html_e('Methodology', 'bfluxco'); ?></a></li>
                     </ul>
                 </div>
 

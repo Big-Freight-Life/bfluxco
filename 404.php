@@ -42,7 +42,7 @@ get_header();
                 <div class="error-links">
                     <p class="text-gray-500 mb-4"><?php esc_html_e('Or try one of these pages:', 'bfluxco'); ?></p>
                     <ul class="inline-flex gap-6 justify-center flex-wrap">
-                        <li><a href="<?php echo esc_url(home_url('/work')); ?>" class="link"><?php esc_html_e('The Work', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/works')); ?>" class="link"><?php esc_html_e('The Work', 'bfluxco'); ?></a></li>
                         <li><a href="<?php echo esc_url(home_url('/about')); ?>" class="link"><?php esc_html_e('About', 'bfluxco'); ?></a></li>
                         <li><a href="<?php echo esc_url(home_url('/contact')); ?>" class="link"><?php esc_html_e('Contact', 'bfluxco'); ?></a></li>
                     </ul>

@@ -266,7 +266,7 @@ get_header();
                         <span class="case-pagination-title">Seamless Salesforce Migration</span>
                     </div>
                 </a>
-                <a href="<?php echo esc_url(home_url('/work/case-studies/hyland-for-workday-integration/')); ?>" class="case-pagination-link case-pagination-next">
+                <a href="<?php echo esc_url(home_url('/works/case-studies/hyland-for-workday-integration/')); ?>" class="case-pagination-link case-pagination-next">
                     <div class="case-pagination-text">
                         <span class="case-pagination-label">Next</span>
                         <span class="case-pagination-title">Hyland for Workday</span>

@@ -77,7 +77,7 @@ $chat_classes = 'hero-chat' . ($is_hidden ? ' is-hidden' : '');
         <a href="<?php echo esc_url(home_url('/about/ray')); ?>" class="btn btn-primary">
             <?php esc_html_e('Interview Ray', 'bfluxco'); ?>
         </a>
-        <a href="<?php echo esc_url(home_url('/work/products')); ?>" class="btn btn-outline">
+        <a href="<?php echo esc_url(home_url('/works/products')); ?>" class="btn btn-outline">
             <?php esc_html_e('Git In Touch', 'bfluxco'); ?>
         </a>
         <a href="<?php echo esc_url(home_url('/transformation')); ?>" class="btn btn-outline">

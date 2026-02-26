@@ -176,7 +176,7 @@ get_header();
                     <button type="button" class="btn btn-primary" id="interview-ray-btn" style="display: none;">
                         <?php esc_html_e('Interview Ray', 'bfluxco'); ?>
                     </button>
-                    <a href="<?php echo esc_url(home_url('/work/products')); ?>" class="btn btn-secondary">
+                    <a href="<?php echo esc_url(home_url('/works/products')); ?>" class="btn btn-secondary">
                         <?php esc_html_e('Git In Touch', 'bfluxco'); ?>
                     </a>
                     <a href="<?php echo esc_url(home_url('/transformation')); ?>" class="btn btn-primary">
@@ -232,7 +232,7 @@ get_header();
                 <div class="section-header-content">
                     <h2 class="section-title"><?php esc_html_e('Real work.', 'bfluxco'); ?><br><?php esc_html_e('Real constraints.', 'bfluxco'); ?></h2>
                 </div>
-                <a href="<?php echo esc_url(home_url('/work')); ?>" class="btn btn-tertiary btn-icon">
+                <a href="<?php echo esc_url(home_url('/works')); ?>" class="btn btn-tertiary btn-icon">
                     <span><?php esc_html_e('View All Work', 'bfluxco'); ?></span>
                     <?php bfluxco_icon('arrow-right', array('size' => 16)); ?>
                 </a>
@@ -270,7 +270,7 @@ get_header();
 
         <!-- Mobile: "View All Work" below carousel -->
         <div class="case-studies-mobile-cta">
-            <a href="<?php echo esc_url(home_url('/work')); ?>" class="btn btn-secondary btn-icon">
+            <a href="<?php echo esc_url(home_url('/works')); ?>" class="btn btn-secondary btn-icon">
                 <span><?php esc_html_e('View All Work', 'bfluxco'); ?></span>
                 <?php bfluxco_icon('arrow-right', array('size' => 16)); ?>
             </a>

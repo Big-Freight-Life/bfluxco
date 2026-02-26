@@ -43,7 +43,7 @@ function bfluxco_get_placeholder_case_studies() {
             'excerpt'  => 'Unified content management embedded directly into Workday screens. No middleware. No custom code.',
             'year'     => '2025',
             'image_url' => '',
-            'link'     => '/work/case-studies/hyland-for-workday-integration/',
+            'link'     => '/works/case-studies/hyland-for-workday-integration/',
             'gradient' => 'linear-gradient(180deg, #0f172a, #1e293b)',
         ),
         array(
@@ -97,25 +97,25 @@ function bfluxco_get_placeholder_services() {
             'title'       => 'Clarity before automation',
             'description' => 'We help teams understand their system before adding intelligence—surfacing assumptions, constraints, and hidden dependencies.',
             'icon'        => 'layout',
-            'link'        => '/work/methodology',
+            'link'        => '/works/methodology',
         ),
         array(
             'title'       => 'Decision-ready systems',
             'description' => 'We design experiences and architectures that make consequences visible, so teams can act with confidence, not guesswork.',
             'icon'        => 'arrow-right',
-            'link'        => '/work/methodology',
+            'link'        => '/works/methodology',
         ),
         array(
             'title'       => 'Human–AI collaboration',
             'description' => 'We design agentic systems that know when to act, when to assist, and when to defer to human judgment.',
             'icon'        => 'users',
-            'link'        => '/work/methodology',
+            'link'        => '/works/methodology',
         ),
         array(
             'title'       => 'Scalability without fragility',
             'description' => 'We design systems that evolve without breaking—across workflows, roles, and time.',
             'icon'        => 'layers',
-            'link'        => '/work/methodology',
+            'link'        => '/works/methodology',
         ),
     );
 }

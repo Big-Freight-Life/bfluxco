@@ -12,7 +12,7 @@
 $request_uri  = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '';
 $is_home      = is_front_page();
 $is_work      = (
-	false !== strpos($request_uri, '/work') ||
+	false !== strpos($request_uri, '/works') ||
 	false !== strpos($request_uri, '/products') ||
 	is_singular('case_study') ||
 	is_singular('product')

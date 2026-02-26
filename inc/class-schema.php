@@ -457,11 +457,11 @@ class BFLUXCO_Schema {
             // Case study: Home > Work > Case Studies > Title
             $breadcrumbs[] = array(
                 'name' => __('Work', 'bfluxco'),
-                'url' => home_url('/work/'),
+                'url' => home_url('/works/'),
             );
             $breadcrumbs[] = array(
                 'name' => __('Case Studies', 'bfluxco'),
-                'url' => home_url('/work/case-studies/'),
+                'url' => home_url('/works/case-studies/'),
             );
             $breadcrumbs[] = array(
                 'name' => get_the_title(),
@@ -471,11 +471,11 @@ class BFLUXCO_Schema {
             // Workshop: Home > Work > Workshops > Title
             $breadcrumbs[] = array(
                 'name' => __('Work', 'bfluxco'),
-                'url' => home_url('/work/'),
+                'url' => home_url('/works/'),
             );
             $breadcrumbs[] = array(
                 'name' => __('Workshops', 'bfluxco'),
-                'url' => home_url('/work/workshops/'),
+                'url' => home_url('/works/workshops/'),
             );
             $breadcrumbs[] = array(
                 'name' => get_the_title(),
@@ -485,11 +485,11 @@ class BFLUXCO_Schema {
             // Product: Home > Work > Products > Title
             $breadcrumbs[] = array(
                 'name' => __('Work', 'bfluxco'),
-                'url' => home_url('/work/'),
+                'url' => home_url('/works/'),
             );
             $breadcrumbs[] = array(
                 'name' => __('Products', 'bfluxco'),
-                'url' => home_url('/work/products/'),
+                'url' => home_url('/works/products/'),
             );
             $breadcrumbs[] = array(
                 'name' => get_the_title(),
