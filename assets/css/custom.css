@@ -1074,24 +1074,56 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
    ========================================================================== */
 
 @media (max-width: 1023px) {
-    /* --- Header: solid bg, consistent across all pages --- */
-    .site-header {
+    /* --- Header: solid bg instead of transparent overlay --- */
+    body.home .site-header {
         position: sticky !important;
         background-color: var(--header-bg) !important;
         border-bottom: 1px solid var(--border-primary);
     }
 
     /* Restore normal text colors (no white-on-transparent) */
-    .site-logo,
-    .logo-primary {
+    body.home .site-logo,
+    body.home .logo-primary {
         color: var(--text-primary);
     }
 
-    .logo-secondary {
+    body.home .logo-secondary {
         color: var(--text-tertiary);
     }
 
     /* Header text sizing — match prototype (18px text, 28px logo, 56px bar) */
+    body.home .header-inner {
+        height: 56px;
+    }
+
+    body.home .site-logo {
+        font-size: var(--font-size-lg);
+        gap: 0.5em;
+    }
+
+    body.home .logo-primary {
+        font-family: var(--font-family-base);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-lg);
+        text-transform: none;
+        letter-spacing: normal;
+    }
+
+    body.home .logo-secondary {
+        font-size: var(--font-size-lg);
+    }
+
+    body.home .site-logo-img {
+        height: 28px;
+    }
+
+    body.home .menu-toggle span,
+    body.home .menu-toggle span::before,
+    body.home .menu-toggle span::after {
+        background-color: var(--text-primary);
+    }
+
+    /* --- Apply same header sizing to all pages on mobile --- */
     .header-inner {
         height: 56px;
     }
@@ -1115,12 +1147,6 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
 
     .site-logo-img {
         height: 28px;
-    }
-
-    .menu-toggle span,
-    .menu-toggle span::before,
-    .menu-toggle span::after {
-        background-color: var(--text-primary);
     }
 
     /* --- Hero: gradient bg, compact height, no video --- */
