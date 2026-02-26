@@ -252,7 +252,7 @@
 }
 
 .mobile-drawer-link.is-active {
-    background-color: var(--color-primary);
+    background-color: var(--btn-primary-bg);
     color: #fff;
     border-radius: var(--radius-lg);
 }
