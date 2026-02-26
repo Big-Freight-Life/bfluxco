@@ -86,15 +86,7 @@ get_header();
             <!-- Placeholder featured project -->
             <a href="#" class="featured-project">
                 <div class="featured-project-image">
-                    <div class="featured-project-placeholder">
-                        <div class="featured-placeholder-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
-                            </svg>
-                        </div>
-                    </div>
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/team-collaboration.png'); ?>" alt="Enterprise Content Platform Transformation" />
                 </div>
                 <div class="featured-project-content">
                     <div class="featured-project-meta">
