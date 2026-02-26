@@ -1074,34 +1074,34 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
    ========================================================================== */
 
 @media (max-width: 1023px) {
-    /* --- Header: solid bg instead of transparent overlay --- */
-    body.home .site-header {
+    /* --- Header: solid bg, consistent across all pages --- */
+    .site-header {
         position: sticky !important;
         background-color: var(--header-bg) !important;
         border-bottom: 1px solid var(--border-primary);
     }
 
     /* Restore normal text colors (no white-on-transparent) */
-    body.home .site-logo,
-    body.home .logo-primary {
+    .site-logo,
+    .logo-primary {
         color: var(--text-primary);
     }
 
-    body.home .logo-secondary {
+    .logo-secondary {
         color: var(--text-tertiary);
     }
 
     /* Header text sizing — match prototype (18px text, 28px logo, 56px bar) */
-    body.home .header-inner {
+    .header-inner {
         height: 56px;
     }
 
-    body.home .site-logo {
+    .site-logo {
         font-size: var(--font-size-lg);
         gap: 0.5em;
     }
 
-    body.home .logo-primary {
+    .logo-primary {
         font-family: var(--font-family-base);
         font-weight: var(--font-weight-bold);
         font-size: var(--font-size-lg);
@@ -1109,17 +1109,17 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
         letter-spacing: normal;
     }
 
-    body.home .logo-secondary {
+    .logo-secondary {
         font-size: var(--font-size-lg);
     }
 
-    body.home .site-logo-img {
+    .site-logo-img {
         height: 28px;
     }
 
-    body.home .menu-toggle span,
-    body.home .menu-toggle span::before,
-    body.home .menu-toggle span::after {
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
         background-color: var(--text-primary);
     }
 
