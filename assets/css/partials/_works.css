@@ -698,12 +698,50 @@
         grid-template-columns: 1fr;
     }
 
+    /* Remove "Spotlight Project" title on mobile */
+    .works-featured-hero .section-title {
+        display: none;
+    }
+
+    /* Remove card nesting from featured project on mobile */
     .featured-project {
-        padding: var(--spacing-6);
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .featured-project:hover {
+        border-color: transparent;
+        box-shadow: none;
     }
 
     .featured-project-title {
         font-size: var(--font-size-2xl);
+    }
+
+    /* Blue button for featured CTA on mobile */
+    .featured-project-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-2);
+        padding: var(--spacing-3) var(--spacing-6);
+        background-color: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
+        border-radius: var(--radius-full);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-semibold);
+    }
+
+    .featured-project:hover .featured-project-cta {
+        background-color: var(--btn-primary-hover);
+        gap: var(--spacing-2);
+    }
+
+    .featured-project-cta svg {
+        color: var(--btn-primary-text);
     }
 
     .work-card-content {
