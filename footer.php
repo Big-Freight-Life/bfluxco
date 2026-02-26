@@ -68,15 +68,9 @@
 </footer><!-- #site-footer -->
 
 <?php
-// Mobile Tab Bar & Drawer (shown on screens < 1024px via CSS)
-if ( ! is_page_template( array(
-    'page-templates/template-case-study-style-1.php',
-    'page-templates/template-case-study-style-2.php',
-    'page-templates/template-case-study-style-3.php',
-) ) ) :
-    get_template_part( 'template-parts/mobile-drawer' );
-    get_template_part( 'template-parts/mobile-tab-bar' );
-endif;
+// Mobile Tab Bar & Drawer (shown on screens < 1024px via CSS, all pages)
+get_template_part( 'template-parts/mobile-drawer' );
+get_template_part( 'template-parts/mobile-tab-bar' );
 ?>
 
 <!-- Video Modal -->
