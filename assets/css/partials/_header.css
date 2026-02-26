@@ -819,7 +819,7 @@ body.menu-open {
     }
 
     .product-mobile-title {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
         font-weight: var(--font-weight-bold);
         color: var(--text-primary);
         line-height: 1.2;

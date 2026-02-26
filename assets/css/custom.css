@@ -6233,7 +6233,7 @@ section.about-preview-section {
 
     .faq-item {
         padding-bottom: var(--spacing-3) !important;
-        margin-bottom: var(--spacing-3) !important;
+        margin-bottom: 16px !important;
         border-bottom: 1px solid var(--border-primary) !important;
     }
 
