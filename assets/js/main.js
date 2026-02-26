@@ -630,7 +630,7 @@
             document.body.style.overscrollBehavior = 'none';
 
             // Clear any leftover inline styles from a previous drag so the
-            // CSS default translateY(110%) is in effect before we animate.
+            // CSS default translate3d(0,110%,0) is in effect before we animate.
             drawer.style.transform = '';
             drawer.style.transition = '';
             backdrop.style.opacity = '';
@@ -695,23 +695,17 @@
 
             isDismissing = true;
 
-            // Remove body class — CSS transitions animate drawer to translateY(110%)
+            // Remove body class — CSS transitions animate drawer to translate3d(0,110%,0)
             // and backdrop to opacity:0 automatically.
             document.body.classList.remove('mobile-drawer-open');
 
-            // Wait for drawer's transform transition to complete before full cleanup
+            // Finalize ONLY after transform animation completes (no setTimeout)
             function onTransitionDone(e) {
                 if (e.propertyName !== 'transform') return;
                 drawer.removeEventListener('transitionend', onTransitionDone);
                 cleanupDrawerState(returnFocus);
             }
             drawer.addEventListener('transitionend', onTransitionDone);
-
-            // Safety fallback: 360ms drawer transition + 90ms buffer
-            setTimeout(function() {
-                drawer.removeEventListener('transitionend', onTransitionDone);
-                if (isDismissing) cleanupDrawerState(returnFocus);
-            }, 450);
         }
 
         moreBtn.addEventListener('click', function() {
@@ -724,13 +718,20 @@
 
         // --- Tap handle bar to close ---
         if (handle) {
-            handle.addEventListener('click', function() {
+            handle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 if (document.body.classList.contains('mobile-drawer-open')) {
                     closeDrawer();
                 }
             });
             handle.style.cursor = 'pointer';
         }
+
+        // Prevent click-through from inside drawer to backdrop/background
+        drawer.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
 
         // --- iOS-style swipe-to-close gesture ---
         var touchStartY = 0;
@@ -771,7 +772,7 @@
             }
 
             // Apply rubber-band resistance at the top
-            drawer.style.transform = 'translateY(' + deltaY + 'px)';
+            drawer.style.transform = 'translate3d(0,' + deltaY + 'px,0)';
 
             // Fade scrim proportionally
             var progress = Math.min(deltaY / drawerHeight, 1);
@@ -796,24 +797,19 @@
             if (deltaY > dragThreshold) {
                 // Dismiss: animate to fully offscreen, then clean up
                 isDismissing = true;
-                drawer.style.transform = 'translateY(110%)';
+                drawer.style.transform = 'translate3d(0,110%,0)';
                 backdrop.style.opacity = '0';
 
+                // Finalize ONLY after transform animation completes (no setTimeout)
                 function onDragDismissDone(e) {
                     if (e.propertyName !== 'transform') return;
                     drawer.removeEventListener('transitionend', onDragDismissDone);
                     cleanupDrawerState();
                 }
                 drawer.addEventListener('transitionend', onDragDismissDone);
-
-                // Safety fallback: 360ms + 90ms buffer
-                setTimeout(function() {
-                    drawer.removeEventListener('transitionend', onDragDismissDone);
-                    if (isDismissing) cleanupDrawerState();
-                }, 450);
             } else {
                 // Snap back to open position
-                drawer.style.transform = 'translateY(0)';
+                drawer.style.transform = 'translate3d(0,0,0)';
                 backdrop.style.opacity = '1';
 
                 // After snap animation settles, clear inline styles so CSS
