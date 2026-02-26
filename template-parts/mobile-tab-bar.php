@@ -59,9 +59,9 @@ $is_contact   = ( false !== strpos($request_uri, '/contact') );
 
 	<button type="button" class="mobile-tab-bar__tab mobile-tab-bar__tab--more" aria-expanded="false" aria-controls="mobile-drawer" aria-label="<?php esc_attr_e('Toggle navigation menu', 'bfluxco'); ?>">
 		<svg class="mobile-tab-bar__icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-			<rect x="3" y="4" width="18" height="2.5" rx="1.25"/>
-			<rect x="3" y="10.75" width="18" height="2.5" rx="1.25"/>
-			<rect x="3" y="17.5" width="18" height="2.5" rx="1.25"/>
+			<circle cx="12" cy="5" r="2.5"/>
+			<circle cx="12" cy="12" r="2.5"/>
+			<circle cx="12" cy="19" r="2.5"/>
 		</svg>
 		<span class="mobile-tab-bar__label"><?php esc_html_e('More', 'bfluxco'); ?></span>
 	</button>

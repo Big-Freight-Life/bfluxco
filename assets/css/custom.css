@@ -1154,7 +1154,10 @@ body.home .site-header.is-scrolled .menu-toggle span::after {
         min-height: auto !important;
         height: auto !important;
         padding: var(--spacing-16) var(--spacing-4) !important;
-        background: linear-gradient(135deg, #0f172a, #1e293b);
+        background:
+            radial-gradient(ellipse 80% 60% at 50% 0%, rgba(36, 168, 156, 0.4) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 50% at 100% 100%, rgba(36, 168, 156, 0.25) 0%, transparent 50%),
+            linear-gradient(180deg, #0a1a18 0%, #0f172a 100%);
         display: block !important;
         align-items: unset !important;
         justify-content: unset !important;
