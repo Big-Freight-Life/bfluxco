@@ -4,7 +4,7 @@ Theme URI: https://bfluxco.com
 Author: Ray Butler
 Author URI: https://bfluxco.com/about/ray
 Description: Custom WordPress theme for BFLUXCO portfolio website.
-Version: 1.6.0
+Version: 1.7.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bfluxco
@@ -25,7 +25,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 @import url('assets/css/partials/_header-saas-bg.css?v=1.5.0');
 @import url('assets/css/partials/_page-hero.css?v=1.5.0');
 @import url('assets/css/partials/_footer.css?v=1.5.0');
-@import url('assets/css/partials/_motion.css?v=1.6.0');
+@import url('assets/css/partials/_motion.css?v=1.7.0');
 @import url('assets/css/partials/_blog-templates.css?v=1.5.0');
 @import url('assets/css/partials/_blog-home.css?v=1.5.0');
 @import url('assets/css/partials/_case-study-ai.css?v=1.5.0');
@@ -42,7 +42,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 @import url('assets/css/partials/_genai-architecture.css?v=1.5.0');
 @import url('assets/css/partials/_about-page.css?v=1.5.0');
 @import url('assets/css/partials/_interview-raybot.css?v=1.5.0');
-@import url('assets/css/partials/_mobile-tab-bar.css?v=1.6.0');
+@import url('assets/css/partials/_mobile-tab-bar.css?v=1.7.0');
 /* Note: _chatbot.css is loaded separately via class-assets.php after custom.css */
 
 /* ==========================================================================
