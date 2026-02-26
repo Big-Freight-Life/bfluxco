@@ -540,7 +540,7 @@
             var tabBarHeight = tabBar.offsetHeight;
 
             // Don't hide if drawer is open
-            if (drawer && drawer.classList.contains('is-open')) {
+            if (document.body.classList.contains('mobile-drawer-open')) {
                 tabBar.classList.remove('is-hidden');
                 lastScrollY = currentScrollY;
                 scrollTicking = false;
@@ -583,6 +583,11 @@
         var handle = drawer.querySelector('.mobile-drawer-handle');
         var drawerContent = drawer.querySelector('.mobile-drawer-content');
 
+        // Move drawer and backdrop to document.body to prevent fixed-positioning
+        // bugs caused by any ancestor element that has a CSS transform applied.
+        document.body.appendChild(backdrop);
+        document.body.appendChild(drawer);
+
         var savedScrollY = 0;
 
         // Prevent pull-to-refresh and all background scrolling when drawer is open
@@ -606,14 +611,17 @@
             e.preventDefault(); // Block everything else (backdrop, body)
         }
 
-        // Track whether a dismiss animation is in flight (drag-to-close)
+        // Track animation state to prevent race conditions
         var isDismissing = false;
+        var isOpening = false;
 
         function openDrawer() {
+            if (isOpening) return;
+            isOpening = true;
             savedScrollY = window.scrollY;
             isDismissing = false;
 
-            // Lock body scroll and prevent pull-to-refresh
+            // Lock body scroll (position:fixed approach prevents iOS rubber-band scroll)
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
@@ -621,41 +629,45 @@
             document.body.style.touchAction = 'none';
             document.body.style.overscrollBehavior = 'none';
 
-            // Set starting state without transition
-            drawer.style.transition = 'none';
-            drawer.style.transform = 'translateY(100%)';
-            backdrop.style.transition = 'none';
-            backdrop.style.opacity = '0';
+            // Clear any leftover inline styles from a previous drag so the
+            // CSS default translateY(110%) is in effect before we animate.
+            drawer.style.transform = '';
+            drawer.style.transition = '';
+            backdrop.style.opacity = '';
+            backdrop.style.transition = '';
 
-            drawer.classList.add('is-open');
-            backdrop.classList.add('is-open');
+            // ARIA (set before animation so screen readers announce immediately)
             drawer.setAttribute('aria-hidden', 'false');
             moreBtn.setAttribute('aria-expanded', 'true');
 
             // Block background touch events
             document.addEventListener('touchmove', preventScroll, { passive: false });
 
-            // Force style recalc, then animate in same frame
-            void drawer.offsetHeight;
-            drawer.style.transition = '';
-            drawer.style.transform = '';
-            backdrop.style.transition = '';
-            backdrop.style.opacity = '';
+            // Double RAF: first frame paints the closed position; second frame
+            // adds the body class which triggers CSS transitions to the open state.
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    document.body.classList.add('mobile-drawer-open');
+                    isOpening = false;
+                });
+            });
         }
 
         function cleanupDrawerState(returnFocus) {
-            drawer.classList.remove('is-open');
-            backdrop.classList.remove('is-open');
+            // Single source of truth: remove body class
+            document.body.classList.remove('mobile-drawer-open');
+
             drawer.setAttribute('aria-hidden', 'true');
             moreBtn.setAttribute('aria-expanded', 'false');
 
-            // Clear any inline styles from drag/animation
+            // Clear any inline styles left from drag gestures
             drawer.style.transform = '';
             drawer.style.transition = '';
             backdrop.style.opacity = '';
             backdrop.style.transition = '';
 
             isDismissing = false;
+            isOpening = false;
 
             // Restore scroll
             document.body.style.overflow = '';
@@ -678,18 +690,16 @@
         }
 
         function closeDrawer(returnFocus) {
-            if (isDismissing) return; // Already animating out from drag
-            if (!drawer.classList.contains('is-open')) return;
+            if (isDismissing) return; // Already animating out
+            if (!document.body.classList.contains('mobile-drawer-open')) return;
 
             isDismissing = true;
 
-            // Animate out: set transition, then target offscreen
-            drawer.style.transition = 'transform 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
-            backdrop.style.transition = 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
-            drawer.style.transform = 'translateY(100%)';
-            backdrop.style.opacity = '0';
+            // Remove body class — CSS transitions animate drawer to translateY(110%)
+            // and backdrop to opacity:0 automatically.
+            document.body.classList.remove('mobile-drawer-open');
 
-            // Clean up after animation completes
+            // Wait for drawer's transform transition to complete before full cleanup
             function onTransitionDone(e) {
                 if (e.propertyName !== 'transform') return;
                 drawer.removeEventListener('transitionend', onTransitionDone);
@@ -697,15 +707,15 @@
             }
             drawer.addEventListener('transitionend', onTransitionDone);
 
-            // Safety fallback in case transitionend doesn't fire
+            // Safety fallback: 360ms drawer transition + 90ms buffer
             setTimeout(function() {
                 drawer.removeEventListener('transitionend', onTransitionDone);
                 if (isDismissing) cleanupDrawerState(returnFocus);
-            }, 500);
+            }, 450);
         }
 
         moreBtn.addEventListener('click', function() {
-            if (drawer.classList.contains('is-open')) {
+            if (document.body.classList.contains('mobile-drawer-open') || isOpening) {
                 closeDrawer();
             } else {
                 openDrawer();
@@ -715,7 +725,7 @@
         // --- Tap handle bar to close ---
         if (handle) {
             handle.addEventListener('click', function() {
-                if (drawer.classList.contains('is-open')) {
+                if (document.body.classList.contains('mobile-drawer-open')) {
                     closeDrawer();
                 }
             });
@@ -730,7 +740,7 @@
         var drawerHeight = 0;
 
         function onTouchStart(e) {
-            if (!drawer.classList.contains('is-open') || isDismissing) return;
+            if (!document.body.classList.contains('mobile-drawer-open') || isDismissing || isOpening) return;
 
             // Only allow drag from the handle area or when drawer content is scrolled to top
             var target = e.target;
@@ -779,14 +789,14 @@
 
             var deltaY = touchCurrentY - touchStartY;
 
-            // Restore transitions for snap animation
-            drawer.style.transition = 'transform 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
-            backdrop.style.transition = 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)';
+            // Restore transitions with canonical timing values
+            drawer.style.transition = 'transform 360ms cubic-bezier(0.22, 1, 0.36, 1)';
+            backdrop.style.transition = 'opacity 220ms ease';
 
             if (deltaY > dragThreshold) {
-                // Dismiss: animate to offscreen, then clean up via transitionend
+                // Dismiss: animate to fully offscreen, then clean up
                 isDismissing = true;
-                drawer.style.transform = 'translateY(100%)';
+                drawer.style.transform = 'translateY(110%)';
                 backdrop.style.opacity = '0';
 
                 function onDragDismissDone(e) {
@@ -796,15 +806,27 @@
                 }
                 drawer.addEventListener('transitionend', onDragDismissDone);
 
-                // Safety fallback
+                // Safety fallback: 360ms + 90ms buffer
                 setTimeout(function() {
                     drawer.removeEventListener('transitionend', onDragDismissDone);
                     if (isDismissing) cleanupDrawerState();
-                }, 500);
+                }, 450);
             } else {
                 // Snap back to open position
                 drawer.style.transform = 'translateY(0)';
                 backdrop.style.opacity = '1';
+
+                // After snap animation settles, clear inline styles so CSS
+                // class rules are the authoritative source of truth again.
+                function onSnapBackDone(e) {
+                    if (e.propertyName !== 'transform') return;
+                    drawer.removeEventListener('transitionend', onSnapBackDone);
+                    drawer.style.transform = '';
+                    drawer.style.transition = '';
+                    backdrop.style.opacity = '';
+                    backdrop.style.transition = '';
+                }
+                drawer.addEventListener('transitionend', onSnapBackDone);
             }
         }
 
@@ -817,7 +839,7 @@
 
         // Close on ESC (keyboard — return focus to More button)
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+            if (e.key === 'Escape' && document.body.classList.contains('mobile-drawer-open')) {
                 closeDrawer(true);
             }
         });
@@ -831,7 +853,7 @@
 
         // Close on resize to desktop
         window.addEventListener('resize', debounce(function() {
-            if (window.innerWidth >= 1024 && drawer.classList.contains('is-open')) {
+            if (window.innerWidth >= 1024 && document.body.classList.contains('mobile-drawer-open')) {
                 closeDrawer();
             }
         }, 100));
@@ -853,7 +875,7 @@
         // --- Focus trap in drawer (Fix 4) ---
         drawer.addEventListener('keydown', function(e) {
             if (e.key !== 'Tab') return;
-            if (!drawer.classList.contains('is-open')) return;
+            if (!document.body.classList.contains('mobile-drawer-open')) return;
 
             var focusableEls = drawer.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
             if (focusableEls.length === 0) return;
