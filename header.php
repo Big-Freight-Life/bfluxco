@@ -74,9 +74,20 @@ if (is_page()) {
         $is_case_study = true;
     }
 }
+
+// Check if we're on a product template page
+$is_product_page = false;
+$product_page_name = '';
+if (is_page()) {
+    $template = get_page_template_slug();
+    if (strpos($template, 'template-product-') !== false) {
+        $is_product_page = true;
+        $product_page_name = get_the_title();
+    }
+}
 ?>
 
-<header id="site-header" class="site-header<?php echo $is_case_study ? ' header-minimal' : ''; ?>">
+<header id="site-header" class="site-header<?php echo $is_case_study ? ' header-minimal' : ''; ?><?php echo $is_product_page ? ' header-product' : ''; ?>">
     <div class="container">
         <?php if ($is_case_study) : ?>
         <!-- Minimal Header for Case Studies -->
@@ -99,6 +110,24 @@ if (is_page()) {
                     <span class="logo-secondary">Ray Butler</span>
                 </a>
             </div><!-- .site-branding -->
+
+            <?php if ($is_product_page) : ?>
+            <!-- Product Page Mobile Header (back + product name) -->
+            <?php global $bfluxco_product_tagline, $bfluxco_product_category; ?>
+            <div class="product-mobile-header">
+                <a href="javascript:history.back()" class="product-back-btn" aria-label="<?php esc_attr_e('Go back', 'bfluxco'); ?>">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </a>
+                <div class="product-mobile-header-text">
+                    <span class="product-mobile-title"><?php echo esc_html($product_page_name); ?></span>
+                    <?php if (!empty($bfluxco_product_tagline)) : ?>
+                    <span class="product-mobile-tagline"><?php echo esc_html($bfluxco_product_tagline); ?></span>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <!-- Primary Navigation with Mega Menu Triggers -->
             <nav id="primary-navigation" class="primary-nav" aria-label="<?php esc_attr_e('Primary Navigation', 'bfluxco'); ?>">

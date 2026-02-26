@@ -62,9 +62,6 @@ $product = array(
         'Free to browse 400+ foods',
         'Harvard 2023 Oxalate Table',
         'Search & filter by oxalate level',
-        'Starter: Log food & track intake',
-        'Starter: Journal history & cloud sync',
-        'Cancel anytime',
     ),
 
     // Features
@@ -262,6 +259,10 @@ add_action('wp_head', function() use ($product) {
         wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 }, 2);
 
+global $bfluxco_product_tagline, $bfluxco_product_category;
+$bfluxco_product_tagline = $product['tagline'];
+$bfluxco_product_category = $product['category'];
+
 get_header();
 ?>
 
@@ -279,11 +280,18 @@ get_header();
         .product-gallery { gap: 0 !important; }
         .product-gallery--phone { display: block !important; height: 100% !important; }
         .product-gallery--phone .product-gallery-main { border-radius: 0 !important; border: none !important; height: 52vh !important; min-height: 52vh !important; max-height: none !important; aspect-ratio: unset !important; width: 100% !important; }
-        .product-gallery-thumbs { display: none !important; }
-        .product-gallery-counter { display: block !important; }
+        .product-gallery-thumbs { display: flex !important; flex-direction: row !important; overflow-x: auto !important; overflow-y: hidden !important; gap: 8px !important; padding: 12px 16px !important; max-height: none !important; }
+        .product-gallery--phone .product-thumb { width: 100px !important; height: 100px !important; border-radius: 8px !important; }
+        .product-gallery-counter { display: none !important; }
         .product-info { background: #fff !important; border-radius: 24px 24px 0 0 !important; margin-top: -24px !important; position: relative !important; z-index: 1 !important; padding: 24px 16px 16px !important; }
-        .product-sticky-bar { display: block !important; position: fixed !important; bottom: 64px !important; left: 0 !important; right: 0 !important; z-index: 90 !important; }
+        .product-sticky-bar { display: none !important; }
         body:has(.product-hero-premium) .breadcrumbs { display: none !important; }
+        .product-hero-premium .product-title { display: none !important; }
+        .product-hero-premium .product-tagline { display: none !important; }
+        .product-cta-group { align-items: flex-start !important; }
+        .product-cta-group .app-store-badge img { height: 64px !important; }
+        .app-store-badge--lg img { height: 64px !important; }
+        #main-content { padding-bottom: 140px !important; }
     }
     </style>
 
@@ -477,10 +485,21 @@ get_header();
             <p class="text-gray-600 max-w-2xl mx-auto mb-8 reveal-text" data-delay="1">
                 <?php esc_html_e('Browse the Harvard 2023 Oxalate Table for free. Upgrade to Starter anytime to unlock food logging and cloud sync.', 'bfluxco'); ?>
             </p>
-            <div class="reveal flex justify-center" data-delay="2">
-                <a href="https://apps.apple.com/us/app/low-ox-life-list/id6748654148" target="_blank" rel="noopener" class="app-store-badge">
+            <div class="reveal flex justify-center mb-4" data-delay="2">
+                <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="app-store-badge app-store-badge--lg">
                     <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="<?php esc_attr_e('Download on the App Store', 'bfluxco'); ?>" width="156" height="52">
                 </a>
+            </div>
+            <div class="reveal flex justify-center" data-delay="3">
+                <a href="<?php echo esc_url($product['secondary_url']); ?>" class="btn btn-facebook btn-lg" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    <?php esc_html_e('Join Facebook Community', 'bfluxco'); ?>
+                </a>
+            </div>
+            <div class="product-legal-links reveal" data-delay="3">
+                <a href="<?php echo esc_url(home_url('/legal/low-ox-life-privacy')); ?>"><?php esc_html_e('Privacy Policy', 'bfluxco'); ?></a>
+                <a href="<?php echo esc_url(home_url('/legal/low-ox-life-terms')); ?>"><?php esc_html_e('Terms of Service', 'bfluxco'); ?></a>
+                <a href="<?php echo esc_url(home_url('/support/low-ox-life')); ?>"><?php esc_html_e('Support', 'bfluxco'); ?></a>
             </div>
         </div>
     </section>

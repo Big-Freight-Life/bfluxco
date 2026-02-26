@@ -267,6 +267,43 @@
     width: auto;
 }
 
+/* Facebook Button */
+.btn-facebook {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    background: #1877F2;
+    color: #fff;
+    border: none;
+}
+
+.btn-facebook:hover {
+    background: #1565C0;
+    color: #fff;
+}
+
+.btn-facebook svg {
+    flex-shrink: 0;
+}
+
+/* Legal Links */
+.product-legal-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-6);
+}
+
+.product-legal-links a {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.product-legal-links a:hover {
+    color: var(--text-primary);
+}
+
 /* Gallery Column */
 .product-gallery-column {
     order: 1;

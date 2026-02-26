@@ -777,6 +777,63 @@ body.menu-open {
 }
 
 /* ==========================================================================
+   PRODUCT PAGE MOBILE HEADER (back arrow + product name)
+   ========================================================================== */
+
+/* Hidden by default — shown only on mobile for product pages */
+.product-mobile-header {
+    display: none;
+}
+
+@media (max-width: 1023px) {
+    .header-product .site-branding {
+        display: none;
+    }
+
+    .header-product .product-mobile-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+    }
+
+    .product-back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        color: var(--text-primary);
+        text-decoration: none;
+        border-radius: var(--radius-full);
+        transition: background-color var(--motion-micro) var(--ease-out-expo);
+        margin-left: -10px;
+    }
+
+    .product-back-btn:hover {
+        background-color: var(--hover-bg);
+    }
+
+    .product-mobile-header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-mobile-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        line-height: 1.2;
+    }
+
+    .product-mobile-tagline {
+        font-size: var(--font-size-sm);
+        color: var(--text-tertiary);
+        line-height: 1.3;
+    }
+
+}
+
+/* ==========================================================================
    SMALL SCREEN NAVIGATION
    ========================================================================== */
 
