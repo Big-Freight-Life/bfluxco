@@ -252,11 +252,13 @@
 }
 
 .mobile-drawer-link.is-active {
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: var(--radius-lg);
 }
 
 .mobile-drawer-link.is-active .mobile-drawer-icon {
-    color: var(--color-primary);
+    color: #fff;
 }
 
 /* Nav link icons */
