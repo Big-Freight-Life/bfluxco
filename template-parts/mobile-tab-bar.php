@@ -29,7 +29,7 @@ $is_contact   = ( false !== strpos($request_uri, '/contact') );
 <nav id="mobile-tab-bar" class="mobile-tab-bar" aria-label="<?php esc_attr_e('Mobile Tab Bar', 'bfluxco'); ?>">
 	<a href="<?php echo esc_url(home_url('/')); ?>" class="mobile-tab-bar__tab<?php echo $is_home ? ' is-active' : ''; ?>"<?php echo $is_home ? ' aria-current="page"' : ''; ?>>
 		<svg class="mobile-tab-bar__icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-			<path d="M12.71 2.29a1 1 0 00-1.42 0l-9 9a1 1 0 001.42 1.42L4 12.41V20a2 2 0 002 2h4v-5a1 1 0 011-1h2a1 1 0 011 1v5h4a2 2 0 002-2v-7.59l.29.3a1 1 0 001.42-1.42l-9-9z"/>
+			<path d="M17 2H7a2 2 0 00-2 2v18h4v-4h6v4h4V4a2 2 0 00-2-2zM9 14H7v-2h2v2zm0-4H7V8h2v2zm0-4H7V4h2v2zm4 8h-2v-2h2v2zm0-4h-2V8h2v2zm0-4h-2V4h2v2zm4 8h-2v-2h2v2zm0-4h-2V8h2v2zm0-4h-2V4h2v2z"/>
 		</svg>
 		<span class="mobile-tab-bar__label"><?php esc_html_e('Home', 'bfluxco'); ?></span>
 	</a>
