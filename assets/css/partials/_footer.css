@@ -219,6 +219,12 @@
         flex-wrap: wrap;
     }
 
+    .footer-legal a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
     .footer-copyright {
         text-align: center;
     }
