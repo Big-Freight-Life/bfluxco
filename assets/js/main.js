@@ -808,7 +808,7 @@
             var deltaY = touchCurrentY - touchStartY;
 
             // Restore transitions with canonical timing values
-            drawer.style.transition = 'transform 520ms cubic-bezier(0.16, 1, 0.3, 1)';
+            drawer.style.transition = 'transform 650ms cubic-bezier(0.32, 0.72, 0, 1)';
             backdrop.style.transition = 'opacity 260ms ease-out';
 
             if (deltaY > dragThreshold) {

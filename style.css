@@ -42,7 +42,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 @import url('assets/css/partials/_genai-architecture.css?v=1.5.0');
 @import url('assets/css/partials/_about-page.css?v=1.5.0');
 @import url('assets/css/partials/_interview-raybot.css?v=1.5.0');
-@import url('assets/css/partials/_mobile-tab-bar.css?v=1.5.0');
+@import url('assets/css/partials/_mobile-tab-bar.css?v=1.6.0');
 /* Note: _chatbot.css is loaded separately via class-assets.php after custom.css */
 
 /* ==========================================================================
