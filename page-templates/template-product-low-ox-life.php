@@ -18,7 +18,7 @@
 $product = array(
     // Basic Info
     'name'        => 'Low Ox Life',
-    'tagline'     => 'Evidence-based oxalate management.',
+    'tagline'     => 'Oxalate Management Companion',
     'description' => 'Browse the complete Harvard 2023 Oxalate Table for free. Upgrade to Starter to log meals, track your daily oxalate intake, and sync across devices.',
     'category'    => 'iOS App',
     'version'     => '1.0',
