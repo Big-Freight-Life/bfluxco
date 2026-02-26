@@ -26,7 +26,7 @@ $product = array(
     // Pricing
     'price'          => 'Free',
     'original_price' => '',
-    'price_note'     => 'Starter subscription $4.99/month',
+    'price_note'     => 'Subscriptions starting at $4.99/month',
     'is_free'        => true,
     'availability'   => 'available',
 
@@ -267,6 +267,26 @@ get_header();
 
 <main id="main-content" class="site-main">
 
+    <?php /* Mobile product layout — inline for reliable cache-busting.
+       Gallery is first in DOM (mobile-first). Desktop CSS reorders via order property. */ ?>
+    <style>
+    @media (max-width: 1023px) {
+        .product-hero-premium { padding: 0 !important; }
+        .product-hero-premium > .container { padding: 0 !important; max-width: none !important; }
+        .product-hero-premium .product-hero-grid { display: flex !important; flex-direction: column !important; gap: 0 !important; }
+        .product-gallery-column { opacity: 1 !important; transform: none !important; transition: none !important; min-height: 52vh !important; }
+        .product-info { opacity: 1 !important; transform: none !important; transition: none !important; }
+        .product-gallery { gap: 0 !important; }
+        .product-gallery--phone { display: block !important; height: 100% !important; }
+        .product-gallery--phone .product-gallery-main { border-radius: 0 !important; border: none !important; height: 52vh !important; min-height: 52vh !important; max-height: none !important; aspect-ratio: unset !important; width: 100% !important; }
+        .product-gallery-thumbs { display: none !important; }
+        .product-gallery-counter { display: block !important; }
+        .product-info { background: #fff !important; border-radius: 24px 24px 0 0 !important; margin-top: -24px !important; position: relative !important; z-index: 1 !important; padding: 24px 16px 16px !important; }
+        .product-sticky-bar { display: block !important; position: fixed !important; bottom: 64px !important; left: 0 !important; right: 0 !important; z-index: 90 !important; }
+        body:has(.product-hero-premium) .breadcrumbs { display: none !important; }
+    }
+    </style>
+
     <!-- Breadcrumbs -->
     <div class="container">
         <?php bfluxco_breadcrumbs(); ?>
@@ -276,6 +296,43 @@ get_header();
     <section class="product-hero-premium">
         <div class="container">
             <div class="product-hero-grid">
+
+                <!-- Gallery Column (first in DOM for mobile-first; desktop reorders via CSS order) -->
+                <div class="product-gallery-column">
+                    <?php if (!empty($product['images'])) : ?>
+                    <div class="product-gallery product-gallery--phone">
+                        <!-- Main Image Display -->
+                        <div class="product-gallery-main" tabindex="0" aria-label="<?php esc_attr_e('Product screenshot gallery', 'bfluxco'); ?>">
+                            <?php foreach ($product['images'] as $index => $image) : ?>
+                                <div class="product-gallery-image<?php echo $index === 0 ? ' is-active' : ''; ?>" aria-hidden="<?php echo $index === 0 ? 'false' : 'true'; ?>">
+                                    <img src="<?php echo esc_url($image['src']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>">
+                                </div>
+                            <?php endforeach; ?>
+                            <?php if (count($product['images']) > 1) : ?>
+                            <span class="product-gallery-counter"><span class="gallery-counter-current">1</span> / <?php echo count($product['images']); ?></span>
+                            <?php endif; ?>
+                        </div>
+
+                        <!-- Thumbnail Navigation -->
+                        <div class="product-gallery-thumbs" role="tablist" aria-label="<?php esc_attr_e('Screenshot thumbnails', 'bfluxco'); ?>">
+                            <?php foreach ($product['images'] as $index => $image) : ?>
+                                <button type="button" class="product-thumb<?php echo $index === 0 ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>" tabindex="<?php echo $index === 0 ? '0' : '-1'; ?>" aria-label="<?php echo esc_attr(sprintf(__('View screenshot %d', 'bfluxco'), $index + 1)); ?>">
+                                    <img src="<?php echo esc_url($image['src']); ?>" alt="" loading="lazy">
+                                </button>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <?php else : ?>
+                    <div class="product-gallery-main">
+                        <div class="product-gallery-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                <line x1="12" y1="18" x2="12.01" y2="18"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
 
                 <!-- Product Info Column -->
                 <div class="product-info reveal-text">
@@ -306,48 +363,14 @@ get_header();
 
                     <!-- CTA Buttons -->
                     <div class="product-cta-group">
-                        <a href="<?php echo esc_url($product['cta_url']); ?>" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                            <?php echo esc_html($product['cta_text']); ?>
+                        <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="app-store-badge">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="<?php esc_attr_e('Download on the App Store', 'bfluxco'); ?>" width="156" height="52">
                         </a>
                         <a href="<?php echo esc_url($product['secondary_url']); ?>" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">
                             <?php echo esc_html($product['secondary_text']); ?>
                         </a>
                     </div>
 
-                </div>
-
-                <!-- Gallery Column -->
-                <div class="product-gallery-column reveal-scale" data-delay="1">
-                    <?php if (!empty($product['images'])) : ?>
-                    <div class="product-gallery product-gallery--phone">
-                        <!-- Main Image Display -->
-                        <div class="product-gallery-main" tabindex="0" aria-label="<?php esc_attr_e('Product screenshot gallery', 'bfluxco'); ?>">
-                            <?php foreach ($product['images'] as $index => $image) : ?>
-                                <div class="product-gallery-image<?php echo $index === 0 ? ' is-active' : ''; ?>" aria-hidden="<?php echo $index === 0 ? 'false' : 'true'; ?>">
-                                    <img src="<?php echo esc_url($image['src']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>">
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <!-- Thumbnail Navigation -->
-                        <div class="product-gallery-thumbs" role="tablist" aria-label="<?php esc_attr_e('Screenshot thumbnails', 'bfluxco'); ?>">
-                            <?php foreach ($product['images'] as $index => $image) : ?>
-                                <button type="button" class="product-thumb<?php echo $index === 0 ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>" tabindex="<?php echo $index === 0 ? '0' : '-1'; ?>" aria-label="<?php echo esc_attr(sprintf(__('View screenshot %d', 'bfluxco'), $index + 1)); ?>">
-                                    <img src="<?php echo esc_url($image['src']); ?>" alt="" loading="lazy">
-                                </button>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                    <?php else : ?>
-                    <div class="product-gallery-main">
-                        <div class="product-gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                                <line x1="12" y1="18" x2="12.01" y2="18"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <?php endif; ?>
                 </div>
 
             </div>
@@ -462,6 +485,19 @@ get_header();
         </div>
     </section>
 
+    <!-- Sticky Bottom Bar (mobile) -->
+    <div class="product-sticky-bar">
+        <div class="product-sticky-bar-inner">
+            <div class="product-sticky-info">
+                <span class="product-sticky-price"><?php echo esc_html($product['price']); ?></span>
+                <span class="product-sticky-note"><?php echo esc_html($product['price_note']); ?></span>
+            </div>
+            <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="btn btn-primary">
+                <?php esc_html_e('Download', 'bfluxco'); ?>
+            </a>
+        </div>
+    </div>
+
 </main>
 
 <script>
@@ -493,6 +529,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     images[index].classList.add('is-active');
                     images[index].setAttribute('aria-hidden', 'false');
                 }
+
+                // Update counter
+                const counter = document.querySelector('.gallery-counter-current');
+                if (counter) counter.textContent = index + 1;
             });
         });
     }

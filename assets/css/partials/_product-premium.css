@@ -913,3 +913,12 @@
 [data-theme="dark"] .feature-coming-soon {
     background: rgba(156, 163, 175, 0.2);
 }
+
+/* ==========================================================================
+   MOBILE OVERHAUL — Product Page
+   Mobile layout styles are now split between:
+   - Inline <style> in template-product-low-ox-life.php (hero layout structure)
+   - custom.css @media (max-width: 1023px) block (content sizing + sections)
+   The old @media (max-width: 767px) block has been removed.
+   ========================================================================== */
+

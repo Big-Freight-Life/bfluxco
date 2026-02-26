@@ -70,7 +70,7 @@ get_header();
                     </div>
                     <h3 class="featured-project-title"><?php the_title(); ?></h3>
                     <p class="featured-project-excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 35)); ?></p>
-                    <span class="featured-project-cta">
+                    <span class="btn btn-secondary featured-project-cta">
                         <?php esc_html_e('View case study', 'bfluxco'); ?>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -95,7 +95,7 @@ get_header();
                     </div>
                     <h3 class="featured-project-title"><?php esc_html_e('Enterprise Content Platform Transformation', 'bfluxco'); ?></h3>
                     <p class="featured-project-excerpt"><?php esc_html_e('How we redesigned information architecture and user workflows to reduce complexity and improve decision-making across a global enterprise platform.', 'bfluxco'); ?></p>
-                    <span class="featured-project-cta">
+                    <span class="btn btn-secondary featured-project-cta">
                         <?php esc_html_e('View case study', 'bfluxco'); ?>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

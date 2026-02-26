@@ -489,7 +489,7 @@ class BFLUXCO_Schema {
             );
             $breadcrumbs[] = array(
                 'name' => __('Products', 'bfluxco'),
-                'url' => home_url('/works/products/'),
+                'url' => home_url('/products/'),
             );
             $breadcrumbs[] = array(
                 'name' => get_the_title(),

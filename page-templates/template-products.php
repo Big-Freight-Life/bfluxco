@@ -22,7 +22,7 @@ get_header();
             <div class="container">
                 <h1 class="page-hero-title reveal-hero"><?php the_title(); ?></h1>
                 <p class="page-hero-description reveal" data-delay="1">
-                    <?php esc_html_e('Tools, templates, and frameworks designed to help teams work smarter and move faster.', 'bfluxco'); ?>
+                    <?php esc_html_e('Tools, templates, and apps for everyday life and work.', 'bfluxco'); ?>
                 </p>
             </div>
         </div>
@@ -59,8 +59,8 @@ get_header();
                     array(
                         'type' => 'iOS App',
                         'title' => 'Low Ox Life',
-                        'excerpt' => 'Browse the Harvard 2023 Oxalate Table for free. Upgrade to Starter for food logging, journal history, and cloud sync.',
-                        'price' => 'Free / $4.99/mo',
+                        'excerpt' => 'Browse the Harvard 2023 Oxalate Table for free. Upgrade for food logging, journal history, and cloud sync.',
+                        'price' => 'Download for free',
                         'url' => home_url('/products/low-ox-life'),
                         'image' => '/wp-content/uploads/2026/01/lowOxLife-foods.png',
                         'image_class' => 'product-image--phone'

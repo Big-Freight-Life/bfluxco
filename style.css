@@ -4,7 +4,7 @@ Theme URI: https://bfluxco.com
 Author: Ray Butler
 Author URI: https://bfluxco.com/about/ray
 Description: Custom WordPress theme for BFLUXCO portfolio website.
-Version: 1.5.0
+Version: 1.6.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bfluxco
@@ -29,7 +29,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 @import url('assets/css/partials/_blog-templates.css?v=1.5.0');
 @import url('assets/css/partials/_blog-home.css?v=1.5.0');
 @import url('assets/css/partials/_case-study-ai.css?v=1.5.0');
-@import url('assets/css/partials/_product-premium.css?v=1.5.0');
+@import url('assets/css/partials/_product-premium.css?v=1.6.0');
 @import url('assets/css/partials/_code-simulation-hero.css?v=1.5.0');
 @import url('assets/css/partials/_claude-terminal.css?v=1.5.0');
 @import url('assets/css/partials/_resources.css?v=1.5.0');
@@ -1653,7 +1653,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 .product-card {
     background-color: var(--bg-primary);
     border: 1px solid var(--border-primary);
-    border-radius: var(--radius-xl);
+    border-radius: 24px;
     overflow: hidden;
     transition: border-color var(--motion-fast) var(--ease-out-expo),
         transform var(--motion-fast) var(--ease-out-expo),
@@ -1752,7 +1752,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
     gap: var(--spacing-1);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    color: var(--color-primary);
+    color: #007AFF;
 }
 
 /* Featured Product */

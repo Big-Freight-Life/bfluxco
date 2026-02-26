@@ -176,7 +176,7 @@ get_header();
                     <button type="button" class="btn btn-primary" id="interview-ray-btn" style="display: none;">
                         <?php esc_html_e('Interview Ray', 'bfluxco'); ?>
                     </button>
-                    <a href="<?php echo esc_url(home_url('/works/products')); ?>" class="btn btn-secondary">
+                    <a href="<?php echo esc_url(home_url('/products')); ?>" class="btn btn-secondary">
                         <?php esc_html_e('Git In Touch', 'bfluxco'); ?>
                     </a>
                     <a href="<?php echo esc_url(home_url('/transformation')); ?>" class="btn btn-primary">

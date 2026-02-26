@@ -21,7 +21,7 @@
                     <h4 class="footer-nav-title"><?php esc_html_e('Works', 'bfluxco'); ?></h4>
                     <ul class="footer-nav-list">
                         <li><a href="<?php echo esc_url(home_url('/works/case-studies')); ?>"><?php esc_html_e('Case Studies', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/works/products')); ?>"><?php esc_html_e('Products', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/products')); ?>"><?php esc_html_e('Products', 'bfluxco'); ?></a></li>
                         <li><a href="<?php echo esc_url(home_url('/works/methodology')); ?>"><?php esc_html_e('Methodology', 'bfluxco'); ?></a></li>
                     </ul>
                 </div>
