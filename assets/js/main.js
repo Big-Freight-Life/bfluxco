@@ -630,7 +630,7 @@
             document.body.style.overscrollBehavior = 'none';
 
             // Clear any leftover inline styles from a previous drag so the
-            // CSS default translate3d(0,110%,0) is in effect before we animate.
+            // CSS default translate3d(0,120%,0) is in effect before we animate.
             drawer.style.transform = '';
             drawer.style.transition = '';
             backdrop.style.opacity = '';
@@ -695,11 +695,18 @@
 
             isDismissing = true;
 
-            // Remove body class — CSS transitions animate drawer to translate3d(0,110%,0)
+            // Remove body class — CSS transitions animate drawer offscreen
             // and backdrop to opacity:0 automatically.
             document.body.classList.remove('mobile-drawer-open');
 
-            // Finalize ONLY after transform animation completes (no setTimeout)
+            // If transition duration is 0 (reduced motion or override), clean up now
+            var duration = parseFloat(window.getComputedStyle(drawer).transitionDuration);
+            if (!duration) {
+                cleanupDrawerState(returnFocus);
+                return;
+            }
+
+            // Otherwise wait for transform animation to complete
             function onTransitionDone(e) {
                 if (e.propertyName !== 'transform') return;
                 drawer.removeEventListener('transitionend', onTransitionDone);
@@ -791,16 +798,22 @@
             var deltaY = touchCurrentY - touchStartY;
 
             // Restore transitions with canonical timing values
-            drawer.style.transition = 'transform 360ms cubic-bezier(0.22, 1, 0.36, 1)';
-            backdrop.style.transition = 'opacity 220ms ease';
+            drawer.style.transition = 'transform 520ms cubic-bezier(0.16, 1, 0.3, 1)';
+            backdrop.style.transition = 'opacity 260ms ease-out';
 
             if (deltaY > dragThreshold) {
                 // Dismiss: animate to fully offscreen, then clean up
                 isDismissing = true;
-                drawer.style.transform = 'translate3d(0,110%,0)';
+                drawer.style.transform = 'translate3d(0,120%,0)';
                 backdrop.style.opacity = '0';
 
-                // Finalize ONLY after transform animation completes (no setTimeout)
+                // If no transition (reduced motion), clean up immediately
+                var dur = parseFloat(window.getComputedStyle(drawer).transitionDuration);
+                if (!dur) {
+                    cleanupDrawerState();
+                    return;
+                }
+
                 function onDragDismissDone(e) {
                     if (e.propertyName !== 'transform') return;
                     drawer.removeEventListener('transitionend', onDragDismissDone);
