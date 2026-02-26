@@ -621,20 +621,27 @@
             savedScrollY = window.scrollY;
             isDismissing = false;
 
-            // Lock body scroll (position:fixed approach prevents iOS rubber-band scroll)
+            // Clear any leftover inline styles from a previous drag
+            drawer.style.transform = '';
+            drawer.style.transition = '';
+            backdrop.style.opacity = '';
+            backdrop.style.transition = '';
+
+            // Force closed state: remove body class (if stale) and commit the
+            // closed position (translate3d(0,120%,0)) to the render pipeline.
+            // Without this reflow, the browser may batch the removal + addition
+            // of the class and skip the transition entirely.
+            document.body.classList.remove('mobile-drawer-open');
+            void drawer.offsetHeight;
+
+            // Lock body scroll AFTER reflow so the position:fixed shift
+            // doesn't interfere with the committed closed-state paint.
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
             document.body.style.top = '-' + savedScrollY + 'px';
             document.body.style.touchAction = 'none';
             document.body.style.overscrollBehavior = 'none';
-
-            // Clear any leftover inline styles from a previous drag so the
-            // CSS default translate3d(0,120%,0) is in effect before we animate.
-            drawer.style.transform = '';
-            drawer.style.transition = '';
-            backdrop.style.opacity = '';
-            backdrop.style.transition = '';
 
             // ARIA (set before animation so screen readers announce immediately)
             drawer.setAttribute('aria-hidden', 'false');
@@ -643,8 +650,8 @@
             // Block background touch events
             document.addEventListener('touchmove', preventScroll, { passive: false });
 
-            // Double RAF: first frame paints the closed position; second frame
-            // adds the body class which triggers CSS transitions to the open state.
+            // Double RAF: first frame paints the closed position + scroll lock;
+            // second frame adds the body class triggering CSS transition to open.
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
                     document.body.classList.add('mobile-drawer-open');
@@ -654,6 +661,9 @@
         }
 
         function cleanupDrawerState(returnFocus) {
+            // Guard: don't tear down if a new open is already in progress
+            if (isOpening) return;
+
             // Single source of truth: remove body class
             document.body.classList.remove('mobile-drawer-open');
 
