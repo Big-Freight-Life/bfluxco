@@ -6229,11 +6229,12 @@ section.about-preview-section {
     /* FAQ */
     .faq-list {
         max-width: 100% !important;
+        gap: 16px !important;
     }
 
     .faq-item {
         padding-bottom: var(--spacing-3) !important;
-        margin-bottom: 16px !important;
+        margin-bottom: 0 !important;
         border-bottom: 1px solid var(--border-primary) !important;
     }
 
