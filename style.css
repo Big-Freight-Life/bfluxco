@@ -24,7 +24,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 @import url('assets/css/partials/_header.css');
 @import url('assets/css/partials/_header-saas-bg.css');
 @import url('assets/css/partials/_page-hero.css');
-@import url('assets/css/partials/_footer.css');
+@import url('assets/css/partials/_footer.css?v=1.5.0');
 @import url('assets/css/partials/_motion.css');
 @import url('assets/css/partials/_blog-templates.css');
 @import url('assets/css/partials/_blog-home.css');
@@ -42,7 +42,7 @@ Tags: portfolio, custom-menu, custom-logo, featured-images, threaded-comments
 @import url('assets/css/partials/_genai-architecture.css');
 @import url('assets/css/partials/_about-page.css');
 @import url('assets/css/partials/_interview-raybot.css');
-@import url('assets/css/partials/_mobile-tab-bar.css');
+@import url('assets/css/partials/_mobile-tab-bar.css?v=1.5.0');
 /* Note: _chatbot.css is loaded separately via class-assets.php after custom.css */
 
 /* ==========================================================================
