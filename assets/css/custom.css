@@ -6042,9 +6042,10 @@ section.about-preview-section {
 
     /* Pricing */
     .product-pricing {
-        padding: var(--spacing-4) !important;
+        padding: 0 !important;
         margin-bottom: var(--spacing-5) !important;
-        border-radius: var(--radius-xl) !important;
+        border-radius: 0 !important;
+        background: none !important;
     }
 
     .product-price-current {
@@ -6179,9 +6180,9 @@ section.about-preview-section {
     .feature-card-premium p {
         order: 4 !important;
         flex: 0 0 calc(100% - 40px - var(--spacing-3)) !important;
-        font-size: var(--font-size-xs) !important;
-        line-height: var(--line-height-normal) !important;
-        color: var(--text-muted) !important;
+        font-size: var(--font-size-base) !important;
+        line-height: var(--line-height-relaxed) !important;
+        color: var(--text-secondary) !important;
         margin: 0 !important;
     }
 
@@ -6191,7 +6192,7 @@ section.about-preview-section {
     }
 
     .feature-card--coming-soon {
-        border-style: solid !important;
+        border: none !important;
     }
 
     /* Specs section */

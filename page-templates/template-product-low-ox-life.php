@@ -117,19 +117,17 @@ $product = array(
             'tier'  => 'Pro',
             'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
         ),
-        // ELITE TIER (Coming Soon)
+        // ELITE TIER
         array(
             'title' => 'Insights & Trends',
             'desc'  => 'Review pattern-based insights and monitor progress over time.',
             'tier'  => 'Elite',
-            'coming_soon' => true,
             'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
         ),
         array(
             'title' => 'Recipe Builder',
             'desc'  => 'Create and save custom recipes with automatic oxalate calculations.',
             'tier'  => 'Elite',
-            'coming_soon' => true,
             'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>',
         ),
         array(
@@ -145,7 +143,7 @@ $product = array(
     'specs' => array(
         'Platform'    => 'iPhone',
         'Requires'    => 'iOS 16.7 or later',
-        'Price'       => 'Free / Starter $4.99/mo',
+        'Price'       => 'Free / Starter $4.99 / Pro $9.99 / Elite $14.99',
         'Developer'   => 'Big Freight Life',
         'Data Source' => 'Harvard 2023 Oxalate Table',
     ),
@@ -166,7 +164,7 @@ $product = array(
         ),
         array(
             'question' => 'What about Pro and Elite subscriptions?',
-            'answer'   => 'Pro ($9.99/month) adds custom food list imports and grocery lists. Elite tier is coming soon and will include insights, recipes, Oscar AI assistant, and data export.',
+            'answer'   => 'Pro ($9.99/month) adds custom food list imports and grocery lists. Elite ($14.99/month) adds insights and trends, recipe builder, and the Oscar AI assistant (coming soon).',
         ),
         array(
             'question' => 'Is Low Ox Life medical advice?',
@@ -280,9 +278,9 @@ get_header();
         .product-gallery { gap: 0 !important; }
         .product-gallery--phone { display: block !important; height: 100% !important; }
         .product-gallery--phone .product-gallery-main { border-radius: 0 !important; border: none !important; height: 52vh !important; min-height: 52vh !important; max-height: none !important; aspect-ratio: unset !important; width: 100% !important; }
-        .product-gallery-thumbs { display: flex !important; flex-direction: row !important; overflow-x: auto !important; overflow-y: hidden !important; gap: 8px !important; padding: 12px 16px !important; max-height: none !important; }
-        .product-gallery--phone .product-thumb { width: 100px !important; height: 100px !important; border-radius: 8px !important; }
+        .product-gallery-thumbs { display: none !important; }
         .product-gallery-counter { display: none !important; }
+        .product-gallery-dots { display: flex !important; position: relative !important; z-index: 2 !important; }
         .product-info { background: #fff !important; border-radius: 24px 24px 0 0 !important; margin-top: -24px !important; position: relative !important; z-index: 1 !important; padding: 24px 16px 16px !important; }
         .product-sticky-bar { display: none !important; }
         body:has(.product-hero-premium) .breadcrumbs { display: none !important; }
@@ -320,6 +318,15 @@ get_header();
                             <span class="product-gallery-counter"><span class="gallery-counter-current">1</span> / <?php echo count($product['images']); ?></span>
                             <?php endif; ?>
                         </div>
+
+                        <!-- Dot Navigation (mobile) -->
+                        <?php if (count($product['images']) > 1) : ?>
+                        <div class="product-gallery-dots" role="tablist" aria-label="<?php esc_attr_e('Screenshot navigation', 'bfluxco'); ?>">
+                            <?php foreach ($product['images'] as $index => $image) : ?>
+                                <button type="button" class="product-gallery-dot<?php echo $index === 0 ? ' is-active' : ''; ?>" data-index="<?php echo $index; ?>" aria-label="<?php echo esc_attr(sprintf(__('View screenshot %d', 'bfluxco'), $index + 1)); ?>"></button>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php endif; ?>
 
                         <!-- Thumbnail Navigation -->
                         <div class="product-gallery-thumbs" role="tablist" aria-label="<?php esc_attr_e('Screenshot thumbnails', 'bfluxco'); ?>">
@@ -373,9 +380,6 @@ get_header();
                     <div class="product-cta-group">
                         <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="app-store-badge">
                             <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="<?php esc_attr_e('Download on the App Store', 'bfluxco'); ?>" width="156" height="52">
-                        </a>
-                        <a href="<?php echo esc_url($product['secondary_url']); ?>" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">
-                            <?php echo esc_html($product['secondary_text']); ?>
                         </a>
                     </div>
 
@@ -520,40 +524,72 @@ get_header();
 </main>
 
 <script>
-// Product Gallery Thumbnail Navigation
 document.addEventListener('DOMContentLoaded', function() {
     const thumbs = document.querySelectorAll('.product-thumb');
+    const dots = document.querySelectorAll('.product-gallery-dot');
     const images = document.querySelectorAll('.product-gallery-image');
+    const galleryMain = document.querySelector('.product-gallery-main');
+    let currentIndex = 0;
 
-    if (thumbs.length && images.length) {
-        thumbs.forEach((thumb, index) => {
-            thumb.addEventListener('click', function() {
-                // Remove active state from all
-                thumbs.forEach(t => {
-                    t.classList.remove('is-active');
-                    t.setAttribute('aria-selected', 'false');
-                    t.setAttribute('tabindex', '-1');
-                });
-                images.forEach(img => {
-                    img.classList.remove('is-active');
-                    img.setAttribute('aria-hidden', 'true');
-                });
+    function goToSlide(index) {
+        if (index < 0 || index >= images.length) return;
+        currentIndex = index;
 
-                // Add active state to clicked
-                this.classList.add('is-active');
-                this.setAttribute('aria-selected', 'true');
-                this.setAttribute('tabindex', '0');
-
-                if (images[index]) {
-                    images[index].classList.add('is-active');
-                    images[index].setAttribute('aria-hidden', 'false');
-                }
-
-                // Update counter
-                const counter = document.querySelector('.gallery-counter-current');
-                if (counter) counter.textContent = index + 1;
-            });
+        images.forEach(img => {
+            img.classList.remove('is-active');
+            img.setAttribute('aria-hidden', 'true');
         });
+        thumbs.forEach(t => {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+        });
+        dots.forEach(d => d.classList.remove('is-active'));
+
+        images[index].classList.add('is-active');
+        images[index].setAttribute('aria-hidden', 'false');
+        if (thumbs[index]) {
+            thumbs[index].classList.add('is-active');
+            thumbs[index].setAttribute('aria-selected', 'true');
+        }
+        if (dots[index]) dots[index].classList.add('is-active');
+
+        const counter = document.querySelector('.gallery-counter-current');
+        if (counter) counter.textContent = index + 1;
+    }
+
+    // Thumbnail clicks
+    thumbs.forEach((thumb, i) => thumb.addEventListener('click', () => goToSlide(i)));
+
+    // Dot clicks
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+
+    // Touch swipe
+    if (galleryMain && images.length > 1) {
+        let startX = 0;
+        let startY = 0;
+        let distX = 0;
+
+        galleryMain.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            distX = 0;
+        }, { passive: true });
+
+        galleryMain.addEventListener('touchmove', function(e) {
+            distX = e.touches[0].clientX - startX;
+            const distY = Math.abs(e.touches[0].clientY - startY);
+            if (Math.abs(distX) > distY) e.preventDefault();
+        }, { passive: false });
+
+        galleryMain.addEventListener('touchend', function() {
+            if (Math.abs(distX) > 50) {
+                if (distX < 0 && currentIndex < images.length - 1) {
+                    goToSlide(currentIndex + 1);
+                } else if (distX > 0 && currentIndex > 0) {
+                    goToSlide(currentIndex - 1);
+                }
+            }
+        }, { passive: true });
     }
 });
 </script>
