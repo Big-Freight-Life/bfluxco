@@ -80,7 +80,7 @@ get_header();
                                 </svg>
                             </div>
                             <h3>Reset Data</h3>
-                            <p>To clear cached data, go to <strong>Settings &gt; Data &gt; Clear Cache</strong>. Your tracked entries are stored in iCloud.</p>
+                            <p>To clear cached data, go to <strong>Settings &gt; Data &gt; Clear Cache</strong>. Your tracked entries are stored securely in your account and won't be affected.</p>
                         </div>
                     </div>
                 </div>
@@ -123,19 +123,25 @@ get_header();
                             <details class="faq-item">
                                 <summary class="faq-question">Where is my data stored?</summary>
                                 <div class="faq-answer">
-                                    <p>Your food logs and tracking data are stored in iCloud, linked to your Apple ID. This means your data syncs automatically across all your Apple devices signed into the same account.</p>
+                                    <p>Your food journal, recipes, custom foods, and grocery lists are stored securely on our servers and sync automatically across all your devices when you sign in with your Low Ox Life account. App preferences (theme, language) also sync via iCloud. All data is encrypted in transit (TLS 1.3) and at rest (AES-256).</p>
                                 </div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">My data isn't syncing between devices</summary>
                                 <div class="faq-answer">
-                                    <p>Ensure iCloud is enabled for Low Ox Life on all devices: <strong>iPhone Settings &gt; [Your Name] &gt; iCloud &gt; Apps Using iCloud</strong>. Also check that you're signed into the same Apple ID on all devices.</p>
+                                    <p>Make sure you're signed into the same Low Ox Life account on all devices. Check your internet connection and try pulling down to refresh. If preferences (theme, language) aren't syncing, also verify iCloud is enabled: <strong>iPhone Settings &gt; [Your Name] &gt; iCloud &gt; Apps Using iCloud</strong>.</p>
                                 </div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">How do I export my data?</summary>
                                 <div class="faq-answer">
-                                    <p>Go to <strong>Settings &gt; Data &gt; Export</strong> to download a copy of your tracking history. You can export as CSV for spreadsheets or JSON for backup.</p>
+                                    <p>Go to <strong>Account &gt; Privacy Settings &gt; Export Data</strong> to download all your data. Choose JSON (for backup) or CSV (for spreadsheets). You can save directly to iCloud Drive or share to any app. Exports include journal entries, recipes, custom food lists, and grocery lists.</p>
+                                </div>
+                            </details>
+                            <details class="faq-item">
+                                <summary class="faq-question">Is my data secure?</summary>
+                                <div class="faq-answer">
+                                    <p>Yes. All data is encrypted in transit and at rest. Your health data is stored securely and is never shared with third parties. You can delete your account and all associated data at any time from Account settings. See our <a href="<?php echo esc_url(home_url('/legal/low-ox-life/privacy')); ?>">Privacy Policy</a> for full details.</p>
                                 </div>
                             </details>
                         </div>
