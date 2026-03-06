@@ -136,7 +136,7 @@ if (is_page()) {
                         <a href="<?php echo esc_url(home_url('/works')); ?>"><?php esc_html_e('Works', 'bfluxco'); ?></a>
                     </li>
                     <li class="menu-item has-megamenu" data-megamenu="products">
-                        <a href="<?php echo esc_url(home_url('/products')); ?>">
+                        <a href="#" role="button">
                             <?php esc_html_e('Products', 'bfluxco'); ?>
                             <svg class="menu-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M6 9l6 6 6-6"/>
@@ -505,12 +505,6 @@ if (is_page()) {
                             </a>
                         </li>
                     </ul>
-                    <a href="<?php echo esc_url(home_url('/products')); ?>" class="megamenu-view-all">
-                        <?php esc_html_e('View all products', 'bfluxco'); ?>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
 
                 <!-- Right Panel: Contextual Content -->
