@@ -135,8 +135,13 @@ if (is_page()) {
                     <li class="menu-item">
                         <a href="<?php echo esc_url(home_url('/works')); ?>"><?php esc_html_e('Works', 'bfluxco'); ?></a>
                     </li>
-                    <li class="menu-item">
-                        <a href="<?php echo esc_url(home_url('/products')); ?>"><?php esc_html_e('Products', 'bfluxco'); ?></a>
+                    <li class="menu-item has-megamenu" data-megamenu="products">
+                        <a href="<?php echo esc_url(home_url('/products')); ?>">
+                            <?php esc_html_e('Products', 'bfluxco'); ?>
+                            <svg class="menu-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </a>
                     </li>
                     <li class="menu-item">
                         <a href="<?php echo esc_url(home_url('/blog')); ?>"><?php esc_html_e('Blog', 'bfluxco'); ?></a>
@@ -473,6 +478,23 @@ if (is_page()) {
             </div>
         </div>
     </div><!-- #megamenu-about -->
+
+    <!-- Mega Menu: Products -->
+    <div class="megamenu megamenu--products" id="megamenu-products" role="navigation" aria-label="<?php esc_attr_e('Products Navigation', 'bfluxco'); ?>">
+        <div class="megamenu-backdrop"></div>
+        <div class="megamenu-container">
+            <div class="megamenu-products-list">
+                <a href="<?php echo esc_url(home_url('/products/low-ox-life')); ?>" class="megamenu-product-item">
+                    <span class="megamenu-product-name"><?php esc_html_e('Low Ox Life', 'bfluxco'); ?></span>
+                    <span class="megamenu-product-desc"><?php esc_html_e('Oxalate tracking with the Harvard 2023 database', 'bfluxco'); ?></span>
+                </a>
+                <a href="<?php echo esc_url(home_url('/products/bio-break')); ?>" class="megamenu-product-item">
+                    <span class="megamenu-product-name"><?php esc_html_e('Bio Break', 'bfluxco'); ?></span>
+                    <span class="megamenu-product-desc"><?php esc_html_e('Bathroom health tracking and hydration insights', 'bfluxco'); ?></span>
+                </a>
+            </div>
+        </div>
+    </div><!-- #megamenu-products -->
 
     <!-- Mobile Navigation Backdrop -->
     <div class="mobile-nav-backdrop"></div>

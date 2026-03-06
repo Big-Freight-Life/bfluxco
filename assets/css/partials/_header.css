@@ -765,6 +765,52 @@ body.menu-open {
     outline-offset: 2px;
 }
 
+/* Mega Menu: Products (compact list variant) */
+.megamenu--products .megamenu-container {
+    padding: var(--spacing-4) 0;
+}
+
+.megamenu-products-list {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: var(--spacing-2) var(--spacing-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.megamenu-product-item {
+    display: block;
+    padding: var(--spacing-4) var(--spacing-5);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background var(--motion-fast) ease;
+}
+
+.megamenu-product-item:hover {
+    background: var(--bg-secondary);
+}
+
+.megamenu-product-name {
+    display: block;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.megamenu-product-desc {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-top: 2px;
+}
+
+.megamenu-product-item:hover .megamenu-product-name {
+    color: var(--color-primary);
+}
+
 /* Mega Menu Hidden on Mobile */
 @media (max-width: 1023px) {
     .megamenu {
