@@ -21,6 +21,14 @@ $products_legal = array(
         'privacy' => home_url('/legal/low-ox-life-privacy'),
         'terms' => home_url('/legal/low-ox-life-terms'),
     ),
+    array(
+        'name' => 'Bio Break',
+        'type' => 'iOS App',
+        'slug' => 'bio-break',
+        'description' => 'Bathroom health tracking and hydration insights',
+        'privacy' => home_url('/legal/bio-break-privacy'),
+        'terms' => home_url('/legal/bio-break-terms'),
+    ),
 );
 ?>
 

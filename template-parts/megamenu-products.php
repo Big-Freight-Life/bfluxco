@@ -22,6 +22,14 @@
                             </svg>
                         </a>
                     </li>
+                    <li class="megamenu-nav-item" data-panel="bio-break" role="menuitem">
+                        <a href="<?php echo esc_url(home_url('/products/bio-break')); ?>">
+                            <span class="megamenu-nav-text"><?php esc_html_e('Bio Break', 'bfluxco'); ?></span>
+                            <svg class="megamenu-nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </a>
+                    </li>
                     <li class="megamenu-nav-item" data-panel="legal" role="menuitem">
                         <a href="<?php echo esc_url(home_url('/legal')); ?>">
                             <span class="megamenu-nav-text"><?php esc_html_e('Legal', 'bfluxco'); ?></span>
@@ -50,6 +58,20 @@
                         <h3 class="megamenu-panel-title"><?php esc_html_e('Low Ox Life', 'bfluxco'); ?></h3>
                         <p class="megamenu-panel-desc"><?php esc_html_e('Premium oxalate tracking with AI-powered insights, meal logging, and personalized recommendations for kidney health.', 'bfluxco'); ?></p>
                         <a href="<?php echo esc_url(home_url('/products/low-ox-life')); ?>" class="btn btn-primary btn-sm">
+                            <?php esc_html_e('Learn more', 'bfluxco'); ?>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bio Break Panel -->
+                <div class="megamenu-panel" data-panel="bio-break">
+                    <div class="megamenu-panel-image">
+                        <div class="megamenu-image-placeholder gradient-products-premium"></div>
+                    </div>
+                    <div class="megamenu-panel-content">
+                        <h3 class="megamenu-panel-title"><?php esc_html_e('Bio Break', 'bfluxco'); ?></h3>
+                        <p class="megamenu-panel-desc"><?php esc_html_e('Track bathroom habits to understand hydration and digestive health. Free with Apple Watch companion app.', 'bfluxco'); ?></p>
+                        <a href="<?php echo esc_url(home_url('/products/bio-break')); ?>" class="btn btn-primary btn-sm">
                             <?php esc_html_e('Learn more', 'bfluxco'); ?>
                         </a>
                     </div>
