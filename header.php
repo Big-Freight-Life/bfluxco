@@ -106,8 +106,6 @@ if (is_page()) {
             <div class="site-branding">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" rel="home">
                     <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>" alt="<?php bloginfo('name'); ?>" class="site-logo-img">
-                    <span class="logo-primary">Big Freight Life</span>
-                    <span class="logo-secondary">Ray Butler</span>
                 </a>
             </div><!-- .site-branding -->
 
@@ -504,6 +502,22 @@ if (is_page()) {
                                 </svg>
                             </a>
                         </li>
+                        <li class="megamenu-nav-item" data-panel="24h-urine" role="menuitem">
+                            <a href="<?php echo esc_url(home_url('/products/24-hour-urine-analysis')); ?>">
+                                <span class="megamenu-nav-text"><?php esc_html_e('24-Hour Urine Analysis', 'bfluxco'); ?></span>
+                                <svg class="megamenu-nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="megamenu-nav-item" data-panel="legal" role="menuitem">
+                            <a href="<?php echo esc_url(home_url('/legal')); ?>">
+                                <span class="megamenu-nav-text"><?php esc_html_e('Legal', 'bfluxco'); ?></span>
+                                <svg class="megamenu-nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -511,9 +525,6 @@ if (is_page()) {
                 <div class="megamenu-right">
                     <!-- Low Ox Life Panel -->
                     <div class="megamenu-panel active" data-panel="low-ox-life">
-                        <div class="megamenu-panel-image">
-                            <div class="megamenu-image-placeholder gradient-products-premium"></div>
-                        </div>
                         <div class="megamenu-panel-content">
                             <h3 class="megamenu-panel-title"><?php esc_html_e('Low Ox Life', 'bfluxco'); ?></h3>
                             <p class="megamenu-panel-desc"><?php esc_html_e('Oxalate tracking with the complete Harvard 2023 database. Browse 400+ foods for free, upgrade to log meals and sync across devices.', 'bfluxco'); ?></p>
@@ -525,14 +536,33 @@ if (is_page()) {
 
                     <!-- Bio Break Panel -->
                     <div class="megamenu-panel" data-panel="bio-break">
-                        <div class="megamenu-panel-image">
-                            <div class="megamenu-image-placeholder gradient-products-premium"></div>
-                        </div>
                         <div class="megamenu-panel-content">
                             <h3 class="megamenu-panel-title"><?php esc_html_e('Bio Break', 'bfluxco'); ?></h3>
                             <p class="megamenu-panel-desc"><?php esc_html_e('Track bathroom habits to understand hydration and digestive health. Free with full Apple Watch companion app.', 'bfluxco'); ?></p>
                             <a href="<?php echo esc_url(home_url('/products/bio-break')); ?>" class="btn btn-primary btn-sm">
                                 <?php esc_html_e('Learn more', 'bfluxco'); ?>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 24-Hour Urine Analysis Panel -->
+                    <div class="megamenu-panel" data-panel="24h-urine">
+                        <div class="megamenu-panel-content">
+                            <h3 class="megamenu-panel-title"><?php esc_html_e('24-Hour Urine Analysis', 'bfluxco'); ?></h3>
+                            <p class="megamenu-panel-desc"><?php esc_html_e('Comprehensive 24-hour urine collection tracking and analysis for kidney health monitoring.', 'bfluxco'); ?></p>
+                            <a href="<?php echo esc_url(home_url('/products/24-hour-urine-analysis')); ?>" class="btn btn-primary btn-sm">
+                                <?php esc_html_e('Learn more', 'bfluxco'); ?>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Legal Panel -->
+                    <div class="megamenu-panel" data-panel="legal">
+                        <div class="megamenu-panel-content">
+                            <h3 class="megamenu-panel-title"><?php esc_html_e('Legal', 'bfluxco'); ?></h3>
+                            <p class="megamenu-panel-desc"><?php esc_html_e('Privacy policies and terms of service for all our products. Find the legal documents for your purchased products.', 'bfluxco'); ?></p>
+                            <a href="<?php echo esc_url(home_url('/legal')); ?>" class="btn btn-primary btn-sm">
+                                <?php esc_html_e('View policies', 'bfluxco'); ?>
                             </a>
                         </div>
                     </div>
