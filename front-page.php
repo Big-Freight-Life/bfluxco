@@ -177,7 +177,7 @@ get_header();
                         <?php esc_html_e('Interview Ray', 'bfluxco'); ?>
                     </button>
                     <a href="<?php echo esc_url(home_url('/products')); ?>" class="btn btn-secondary">
-                        <?php esc_html_e('Git In Touch', 'bfluxco'); ?>
+                        <?php esc_html_e('Get In Touch', 'bfluxco'); ?>
                     </a>
                     <a href="<?php echo esc_url(home_url('/transformation')); ?>" class="btn btn-primary">
                         <?php esc_html_e('Transform My Team', 'bfluxco'); ?>

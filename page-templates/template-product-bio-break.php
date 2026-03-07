@@ -47,7 +47,7 @@ $product = array(
     'availability'   => 'available',
 
     // Links
-    'cta_url'        => '#',
+    'cta_url'        => '#', // TODO: Replace with actual App Store URL when Bio Break is published
     'cta_text'       => 'View in App Store',
     'cta_external'   => true,
     'secondary_url'  => '',

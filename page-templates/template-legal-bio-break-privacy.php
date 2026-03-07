@@ -276,7 +276,7 @@ get_header();
 
                         <h3>How to Contact Us</h3>
                         <ul>
-                            <li><strong>Support:</strong> <a href="https://bflux.co/support/bio-break/" target="_blank" rel="noopener">bflux.co/support/bio-break/</a></li>
+                            <li><strong>Support:</strong> <a href="<?php echo esc_url(home_url('/support/bio-break/')); ?>" target="_blank" rel="noopener">bflux.co/support/bio-break/</a></li>
                             <li><strong>Response Time:</strong> Within 30 days</li>
                         </ul>
                     </section>
@@ -287,7 +287,7 @@ get_header();
                         <div class="legal-contact-grid">
                             <div class="legal-contact-item">
                                 <h4>Support</h4>
-                                <p><a href="https://bflux.co/support/bio-break/" target="_blank" rel="noopener">bflux.co/support/bio-break/</a></p>
+                                <p><a href="<?php echo esc_url(home_url('/support/bio-break/')); ?>" target="_blank" rel="noopener">bflux.co/support/bio-break/</a></p>
                             </div>
                             <div class="legal-contact-item">
                                 <h4>Privacy Inquiries</h4>

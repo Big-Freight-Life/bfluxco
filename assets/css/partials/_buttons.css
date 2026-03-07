@@ -51,17 +51,6 @@
     background-color: var(--btn-tertiary-hover);
 }
 
-.btn-quad {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-}
-
-.btn-quad:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
-
 .btn-outline {
     background-color: transparent;
     color: var(--btn-primary-bg);

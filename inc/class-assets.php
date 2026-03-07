@@ -104,12 +104,14 @@ class BFLUXCO_Assets {
             'deps'      => array(),
             'version'   => 'r128',
             'in_footer' => true,
+            'condition' => 'is_products_page',
         ),
         'bfluxco-particle-logo' => array(
             'src'       => '/assets/js/particle-logo.js',
             'deps'      => array('three-js'),
             'version'   => 'theme',
             'in_footer' => true,
+            'condition' => 'is_products_page',
         ),
         'bfluxco-claude-terminal' => array(
             'src'       => '/assets/js/claude-terminal.js',

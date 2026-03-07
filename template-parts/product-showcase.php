@@ -23,7 +23,8 @@ $product = $args;
             <div class="psc-hero-grid">
                 <div class="psc-hero-text reveal-up">
                     <span class="psc-hero-badge"><?php echo esc_html($product['category']); ?></span>
-                    <h1 class="psc-hero-headline"><?php echo esc_html($product['hero_headline']); ?></h1>
+                    <h1 class="psc-hero-name"><?php echo esc_html($product['name']); ?></h1>
+                    <p class="psc-hero-headline"><?php echo esc_html($product['hero_headline']); ?></p>
                     <p class="psc-hero-sub"><?php echo esc_html($product['hero_subheadline']); ?></p>
                     <div class="psc-hero-cta">
                         <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="app-store-badge">
@@ -93,7 +94,7 @@ $product = $args;
                 ?>
                 <div class="psc-feature-card<?php echo $is_coming_soon ? ' psc-feature-card--coming-soon' : ''; ?> reveal-up" data-delay="<?php echo min($index + 1, 4); ?>">
                     <div class="psc-feature-icon">
-                        <?php echo $feature['icon']; ?>
+                        <span aria-hidden="true"><?php echo $feature['icon']; ?></span>
                     </div>
                     <div class="psc-feature-body">
                         <h3><?php echo esc_html($feature['title']); ?></h3>
@@ -152,14 +153,14 @@ $product = $args;
             <div class="psc-faq-list">
                 <?php foreach ($product['faqs'] as $index => $faq) : ?>
                 <div class="psc-faq-item reveal-up" data-delay="<?php echo min($index + 1, 4); ?>">
-                    <button class="psc-faq-question" aria-expanded="false">
+                    <button class="psc-faq-question" aria-expanded="false" aria-controls="faq-answer-<?php echo $index; ?>">
                         <span><?php echo esc_html($faq['question']); ?></span>
-                        <svg class="psc-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="psc-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                     </button>
-                    <div class="psc-faq-answer">
+                    <div class="psc-faq-answer" id="faq-answer-<?php echo $index; ?>">
                         <p><?php echo esc_html($faq['answer']); ?></p>
                     </div>
                 </div>

@@ -144,39 +144,6 @@ get_header();
         </div>
     </section><!-- Products Grid -->
 
-    <!-- Featured Product -->
-    <section class="section bg-gray-50">
-        <div class="container">
-            <div class="featured-product reveal-scale">
-                <div class="featured-product-inner grid grid-2 items-center gap-12">
-                    <div class="featured-product-image">
-                        <div class="featured-product-placeholder"></div>
-                        <div class="particle-logo-overlay">
-                            <canvas id="featured-particle-canvas"></canvas>
-                        </div>
-                    </div>
-                    <div class="featured-product-content">
-                        <span class="featured-product-badge"><?php esc_html_e('Featured', 'bfluxco'); ?></span>
-                        <h2 class="featured-product-title"><?php esc_html_e('The Complete Design Toolkit', 'bfluxco'); ?></h2>
-                        <p class="featured-product-desc">
-                            <?php esc_html_e('Everything you need to run a professional design practice. Includes all templates, frameworks, and guides in one comprehensive package.', 'bfluxco'); ?>
-                        </p>
-                        <ul class="featured-product-features">
-                            <li><?php esc_html_e('Design System Starter Kit', 'bfluxco'); ?></li>
-                            <li><?php esc_html_e('Strategy Canvas Bundle', 'bfluxco'); ?></li>
-                            <li><?php esc_html_e('Workshop Facilitation Guide', 'bfluxco'); ?></li>
-                            <li><?php esc_html_e('Lifetime updates included', 'bfluxco'); ?></li>
-                        </ul>
-                        <div class="featured-product-cta">
-                            <span class="featured-product-price"><?php esc_html_e('$399', 'bfluxco'); ?> <small><?php esc_html_e('(Save $127)', 'bfluxco'); ?></small></span>
-                            <a href="#" class="btn btn-primary"><?php esc_html_e('Get the Toolkit', 'bfluxco'); ?></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- Featured Product -->
-
     <!-- FAQ Section -->
     <section class="section">
         <div class="container">

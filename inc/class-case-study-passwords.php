@@ -401,8 +401,8 @@ Ray";
         $password_data = self::get_raw_password_data();
         $password_data[$post_id] = array(
             'password' => self::encrypt_password($new_password),
-            'created' => current_time('timestamp'),
-            'expires' => current_time('timestamp') + ($settings['rotation_days'] * DAY_IN_SECONDS),
+            'created' => time(),
+            'expires' => time() + ($settings['rotation_days'] * DAY_IN_SECONDS),
         );
         update_option(self::OPTION_NAME, $password_data);
 
@@ -416,7 +416,7 @@ Ray";
         $case_studies = self::get_protected_case_studies();
         $settings = self::get_settings();
         $password_data = self::get_password_data();
-        $now = current_time('timestamp');
+        $now = time();
 
         foreach ($case_studies as $case_study) {
             $data = isset($password_data[$case_study->ID]) ? $password_data[$case_study->ID] : null;
@@ -454,7 +454,7 @@ Ray";
             if (wp_verify_nonce($_GET['_wpnonce'], 'regenerate_password')) {
                 $post_id = absint($_GET['regenerate']);
                 self::update_case_study_password($post_id);
-                wp_redirect(admin_url('admin.php?page=case-study-passwords&message=regenerated'));
+                wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=regenerated'));
                 exit;
             }
         }
@@ -466,7 +466,7 @@ Ray";
                 foreach ($case_studies as $case_study) {
                     self::update_case_study_password($case_study->ID);
                 }
-                wp_redirect(admin_url('admin.php?page=case-study-passwords&message=all_regenerated'));
+                wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=all_regenerated'));
                 exit;
             }
         }
@@ -475,7 +475,7 @@ Ray";
         if (isset($_GET['initialize']) && isset($_GET['_wpnonce'])) {
             if (wp_verify_nonce($_GET['_wpnonce'], 'initialize_passwords')) {
                 self::initialize_existing_passwords();
-                wp_redirect(admin_url('admin.php?page=case-study-passwords&message=initialized'));
+                wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=initialized'));
                 exit;
             }
         }
@@ -492,9 +492,9 @@ Ray";
                         if ($client) {
                             self::log_event('password_regenerated', $client['email']);
                         }
-                        wp_redirect(admin_url('admin.php?page=case-study-passwords&message=client_regenerated'));
+                        wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=client_regenerated'));
                     } else {
-                        wp_redirect(admin_url('admin.php?page=case-study-passwords&message=client_error'));
+                        wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=client_error'));
                     }
                     exit;
                 }
@@ -510,9 +510,9 @@ Ray";
                         if ($client) {
                             self::log_event('client_revoked', $client['email']);
                         }
-                        wp_redirect(admin_url('admin.php?page=case-study-passwords&message=client_revoked'));
+                        wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=client_revoked'));
                     } else {
-                        wp_redirect(admin_url('admin.php?page=case-study-passwords&message=client_error'));
+                        wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=client_error'));
                     }
                     exit;
                 }
@@ -527,9 +527,9 @@ Ray";
                     $result = BFLUXCO_Client_Access::delete_client($client_id);
                     if ($result) {
                         self::log_event('client_deleted', $client_email);
-                        wp_redirect(admin_url('admin.php?page=case-study-passwords&message=client_deleted'));
+                        wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=client_deleted'));
                     } else {
-                        wp_redirect(admin_url('admin.php?page=case-study-passwords&message=client_error'));
+                        wp_safe_redirect(admin_url('admin.php?page=case-study-passwords&message=client_error'));
                     }
                     exit;
                 }
@@ -549,8 +549,8 @@ Ray";
             if (!isset($password_data[$case_study->ID]) && !empty($case_study->post_password)) {
                 $password_data[$case_study->ID] = array(
                     'password' => self::encrypt_password($case_study->post_password),
-                    'created' => current_time('timestamp'),
-                    'expires' => current_time('timestamp') + ($settings['rotation_days'] * DAY_IN_SECONDS),
+                    'created' => time(),
+                    'expires' => time() + ($settings['rotation_days'] * DAY_IN_SECONDS),
                 );
             }
         }

@@ -52,7 +52,7 @@ get_header();
                 </div>
                 <h1 class="blog-hero__title"><?php the_title(); ?></h1>
                 <?php if (has_excerpt()) : ?>
-                    <p class="blog-hero__subtitle"><?php echo get_the_excerpt(); ?></p>
+                    <p class="blog-hero__subtitle"><?php echo esc_html(get_the_excerpt()); ?></p>
                 <?php endif; ?>
                 <div class="blog-hero__author">
                     <div class="author-avatar">
@@ -148,7 +148,7 @@ get_header();
                             <span class="author-bio-card__label">Written by</span>
                             <h4 class="author-bio-card__name"><?php the_author(); ?></h4>
                             <?php if (get_the_author_meta('description')) : ?>
-                                <p class="author-bio-card__bio"><?php echo get_the_author_meta('description'); ?></p>
+                                <p class="author-bio-card__bio"><?php echo wp_kses_post(get_the_author_meta('description')); ?></p>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -180,28 +180,28 @@ get_header();
             ?>
             <div class="post-nav-grid">
                 <?php if ($prev_post) : ?>
-                <a href="<?php echo get_permalink($prev_post); ?>" class="post-nav-card post-nav-card--prev">
+                <a href="<?php echo esc_url(get_permalink($prev_post)); ?>" class="post-nav-card post-nav-card--prev">
                     <span class="post-nav-card__direction">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                         Previous Article
                     </span>
-                    <span class="post-nav-card__title"><?php echo get_the_title($prev_post); ?></span>
+                    <span class="post-nav-card__title"><?php echo esc_html(get_the_title($prev_post)); ?></span>
                 </a>
                 <?php else : ?>
                 <div class="post-nav-card post-nav-card--empty"></div>
                 <?php endif; ?>
 
                 <?php if ($next_post) : ?>
-                <a href="<?php echo get_permalink($next_post); ?>" class="post-nav-card post-nav-card--next">
+                <a href="<?php echo esc_url(get_permalink($next_post)); ?>" class="post-nav-card post-nav-card--next">
                     <span class="post-nav-card__direction">
                         Next Article
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </span>
-                    <span class="post-nav-card__title"><?php echo get_the_title($next_post); ?></span>
+                    <span class="post-nav-card__title"><?php echo esc_html(get_the_title($next_post)); ?></span>
                 </a>
                 <?php endif; ?>
             </div>

@@ -185,8 +185,8 @@ class BFLUXCO_Client_Access {
             'email' => sanitize_email($email),
             'company' => sanitize_text_field($company),
             'password_hash' => password_hash($plain_password, PASSWORD_BCRYPT, array('cost' => 12)),
-            'created_at' => current_time('timestamp'),
-            'expires_at' => current_time('timestamp') + ($expiry_days * DAY_IN_SECONDS),
+            'created_at' => time(),
+            'expires_at' => time() + ($expiry_days * DAY_IN_SECONDS),
             'case_studies' => array_map('absint', $case_study_ids),
             'last_access' => null,
             'access_count' => 0,
@@ -247,7 +247,7 @@ class BFLUXCO_Client_Access {
         $plain_password = self::generate_password($settings['password_length']);
 
         $data['clients'][$client_id]['password_hash'] = password_hash($plain_password, PASSWORD_BCRYPT, array('cost' => 12));
-        $data['clients'][$client_id]['expires_at'] = current_time('timestamp') + ($settings['default_expiry_days'] * DAY_IN_SECONDS);
+        $data['clients'][$client_id]['expires_at'] = time() + ($settings['default_expiry_days'] * DAY_IN_SECONDS);
 
         self::save_data($data);
 
@@ -295,7 +295,7 @@ class BFLUXCO_Client_Access {
             return new WP_Error('invalid', __('Invalid credentials.', 'bfluxco'));
         }
 
-        if ($client['expires_at'] < current_time('timestamp')) {
+        if ($client['expires_at'] < time()) {
             return new WP_Error('invalid', __('Invalid credentials.', 'bfluxco'));
         }
 

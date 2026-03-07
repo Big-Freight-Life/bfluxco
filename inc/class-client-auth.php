@@ -60,7 +60,7 @@ class BFLUXCO_Client_Auth {
         }
 
         // Check expiry
-        if ( $client['expires_at'] < current_time( 'timestamp' ) ) {
+        if ( $client['expires_at'] < time() ) {
             return new WP_Error( 'invalid', __( 'Invalid credentials.', 'bfluxco' ) );
         }
 
@@ -94,8 +94,8 @@ class BFLUXCO_Client_Auth {
             'client_id'    => $client_id,
             'email'        => $client['email'],
             'case_studies' => $client['case_studies'],
-            'created'      => current_time( 'timestamp' ),
-            'expires'      => current_time( 'timestamp' ) + $settings['session_duration'],
+            'created'      => time(),
+            'expires'      => time() + $settings['session_duration'],
             'pw_version'   => substr( md5( $client['password_hash'] ), 0, 16 ),
         );
 
@@ -125,7 +125,7 @@ class BFLUXCO_Client_Auth {
         BFLUXCO_Client_Access::update_client(
             $client_id,
             array(
-                'last_access'  => current_time( 'timestamp' ),
+                'last_access'  => time(),
                 'access_count' => $client['access_count'] + 1,
             )
         );
@@ -168,7 +168,7 @@ class BFLUXCO_Client_Auth {
         }
 
         // Check expiry
-        if ( $session_data['expires'] < current_time( 'timestamp' ) ) {
+        if ( $session_data['expires'] < time() ) {
             return false;
         }
 

@@ -43,7 +43,7 @@ get_header();
                 <?php endif; ?>
                 <h1 class="blog-hero__title"><?php the_title(); ?></h1>
                 <?php if (has_excerpt()) : ?>
-                    <p class="blog-hero__kicker"><?php echo get_the_excerpt(); ?></p>
+                    <p class="blog-hero__kicker"><?php echo esc_html(get_the_excerpt()); ?></p>
                 <?php endif; ?>
                 <div class="blog-hero__meta-bar">
                     <div class="author-mini">
@@ -116,7 +116,7 @@ get_header();
                     <span class="author-card__label">About the Author</span>
                     <h4 class="author-card__name"><?php the_author(); ?></h4>
                     <?php if (get_the_author_meta('description')) : ?>
-                        <p class="author-card__bio"><?php echo get_the_author_meta('description'); ?></p>
+                        <p class="author-card__bio"><?php echo wp_kses_post(get_the_author_meta('description')); ?></p>
                     <?php endif; ?>
                     <div class="author-card__share">
                         <span>Share this article:</span>
@@ -155,7 +155,7 @@ get_header();
             ?>
             <div class="post-nav-grid">
                 <?php if ($prev_post) : ?>
-                <a href="<?php echo get_permalink($prev_post); ?>" class="post-nav-card post-nav-card--prev">
+                <a href="<?php echo esc_url(get_permalink($prev_post)); ?>" class="post-nav-card post-nav-card--prev">
                     <?php if (has_post_thumbnail($prev_post)) : ?>
                     <div class="post-nav-card__image">
                         <?php echo get_the_post_thumbnail($prev_post, 'thumbnail'); ?>
@@ -168,7 +168,7 @@ get_header();
                             </svg>
                             Previous Article
                         </span>
-                        <span class="post-nav-card__title"><?php echo get_the_title($prev_post); ?></span>
+                        <span class="post-nav-card__title"><?php echo esc_html(get_the_title($prev_post)); ?></span>
                     </div>
                 </a>
                 <?php else : ?>
@@ -176,7 +176,7 @@ get_header();
                 <?php endif; ?>
 
                 <?php if ($next_post) : ?>
-                <a href="<?php echo get_permalink($next_post); ?>" class="post-nav-card post-nav-card--next">
+                <a href="<?php echo esc_url(get_permalink($next_post)); ?>" class="post-nav-card post-nav-card--next">
                     <div class="post-nav-card__content">
                         <span class="post-nav-card__direction">
                             Next Article
@@ -184,7 +184,7 @@ get_header();
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </span>
-                        <span class="post-nav-card__title"><?php echo get_the_title($next_post); ?></span>
+                        <span class="post-nav-card__title"><?php echo esc_html(get_the_title($next_post)); ?></span>
                     </div>
                     <?php if (has_post_thumbnail($next_post)) : ?>
                     <div class="post-nav-card__image">

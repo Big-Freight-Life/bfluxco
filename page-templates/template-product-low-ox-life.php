@@ -246,10 +246,10 @@ $product = array(
     // Related
     'related' => array(
         array(
-            'title' => 'Low Ox Life (List)',
-            'url'   => home_url('/products/low-ox-life-list'),
+            'title' => 'Bio Break',
+            'url'   => home_url('/products/bio-break/'),
             'price' => 'Free',
-            'desc'  => 'Browse the oxalate database',
+            'desc'  => 'Know Your Body Better',
         ),
     ),
 );

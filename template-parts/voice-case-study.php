@@ -127,8 +127,7 @@ if (empty($args['audio_url'])) {
     <div id="transcript" class="voice-transcript">
         <?php
         if (!empty($args['transcript'])) {
-            // Transcript HTML is already escaped by shortcode handler
-            echo $args['transcript'];
+            echo wp_kses_post($args['transcript']);
         } else {
             // If no transcript provided, try post meta
             $stored_transcript = get_post_meta($args['post_id'], 'voice_transcript', true);

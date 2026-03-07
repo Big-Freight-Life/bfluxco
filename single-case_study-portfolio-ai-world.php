@@ -28,7 +28,7 @@ get_header();
 
                             <?php if (has_excerpt()) : ?>
                                 <p class="cs-ai-subtitle">
-                                    <?php echo get_the_excerpt(); ?>
+                                    <?php echo esc_html(get_the_excerpt()); ?>
                                 </p>
                             <?php endif; ?>
                         </div>

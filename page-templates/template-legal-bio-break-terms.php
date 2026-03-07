@@ -251,7 +251,7 @@ get_header();
                         <div class="legal-contact-grid">
                             <div class="legal-contact-item">
                                 <h4>Support</h4>
-                                <p><a href="https://bflux.co/support/bio-break/">bflux.co/support/bio-break/</a></p>
+                                <p><a href="<?php echo esc_url(home_url('/support/bio-break/')); ?>">bflux.co/support/bio-break/</a></p>
                             </div>
                             <div class="legal-contact-item">
                                 <h4>Mailing Address</h4>

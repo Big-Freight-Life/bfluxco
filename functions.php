@@ -353,20 +353,6 @@ class BFLUXCO_Primary_Nav_Walker extends Walker_Nav_Menu {
 // 7. HELPER FUNCTIONS
 // ==========================================================================
 
-/**
- * Get Theme Asset URL
- *
- * Helper function to get URLs for theme assets.
- *
- * @param string $path Path to the asset relative to assets folder
- * @return string Full URL to the asset
- *
- * Usage: bfluxco_asset('images/logo.png')
- */
-function bfluxco_asset($path) {
-    return get_template_directory_uri() . '/assets/' . $path;
-}
-
 // SVG icon helper moved to inc/helpers/icons.php
 // Use: bfluxco_icon('name', ['size' => 16, 'class' => 'icon-class'])
 
@@ -410,56 +396,6 @@ function bfluxco_reading_time($content = null) {
     $reading_time = ceil($word_count / 200); // Average reading speed
 
     return max(1, $reading_time);
-}
-
-/**
- * Get API Key
- *
- * Safely retrieves API keys defined in wp-config.php.
- * Returns null if the key doesn't exist or is a placeholder.
- *
- * @param string $key_name The constant name (e.g., 'MISTRAL_API_KEY')
- * @return string|null The API key or null if not configured
- *
- * Usage: $key = bfluxco_get_api_key('MISTRAL_API_KEY');
- */
-function bfluxco_get_api_key($key_name) {
-    // Check if the constant is defined
-    if (!defined($key_name)) {
-        return null;
-    }
-
-    $key = constant($key_name);
-
-    // Check for placeholder values (not configured)
-    $placeholders = array(
-        '',
-        'your-mistral-api-key-here',
-        'your-elevenlabs-api-key-here',
-        'your-hagen-api-key-here',
-        'your-api-key-here',
-        'key-here',
-    );
-
-    if (in_array($key, $placeholders, true)) {
-        return null;
-    }
-
-    return $key;
-}
-
-/**
- * Check if API Key is Configured
- *
- * Quick check to see if an API key is available and valid.
- *
- * @param string $key_name The constant name
- * @return bool True if key is configured, false otherwise
- *
- * Usage: if (bfluxco_has_api_key('MISTRAL_API_KEY')) { ... }
- */
-function bfluxco_has_api_key($key_name) {
-    return bfluxco_get_api_key($key_name) !== null;
 }
 
 
@@ -675,6 +611,9 @@ require_once get_template_directory() . '/inc/data/placeholders.php';
 require_once get_template_directory() . '/inc/class-seo.php';
 require_once get_template_directory() . '/inc/class-schema.php';
 
+// Crypto utilities - Needed before Client Auth and Case Study Passwords
+require_once get_template_directory() . '/inc/class-crypto-utils.php';
+
 // Client Authentication - Needed before Client Access Manager
 require_once get_template_directory() . '/inc/class-client-auth.php';
 
@@ -822,10 +761,12 @@ add_action( 'wp_enqueue_scripts', 'bfluxco_interview_assets' );
  * an email to the support team.
  */
 function bfluxco_handle_support_form() {
+    $redirect = wp_get_referer() ? wp_get_referer() : home_url('/support/');
+
     // Verify nonce for security
     if ( ! isset( $_POST['bfluxco_support_nonce'] ) ||
          ! wp_verify_nonce( $_POST['bfluxco_support_nonce'], 'bfluxco_support_form' ) ) {
-        wp_safe_redirect( add_query_arg( 'status', 'error', wp_get_referer() ) );
+        wp_safe_redirect( add_query_arg( 'status', 'error', $redirect ) );
         exit;
     }
 
@@ -838,7 +779,7 @@ function bfluxco_handle_support_form() {
 
     // Validate required fields
     if ( empty( $name ) || empty( $email ) || empty( $message ) ) {
-        wp_safe_redirect( add_query_arg( 'status', 'error', wp_get_referer() ) );
+        wp_safe_redirect( add_query_arg( 'status', 'error', $redirect ) );
         exit;
     }
 
@@ -863,7 +804,7 @@ function bfluxco_handle_support_form() {
 
     // Redirect back with status
     $status = $sent ? 'success' : 'error';
-    wp_safe_redirect( add_query_arg( 'status', $status, wp_get_referer() ) );
+    wp_safe_redirect( add_query_arg( 'status', $status, $redirect ) );
     exit;
 }
 add_action( 'admin_post_bfluxco_support_submit', 'bfluxco_handle_support_form' );
