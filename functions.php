@@ -588,8 +588,10 @@ function bfluxco_social_share() {
 // ==========================================================================
 
 // AJAX handlers are registered in individual class files:
+// - inc/class-chatbot-api.php (chat, lead, TTS endpoints)
 // - inc/class-client-access.php (client login)
 // - inc/class-case-study-passwords.php (password management)
+// - inc/class-ai-chat-admin.php (admin AJAX)
 
 
 // ==========================================================================
@@ -696,6 +698,29 @@ if (is_admin()) {
 // Case Study Password Manager - Admin only
 if (is_admin()) {
     require_once get_template_directory() . '/inc/class-case-study-passwords.php';
+}
+
+// ==========================================================================
+// AI CHAT - Plugin or Theme Fallback
+// If the BFLUXCO AI Chat plugin is active, skip loading theme AI chat code
+// ==========================================================================
+$ai_chat_plugin_active = defined('BFLUXCO_AI_CHAT_VERSION') ||
+    (function_exists('is_plugin_active') && is_plugin_active('bfluxco-ai-chat/bfluxco-ai-chat.php'));
+
+if (!$ai_chat_plugin_active) {
+    // Chatbot API - Only when enabled or in admin (THEME FALLBACK)
+    $chatbot_enabled = get_option('bfluxco_chatbot_enabled', true);
+    if ($chatbot_enabled || is_admin()) {
+        require_once get_template_directory() . '/inc/class-chatbot-api.php';
+    }
+
+    // AI Chat Admin Suite - Admin only (THEME FALLBACK)
+    if (is_admin()) {
+        require_once get_template_directory() . '/inc/class-ai-chat-settings.php';
+        require_once get_template_directory() . '/inc/class-ai-chat-metrics.php';
+        require_once get_template_directory() . '/inc/class-ai-chat-training.php';
+        require_once get_template_directory() . '/inc/class-ai-chat-admin.php';
+    }
 }
 
 // Voice Narrative - Load for case studies or admin

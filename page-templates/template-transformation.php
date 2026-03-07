@@ -320,6 +320,8 @@ get_header();
     <?php get_template_part('template-parts/footer', 'content'); ?>
 </div><!-- .cta-footer-wrapper -->
 
+<?php get_template_part('template-parts/chat-interface', null, array('context' => 'transformation')); ?>
+
 <!-- Video Modal -->
 <div class="video-modal" id="video-modal" aria-hidden="true">
     <div class="video-modal-content">
