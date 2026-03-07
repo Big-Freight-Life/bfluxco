@@ -351,68 +351,85 @@
 }
 
 /* ==========================================================================
-   ABOUT CARDS
+   MEET THE FOUNDER
    ========================================================================== */
 
-.about-cards-grid {
-    gap: var(--spacing-8);
+.about-founder-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--spacing-12);
+    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.about-card {
-    display: block;
-    text-decoration: none;
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    transition: transform var(--motion-normal) var(--ease-out-expo),
-                box-shadow var(--motion-normal) var(--ease-out-expo);
-}
-
-.about-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-.about-card .card-image {
-    aspect-ratio: 16/10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.about-founder-portrait {
     position: relative;
-    overflow: hidden;
 }
 
-.about-card-image-ray {
-    background: linear-gradient(135deg, var(--color-gray-700) 0%, var(--color-gray-900) 100%);
+.about-founder-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+    background: linear-gradient(135deg, var(--color-gray-700), var(--color-gray-900));
 }
 
-.about-card-image-bfl {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent-cyan) 50%, var(--color-accent-purple) 100%);
+.about-founder-label {
+    display: inline-block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-primary-light);
+    margin-bottom: var(--spacing-3);
 }
 
-.about-card-icon {
-    color: rgba(255, 255, 255, 0.8);
-    transition: transform var(--motion-normal) var(--ease-out-expo);
+.about-founder-role {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-6);
 }
 
-.about-card:hover .about-card-icon {
-    transform: scale(1.1);
+/* ==========================================================================
+   CREDENTIALS HIGHLIGHTS
+   ========================================================================== */
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-4);
 }
 
-.about-card .card-content {
-    padding: var(--spacing-6);
+.credential-item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-5);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    background: var(--bg-primary);
+    text-decoration: none;
+    transition: border-color var(--motion-normal) ease;
 }
 
-.about-card .card-title {
-    font-size: var(--font-size-xl);
+.credential-item:hover {
+    border-color: var(--color-primary);
+}
+
+.credential-issuer {
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary-light);
     margin-bottom: var(--spacing-2);
 }
 
-.about-card .card-description {
-    font-size: var(--font-size-base);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-4);
+.credential-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    line-height: 1.4;
 }
 
 /* ==========================================================================
@@ -451,12 +468,19 @@
         height: 24px;
     }
 
-    .about-card .card-content {
+    .about-founder-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-8);
         text-align: center;
     }
 
-    .about-card .btn {
-        display: inline-block;
+    .about-founder-img {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    .credentials-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
     .about-closing-section .container,
@@ -477,11 +501,7 @@
         animation: none;
     }
 
-    .about-card:hover {
-        transform: none;
-    }
-
-    .about-card:hover .about-card-icon {
-        transform: none;
+    .credential-item:hover {
+        border-color: var(--border-primary);
     }
 }

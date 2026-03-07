@@ -29,8 +29,8 @@
                 <div class="footer-nav-col">
                     <h4 class="footer-nav-title"><?php esc_html_e('ABOUT', 'bfluxco'); ?></h4>
                     <ul class="footer-nav-list">
-                        <li><a href="<?php echo esc_url(home_url('/about/ray')); ?>"><?php esc_html_e('Meet Ray Butler', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/about/bfl')); ?>"><?php esc_html_e('About Big Freight Life', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/about')); ?>"><?php esc_html_e('About Us', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/clients')); ?>"><?php esc_html_e('Who We Serve', 'bfluxco'); ?></a></li>
                     </ul>
                 </div>
 

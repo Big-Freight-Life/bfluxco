@@ -131,6 +131,67 @@ get_header();
         </div>
     </section><!-- Who This Work Is For -->
 
+    <!-- Meet the Founder -->
+    <section class="section section-reveal">
+        <div class="container">
+            <div class="about-founder-grid">
+                <div class="about-founder-portrait reveal-scale">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/ray-butler-profile.png'); ?>"
+                         alt="<?php esc_attr_e('Ray Butler', 'bfluxco'); ?>"
+                         class="about-founder-img">
+                </div>
+                <div class="about-founder-bio">
+                    <span class="about-founder-label reveal" data-delay="1"><?php esc_html_e('Meet the Founder', 'bfluxco'); ?></span>
+                    <h2 class="mb-2 reveal-text"><?php esc_html_e('Ray Butler', 'bfluxco'); ?></h2>
+                    <p class="about-founder-role reveal" data-delay="1"><?php esc_html_e('GenAI Experience Architect', 'bfluxco'); ?></p>
+                    <p class="text-gray-700 leading-relaxed mb-4 reveal" data-delay="2">
+                        <?php esc_html_e('I design GenAI experiences by combining service design, UX generalist practice, and system architecture. My work focuses on how intelligent systems behave within real services—across workflows, roles, and decision points—not just how they appear on screen.', 'bfluxco'); ?>
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-6 reveal" data-delay="3">
+                        <?php esc_html_e('This includes shaping AI participation, defining human oversight, and ensuring experiences remain understandable and trustworthy as complexity grows.', 'bfluxco'); ?>
+                    </p>
+                    <a href="https://www.linkedin.com/in/braybutler/" class="btn btn-secondary reveal" data-delay="4" target="_blank" rel="noopener">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: -3px;">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <?php esc_html_e('Connect on LinkedIn', 'bfluxco'); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section><!-- Meet the Founder -->
+
+    <!-- Credentials Highlights -->
+    <section class="section bg-gray-50 section-reveal">
+        <div class="container">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-center mb-8 reveal-text"><?php esc_html_e('Credentials', 'bfluxco'); ?></h2>
+                <div class="credentials-grid">
+                    <a href="https://www.credential.net/ac2075af-00de-4419-9840-35759ab5d09f" target="_blank" rel="noopener" class="credential-item reveal" data-delay="1">
+                        <span class="credential-issuer"><?php esc_html_e('MIT CSAIL', 'bfluxco'); ?></span>
+                        <span class="credential-title"><?php esc_html_e('Human-Computer Interaction for UX Design', 'bfluxco'); ?></span>
+                    </a>
+                    <div class="credential-item reveal" data-delay="2">
+                        <span class="credential-issuer"><?php esc_html_e('IBM', 'bfluxco'); ?></span>
+                        <span class="credential-title"><?php esc_html_e('AI Product Manager', 'bfluxco'); ?></span>
+                    </div>
+                    <div class="credential-item reveal" data-delay="3">
+                        <span class="credential-issuer"><?php esc_html_e('Stanford Online', 'bfluxco'); ?></span>
+                        <span class="credential-title"><?php esc_html_e('AI in Healthcare', 'bfluxco'); ?></span>
+                    </div>
+                    <div class="credential-item reveal" data-delay="4">
+                        <span class="credential-issuer"><?php esc_html_e('Wharton (UPenn)', 'bfluxco'); ?></span>
+                        <span class="credential-title"><?php esc_html_e('AI Strategy and Governance', 'bfluxco'); ?></span>
+                    </div>
+                    <div class="credential-item reveal" data-delay="5">
+                        <span class="credential-issuer"><?php esc_html_e('CDI', 'bfluxco'); ?></span>
+                        <span class="credential-title"><?php esc_html_e('Certified Conversation Designer', 'bfluxco'); ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- Credentials Highlights -->
+
     <!-- Closing -->
     <section class="section section-lg about-closing-section section-reveal">
         <div class="container">
@@ -144,54 +205,6 @@ get_header();
             </div>
         </div>
     </section><!-- Closing -->
-
-    <!-- About Options -->
-    <section class="section bg-gray-50 section-reveal">
-        <div class="container">
-            <div class="grid grid-2 about-cards-grid">
-
-                <!-- Meet Ray Butler -->
-                <a href="<?php echo esc_url(home_url('/about/ray')); ?>" class="about-card card reveal" data-delay="1">
-                    <div class="card-image about-card-image-ray">
-                        <div class="about-card-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="card-content text-center">
-                        <h2 class="card-title"><?php esc_html_e('Meet Ray Butler', 'bfluxco'); ?></h2>
-                        <p class="card-description text-gray-600">
-                            <?php esc_html_e('The person behind the work. Learn about my background, experience, and approach.', 'bfluxco'); ?>
-                        </p>
-                        <span class="btn btn-secondary"><?php esc_html_e('Learn More', 'bfluxco'); ?></span>
-                    </div>
-                </a>
-
-                <!-- About Big Freight Life -->
-                <a href="<?php echo esc_url(home_url('/about/bfl')); ?>" class="about-card card reveal" data-delay="2">
-                    <div class="card-image about-card-image-bfl">
-                        <div class="about-card-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                <path d="M8 21h8"/>
-                                <path d="M12 17v4"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="card-content text-center">
-                        <h2 class="card-title"><?php esc_html_e('About Big Freight Life', 'bfluxco'); ?></h2>
-                        <p class="card-description text-gray-600">
-                            <?php esc_html_e('The company, its mission, and what we stand for.', 'bfluxco'); ?>
-                        </p>
-                        <span class="btn btn-secondary"><?php esc_html_e('Learn More', 'bfluxco'); ?></span>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section><!-- About Options -->
 
     <!-- Page Content (if any) -->
     <?php

@@ -131,7 +131,10 @@ if (is_page()) {
             <nav id="primary-navigation" class="primary-nav" aria-label="<?php esc_attr_e('Primary Navigation', 'bfluxco'); ?>">
                 <ul class="primary-menu">
                     <li class="menu-item">
-                        <a href="<?php echo esc_url(home_url('/works')); ?>"><?php esc_html_e('Works', 'bfluxco'); ?></a>
+                        <a href="<?php echo esc_url(home_url('/works')); ?>"><?php esc_html_e('Our Work', 'bfluxco'); ?></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?php echo esc_url(home_url('/transformation')); ?>"><?php esc_html_e('Transformation', 'bfluxco'); ?></a>
                     </li>
                     <li class="menu-item has-megamenu" data-megamenu="products">
                         <a href="#" role="button">
@@ -140,9 +143,6 @@ if (is_page()) {
                                 <path d="M6 9l6 6 6-6"/>
                             </svg>
                         </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?php echo esc_url(home_url('/blog')); ?>"><?php esc_html_e('Blog', 'bfluxco'); ?></a>
                     </li>
                     <li class="menu-item has-megamenu" data-megamenu="about">
                         <a href="<?php echo esc_url(home_url('/about')); ?>">
@@ -170,7 +170,6 @@ if (is_page()) {
                     ?>
                     <ul class="secondary-menu">
                         <li><a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn btn-tertiary btn-sm"><?php esc_html_e('Contact', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/support')); ?>" class="btn btn-quad btn-sm">Support</a></li>
                     </ul>
                     <?php
                 }
@@ -178,34 +177,6 @@ if (is_page()) {
             </nav><!-- #secondary-navigation -->
 
             <!-- Theme Toggle -->
-            <div class="theme-toggle" role="radiogroup" aria-label="<?php esc_attr_e('Color theme', 'bfluxco'); ?>">
-                <button class="theme-toggle-btn" data-theme="light" aria-label="<?php esc_attr_e('Light mode', 'bfluxco'); ?>" role="radio" aria-checked="false">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"/>
-                        <line x1="12" y1="1" x2="12" y2="3"/>
-                        <line x1="12" y1="21" x2="12" y2="23"/>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                        <line x1="1" y1="12" x2="3" y2="12"/>
-                        <line x1="21" y1="12" x2="23" y2="12"/>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                    </svg>
-                </button>
-                <button class="theme-toggle-btn" data-theme="system" aria-label="<?php esc_attr_e('System preference', 'bfluxco'); ?>" role="radio" aria-checked="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
-                    </svg>
-                </button>
-                <button class="theme-toggle-btn" data-theme="dark" aria-label="<?php esc_attr_e('Dark mode', 'bfluxco'); ?>" role="radio" aria-checked="false">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                    </svg>
-                </button>
-            </div>
-
             <!-- Mobile Menu Toggle Button -->
             <button class="menu-toggle" aria-controls="mobile-navigation" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle Menu', 'bfluxco'); ?>">
                 <span></span>
@@ -224,17 +195,17 @@ if (is_page()) {
                 <div class="megamenu-left">
                     <h2 class="megamenu-section-title"><?php esc_html_e('About', 'bfluxco'); ?></h2>
                     <ul class="megamenu-nav" role="menu">
-                        <li class="megamenu-nav-item active" data-panel="ray" role="menuitem">
-                            <a href="<?php echo esc_url(home_url('/about/ray')); ?>">
-                                <span class="megamenu-nav-text"><?php esc_html_e('Ray Butler', 'bfluxco'); ?></span>
+                        <li class="megamenu-nav-item active" data-panel="about-us" role="menuitem">
+                            <a href="<?php echo esc_url(home_url('/about')); ?>">
+                                <span class="megamenu-nav-text"><?php esc_html_e('About Us', 'bfluxco'); ?></span>
                                 <svg class="megamenu-nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M9 18l6-6-6-6"/>
                                 </svg>
                             </a>
                         </li>
-                        <li class="megamenu-nav-item" data-panel="bfl" role="menuitem">
-                            <a href="<?php echo esc_url(home_url('/about/bfl')); ?>">
-                                <span class="megamenu-nav-text"><?php esc_html_e('Big Freight Life', 'bfluxco'); ?></span>
+                        <li class="megamenu-nav-item" data-panel="clients" role="menuitem">
+                            <a href="<?php echo esc_url(home_url('/clients')); ?>">
+                                <span class="megamenu-nav-text"><?php esc_html_e('Who We Serve', 'bfluxco'); ?></span>
                                 <svg class="megamenu-nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M9 18l6-6-6-6"/>
                                 </svg>
@@ -248,35 +219,43 @@ if (is_page()) {
                                 </svg>
                             </a>
                         </li>
+                        <li class="megamenu-nav-item" data-panel="support" role="menuitem">
+                            <a href="<?php echo esc_url(home_url('/support')); ?>">
+                                <span class="megamenu-nav-text"><?php esc_html_e('Support', 'bfluxco'); ?></span>
+                                <svg class="megamenu-nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Right Panel: Contextual Content -->
                 <div class="megamenu-right">
-                    <!-- Ray Butler Panel -->
-                    <div class="megamenu-panel active" data-panel="ray">
+                    <!-- About Us Panel -->
+                    <div class="megamenu-panel active" data-panel="about-us">
                         <div class="megamenu-panel-image">
                             <div class="megamenu-image-placeholder" style="background: linear-gradient(135deg, var(--color-gray-400), var(--color-gray-600));"></div>
                         </div>
                         <div class="megamenu-panel-content">
-                            <h3 class="megamenu-panel-title"><?php esc_html_e('Ray Butler', 'bfluxco'); ?></h3>
-                            <p class="megamenu-panel-desc"><?php esc_html_e('Design strategist with years of experience helping organizations navigate complexity and create meaningful solutions.', 'bfluxco'); ?></p>
-                            <a href="<?php echo esc_url(home_url('/about/ray')); ?>" class="btn btn-primary btn-sm">
-                                <?php esc_html_e('Meet Ray', 'bfluxco'); ?>
+                            <h3 class="megamenu-panel-title"><?php esc_html_e('About Us', 'bfluxco'); ?></h3>
+                            <p class="megamenu-panel-desc"><?php esc_html_e('Meet the founder, learn about our mission, and see the credentials behind the work.', 'bfluxco'); ?></p>
+                            <a href="<?php echo esc_url(home_url('/about')); ?>" class="btn btn-primary btn-sm">
+                                <?php esc_html_e('Learn more', 'bfluxco'); ?>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Big Freight Life Panel -->
-                    <div class="megamenu-panel" data-panel="bfl">
+                    <!-- Clients Panel -->
+                    <div class="megamenu-panel" data-panel="clients">
                         <div class="megamenu-panel-image">
                             <div class="megamenu-image-placeholder" style="background: linear-gradient(135deg, var(--color-gray-800), var(--color-black));"></div>
                         </div>
                         <div class="megamenu-panel-content">
-                            <h3 class="megamenu-panel-title"><?php esc_html_e('Big Freight Life', 'bfluxco'); ?></h3>
-                            <p class="megamenu-panel-desc"><?php esc_html_e('The creative studio and practice behind BFLUX. Learn about our mission, values, and approach.', 'bfluxco'); ?></p>
-                            <a href="<?php echo esc_url(home_url('/about/bfl')); ?>" class="btn btn-primary btn-sm">
-                                <?php esc_html_e('About the studio', 'bfluxco'); ?>
+                            <h3 class="megamenu-panel-title"><?php esc_html_e('Who We Serve', 'bfluxco'); ?></h3>
+                            <p class="megamenu-panel-desc"><?php esc_html_e('Learn about the types of businesses we\'re built to serve and how we can help.', 'bfluxco'); ?></p>
+                            <a href="<?php echo esc_url(home_url('/clients')); ?>" class="btn btn-primary btn-sm">
+                                <?php esc_html_e('View clients', 'bfluxco'); ?>
                             </a>
                         </div>
                     </div>
@@ -291,6 +270,20 @@ if (is_page()) {
                             <p class="megamenu-panel-desc"><?php esc_html_e("Have a project in mind or want to explore working together? Let's start a conversation.", 'bfluxco'); ?></p>
                             <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn btn-primary btn-sm">
                                 <?php esc_html_e('Contact us', 'bfluxco'); ?>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Support Panel -->
+                    <div class="megamenu-panel" data-panel="support">
+                        <div class="megamenu-panel-image">
+                            <div class="megamenu-image-placeholder" style="background: linear-gradient(135deg, var(--color-gray-600), var(--color-gray-800));"></div>
+                        </div>
+                        <div class="megamenu-panel-content">
+                            <h3 class="megamenu-panel-title"><?php esc_html_e('Support', 'bfluxco'); ?></h3>
+                            <p class="megamenu-panel-desc"><?php esc_html_e('Get help with Low Ox Life, Bio Break, or any of our products.', 'bfluxco'); ?></p>
+                            <a href="<?php echo esc_url(home_url('/support')); ?>" class="btn btn-primary btn-sm">
+                                <?php esc_html_e('Get support', 'bfluxco'); ?>
                             </a>
                         </div>
                     </div>
@@ -400,19 +393,19 @@ if (is_page()) {
     <nav id="mobile-navigation" class="mobile-nav" aria-label="<?php esc_attr_e('Mobile Navigation', 'bfluxco'); ?>">
         <div class="mobile-nav-inner">
             <ul class="mobile-menu">
-                <!-- Works (Direct Link) -->
+                <!-- Our Work (Direct Link) -->
                 <li class="mobile-menu-item">
-                    <a href="<?php echo esc_url(home_url('/works')); ?>"><?php esc_html_e('Works', 'bfluxco'); ?></a>
+                    <a href="<?php echo esc_url(home_url('/works')); ?>"><?php esc_html_e('Our Work', 'bfluxco'); ?></a>
+                </li>
+
+                <!-- Transformation (Direct Link) -->
+                <li class="mobile-menu-item">
+                    <a href="<?php echo esc_url(home_url('/transformation')); ?>"><?php esc_html_e('Transformation', 'bfluxco'); ?></a>
                 </li>
 
                 <!-- Products (Direct Link) -->
                 <li class="mobile-menu-item">
                     <a href="<?php echo esc_url(home_url('/products')); ?>"><?php esc_html_e('Products', 'bfluxco'); ?></a>
-                </li>
-
-                <!-- Blog (Direct Link) -->
-                <li class="mobile-menu-item">
-                    <a href="<?php echo esc_url(home_url('/blog')); ?>"><?php esc_html_e('Blog', 'bfluxco'); ?></a>
                 </li>
 
                 <!-- About (Accordion) -->
@@ -424,9 +417,8 @@ if (is_page()) {
                         </svg>
                     </button>
                     <ul class="mobile-submenu">
-                        <li><a href="<?php echo esc_url(home_url('/about')); ?>"><?php esc_html_e('Overview', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/about/ray')); ?>"><?php esc_html_e('Ray Butler', 'bfluxco'); ?></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/about/bfl')); ?>"><?php esc_html_e('Big Freight Life', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/about')); ?>"><?php esc_html_e('About Us', 'bfluxco'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/clients')); ?>"><?php esc_html_e('Who We Serve', 'bfluxco'); ?></a></li>
                     </ul>
                 </li>
 

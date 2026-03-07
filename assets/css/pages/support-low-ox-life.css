@@ -1,0 +1,575 @@
+/* ==========================================================================
+   Low Ox Life Support Page — Premium Design
+   ========================================================================== */
+
+.lol-support-page {
+    --lol-accent: #2D6A4F;
+    --lol-accent-rgb: 45, 106, 79;
+    --lol-accent-light: #52B788;
+    --lol-accent-glow: rgba(45, 106, 79, 0.15);
+    --lol-dark: #080f0c;
+    --lol-darker: #050a07;
+    --lol-transition: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Hero — Full-width dark gradient with grid + glow
+   ========================================================================== */
+
+.lol-support-hero {
+    position: relative;
+    padding: clamp(6rem, 12vw, 10rem) 0 clamp(4rem, 8vw, 7rem);
+    overflow: hidden;
+    background: var(--lol-darker);
+}
+
+/* Layered gradient background */
+.lol-support-hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(var(--lol-accent-rgb), 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 50% at 80% 20%, rgba(var(--lol-accent-rgb), 0.08) 0%, transparent 50%),
+        linear-gradient(160deg, var(--lol-darker) 0%, var(--lol-dark) 40%, #0d1b14 100%);
+}
+
+/* Subtle grid overlay */
+.lol-support-hero .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(var(--lol-accent-rgb), 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--lol-accent-rgb), 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, black 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, black 0%, transparent 70%);
+}
+
+.lol-support-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.lol-support-hero .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color 0.3s var(--lol-transition);
+    margin-bottom: var(--spacing-8);
+}
+
+.lol-support-hero .back-link:hover {
+    color: var(--lol-accent-light);
+}
+
+.lol-support-hero .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-1) var(--spacing-3);
+    background: rgba(var(--lol-accent-rgb), 0.12);
+    color: var(--lol-accent-light);
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(var(--lol-accent-rgb), 0.2);
+    margin-bottom: var(--spacing-5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.lol-support-hero .hero-title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: var(--font-weight-bold);
+    color: #fff;
+    margin-bottom: var(--spacing-4);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.lol-support-hero .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 480px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Quick Help — Glass cards with accent glow
+   ========================================================================== */
+
+.lol-support-page .section-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--lol-accent);
+    margin-bottom: var(--spacing-3);
+}
+
+.lol-support-page .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+    letter-spacing: -0.02em;
+}
+
+.lol-support-page .section-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-8);
+    line-height: 1.6;
+}
+
+.lol-quick-help-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-5);
+}
+
+.lol-quick-help-card {
+    padding: var(--spacing-6);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    transition: all 0.4s var(--lol-transition);
+    position: relative;
+}
+
+.lol-quick-help-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--radius-lg);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(var(--lol-accent-rgb), 0.3), transparent 50%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.4s var(--lol-transition);
+    pointer-events: none;
+}
+
+.lol-quick-help-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(var(--lol-accent-rgb), 0.1);
+}
+
+.lol-quick-help-card:hover::before {
+    opacity: 1;
+}
+
+.lol-quick-help-card .card-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--lol-accent-rgb), 0.08);
+    border-radius: 12px;
+    color: var(--lol-accent);
+    margin-bottom: var(--spacing-4);
+    transition: background 0.3s var(--lol-transition);
+}
+
+.lol-quick-help-card:hover .card-icon {
+    background: rgba(var(--lol-accent-rgb), 0.15);
+}
+
+.lol-quick-help-card h3 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.lol-quick-help-card p {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.65;
+}
+
+/* ==========================================================================
+   FAQ — Tabbed pills + refined accordion
+   ========================================================================== */
+
+.lol-faq-tabs {
+    display: flex;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-6);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: var(--spacing-1);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-primary);
+    width: fit-content;
+}
+
+.lol-faq-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.lol-faq-tab {
+    padding: var(--spacing-2) var(--spacing-5);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s var(--lol-transition);
+    font-family: inherit;
+}
+
+.lol-faq-tab:hover {
+    color: var(--text-primary);
+}
+
+.lol-faq-tab.is-active {
+    background: var(--lol-accent);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(var(--lol-accent-rgb), 0.3);
+}
+
+/* FAQ Panels */
+.lol-faq-panel {
+    display: none;
+}
+
+.lol-faq-panel.is-active {
+    display: block;
+}
+
+/* FAQ Accordion */
+.lol-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.lol-faq-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s var(--lol-transition);
+}
+
+.lol-faq-item[open] {
+    border-color: rgba(var(--lol-accent-rgb), 0.3);
+    box-shadow: 0 4px 16px rgba(var(--lol-accent-rgb), 0.06);
+}
+
+.lol-faq-question {
+    padding: var(--spacing-5);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.lol-faq-question:hover {
+    color: var(--lol-accent);
+}
+
+.lol-faq-question:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+    border-radius: var(--radius-md);
+}
+
+.lol-faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.lol-faq-question::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-left: var(--spacing-4);
+    background: var(--text-muted);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    transition: all 0.3s var(--lol-transition);
+}
+
+.lol-faq-item[open] .lol-faq-question::after {
+    background: var(--lol-accent);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+}
+
+.lol-faq-answer {
+    padding: 0 var(--spacing-5) var(--spacing-5);
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    line-height: 1.75;
+    border-top: 1px solid var(--border-primary);
+    margin: 0 var(--spacing-5);
+    padding-top: var(--spacing-4);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.lol-faq-answer p {
+    margin: 0 0 var(--spacing-3);
+}
+
+.lol-faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.lol-faq-answer a {
+    color: var(--lol-accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(var(--lol-accent-rgb), 0.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s;
+}
+
+.lol-faq-answer a:hover {
+    text-decoration-color: var(--lol-accent);
+}
+
+/* ==========================================================================
+   Contact Section — Dark band with email CTA
+   ========================================================================== */
+
+.lol-contact-section {
+    background: var(--lol-darker);
+    position: relative;
+    overflow: hidden;
+}
+
+.lol-contact-section .contact-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(var(--lol-accent-rgb), 0.1) 0%, transparent 60%),
+        linear-gradient(180deg, var(--lol-dark) 0%, var(--lol-darker) 100%);
+}
+
+.lol-contact-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.lol-contact-section .section-label {
+    color: var(--lol-accent-light);
+}
+
+.lol-contact-section .section-title {
+    color: #fff;
+}
+
+.lol-contact-section .section-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Email CTA — centered, prominent */
+.lol-contact-email {
+    text-align: center;
+    padding: var(--spacing-8);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: var(--spacing-8);
+}
+
+.lol-email-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--lol-accent-rgb), 0.15);
+    border-radius: 16px;
+    color: var(--lol-accent-light);
+    margin: 0 auto var(--spacing-5);
+}
+
+.lol-contact-email h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: #fff;
+    margin-bottom: var(--spacing-4);
+}
+
+.lol-email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--lol-darker);
+    text-decoration: none;
+    padding: var(--spacing-3) var(--spacing-8);
+    background: var(--lol-accent-light);
+    border-radius: var(--radius-md);
+    transition: all 0.3s var(--lol-transition);
+}
+
+.lol-email-link:hover {
+    background: #fff;
+    color: var(--lol-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(var(--lol-accent-rgb), 0.3);
+}
+
+.lol-email-note {
+    margin-top: var(--spacing-4);
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Info Cards — on dark background */
+.lol-info-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-5);
+}
+
+.lol-info-card {
+    padding: var(--spacing-5);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+
+.lol-info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--lol-accent-light), transparent);
+    border-radius: 3px 0 0 3px;
+}
+
+.lol-info-card h3 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: #fff;
+    margin-bottom: var(--spacing-3);
+}
+
+.lol-info-card p {
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--spacing-3);
+    line-height: 1.65;
+}
+
+.lol-info-card p:last-child {
+    margin-bottom: 0;
+}
+
+.lol-info-card ul {
+    margin: 0;
+    padding-left: var(--spacing-5);
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.lol-info-card li {
+    margin-bottom: var(--spacing-1);
+}
+
+/* ==========================================================================
+   Dark Theme Adjustments
+   ========================================================================== */
+
+[data-theme="dark"] .lol-quick-help-card {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .lol-quick-help-card:hover {
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(var(--lol-accent-rgb), 0.15);
+}
+
+[data-theme="dark"] .lol-faq-item {
+    background: var(--bg-secondary);
+}
+
+/* ==========================================================================
+   Responsive — Tablet (768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .lol-quick-help-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lol-info-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Responsive — Mobile (640px)
+   ========================================================================== */
+
+@media (max-width: 640px) {
+    .lol-support-hero {
+        padding: clamp(4rem, 10vw, 6rem) 0 clamp(3rem, 6vw, 4rem);
+    }
+
+    .lol-quick-help-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-3);
+    }
+
+    .lol-quick-help-card {
+        padding: var(--spacing-5);
+    }
+
+    .lol-faq-tabs {
+        width: 100%;
+    }
+
+    .lol-faq-tab {
+        padding: var(--spacing-2) var(--spacing-3);
+        font-size: var(--font-size-xs);
+    }
+
+    .lol-email-link {
+        font-size: var(--font-size-base);
+        padding: var(--spacing-3) var(--spacing-5);
+    }
+}

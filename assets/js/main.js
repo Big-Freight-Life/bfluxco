@@ -41,69 +41,9 @@
      * Supports three modes: light, dark, and system (follows OS preference).
      */
     function initThemeToggle() {
-        const toggle = document.querySelector('.theme-toggle');
-        if (!toggle) return;
-
-        const buttons = toggle.querySelectorAll('.theme-toggle-btn');
-        const STORAGE_KEY = 'bfluxco-theme';
-
-        // Get the current effective theme based on system preference
-        function getSystemTheme() {
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-
-        // Apply theme to document
-        function applyTheme(theme) {
-            const html = document.documentElement;
-
-            if (theme === 'system') {
-                // Remove data-theme to let CSS media query handle it
-                html.removeAttribute('data-theme');
-            } else {
-                // Set explicit theme
-                html.setAttribute('data-theme', theme);
-            }
-        }
-
-        // Update button states
-        function updateButtons(activeTheme) {
-            buttons.forEach(function(btn) {
-                const btnTheme = btn.getAttribute('data-theme');
-                const isActive = btnTheme === activeTheme;
-
-                btn.classList.toggle('is-active', isActive);
-                btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
-            });
-        }
-
-        // Initialize theme from localStorage or default to system
-        function initTheme() {
-            const savedTheme = localStorage.getItem(STORAGE_KEY) || 'system';
-            applyTheme(savedTheme);
-            updateButtons(savedTheme);
-        }
-
-        // Handle button clicks
-        buttons.forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const theme = this.getAttribute('data-theme');
-                localStorage.setItem(STORAGE_KEY, theme);
-                applyTheme(theme);
-                updateButtons(theme);
-            });
-        });
-
-        // Listen for system theme changes (only affects 'system' mode)
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-            const savedTheme = localStorage.getItem(STORAGE_KEY) || 'system';
-            if (savedTheme === 'system') {
-                // Re-apply to trigger any necessary updates
-                applyTheme('system');
-            }
-        });
-
-        // Initialize on load
-        initTheme();
+        // Auto-follow OS preference — clear any saved override
+        localStorage.removeItem('bfluxco-theme');
+        document.documentElement.removeAttribute('data-theme');
     }
 
     /**
@@ -937,53 +877,7 @@
             }
         });
 
-        // --- Mobile Theme Toggle (sync with desktop) ---
-        var mobileToggle = drawer.querySelector('.mobile-theme-toggle');
-        if (mobileToggle) {
-            var mobileButtons = mobileToggle.querySelectorAll('.mobile-theme-toggle-btn');
-            var desktopButtons = document.querySelectorAll('.theme-toggle .theme-toggle-btn');
-            var STORAGE_KEY = 'bfluxco-theme';
-
-            function applyTheme(theme) {
-                var html = document.documentElement;
-                if (theme === 'system') {
-                    html.removeAttribute('data-theme');
-                } else {
-                    html.setAttribute('data-theme', theme);
-                }
-            }
-
-            function updateAllToggleButtons(activeTheme) {
-                // Update mobile buttons
-                mobileButtons.forEach(function(btn) {
-                    var btnTheme = btn.getAttribute('data-theme');
-                    var isActive = btnTheme === activeTheme;
-                    btn.classList.toggle('is-active', isActive);
-                    btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
-                });
-                // Update desktop buttons (keep in sync)
-                desktopButtons.forEach(function(btn) {
-                    var btnTheme = btn.getAttribute('data-theme');
-                    var isActive = btnTheme === activeTheme;
-                    btn.classList.toggle('is-active', isActive);
-                    btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
-                });
-            }
-
-            // Initialize mobile toggle state
-            var savedTheme = localStorage.getItem(STORAGE_KEY) || 'system';
-            updateAllToggleButtons(savedTheme);
-
-            // Handle mobile toggle clicks
-            mobileButtons.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var theme = this.getAttribute('data-theme');
-                    localStorage.setItem(STORAGE_KEY, theme);
-                    applyTheme(theme);
-                    updateAllToggleButtons(theme);
-                });
-            });
-        } // end if (mobileToggle)
+        // Theme auto-follows OS preference (no manual toggle)
     }
 
     /**

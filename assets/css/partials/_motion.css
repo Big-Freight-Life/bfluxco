@@ -16,7 +16,6 @@
     transition:
         opacity var(--motion-reveal) var(--ease-out-expo),
         transform var(--motion-reveal) var(--ease-out-expo);
-    will-change: opacity, transform;
 }
 
 .reveal.is-visible {

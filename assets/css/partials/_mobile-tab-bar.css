@@ -177,7 +177,7 @@ body.mobile-drawer-open .mobile-drawer-backdrop {
     box-shadow: var(--shadow-xl);
     max-height: 80vh;
     transform: translate3d(0, 120%, 0);
-    transition: transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
+    transition: transform 500ms var(--ease-out-expo);
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -336,10 +336,9 @@ body.mobile-drawer-open .mobile-drawer {
 
 .mobile-theme-toggle-label {
     display: block;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     color: var(--text-tertiary);
-    text-transform: uppercase;
     letter-spacing: var(--letter-spacing-wider);
     margin-bottom: var(--spacing-2);
     padding-left: var(--spacing-1);

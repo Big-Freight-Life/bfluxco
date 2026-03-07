@@ -61,9 +61,9 @@
     --font-size-base: 1rem;      /* 16px */
     --font-size-lg: 1.125rem;    /* 18px */
     --font-size-xl: 1.25rem;     /* 20px */
-    --font-size-2xl: 1.5rem;     /* 24px */
-    --font-size-3xl: 1.875rem;   /* 30px */
-    --font-size-4xl: 2.25rem;    /* 36px */
+    --font-size-2xl: clamp(1.375rem, 2.5vw, 1.5rem);     /* 22-24px */
+    --font-size-3xl: clamp(1.75rem, 3.5vw, 1.875rem);   /* 28-30px */
+    --font-size-4xl: clamp(2rem, 4vw, 2.25rem);          /* 32-36px */
     --font-size-5xl: 3rem;       /* 48px */
     --font-size-6xl: 3.75rem;    /* 60px */
     --font-size-7xl: 4.5rem;     /* 72px */
@@ -240,13 +240,11 @@
 }
 
 /* Mobile font sizes - rounded to whole pixels (18px root) */
+/* Note: 2xl, 3xl, 4xl use clamp() in :root so no breakpoint override needed */
 @media (max-width: 768px) {
     :root {
         --font-size-lg: 1.111rem;    /* 20px */
         --font-size-xl: 1.222rem;    /* 22px */
-        --font-size-2xl: 1.5rem;     /* 27px */
-        --font-size-3xl: 1.889rem;   /* 34px */
-        --font-size-4xl: 2.222rem;   /* 40px */
         --font-size-5xl: 3rem;       /* 54px */
         --font-size-6xl: 3.778rem;   /* 68px */
         --font-size-7xl: 4.5rem;     /* 81px */
@@ -425,5 +423,7 @@
     --btn-tertiary-bg: rgba(255, 255, 255, 0.08);
     --btn-tertiary-hover: rgba(255, 255, 255, 0.15);
     --btn-tertiary-text: #0A84FF;
-    --color-primary: #0A84FF;
+    --color-primary: #2DD4BF;
+    --color-primary-light: #5EEAD4;
+    --color-primary-dark: #14B8A6;
 }

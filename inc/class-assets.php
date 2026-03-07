@@ -64,6 +64,18 @@ class BFLUXCO_Assets {
             'version'   => 'theme',
             'condition' => 'is_contact_page',
         ),
+        'bfluxco-clients' => array(
+            'src'       => '/assets/css/pages/clients.css',
+            'deps'      => array('bfluxco-style'),
+            'version'   => 'theme',
+            'condition' => 'is_clients_page',
+        ),
+        'bfluxco-support-low-ox-life' => array(
+            'src'       => '/assets/css/pages/support-low-ox-life.css',
+            'deps'      => array('bfluxco-style'),
+            'version'   => 'theme',
+            'condition' => 'is_support_low_ox_life',
+        ),
     );
 
     /**
@@ -323,6 +335,12 @@ class BFLUXCO_Assets {
 
             case 'is_contact_page':
                 return is_page_template('page-templates/template-contact.php');
+
+            case 'is_clients_page':
+                return is_page_template('page-templates/template-clients.php');
+
+            case 'is_support_low_ox_life':
+                return is_page_template('page-templates/template-support-low-ox-life.php');
 
             case 'is_single':
                 return is_single();
