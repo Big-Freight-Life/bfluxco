@@ -52,12 +52,6 @@ class BFLUXCO_Assets {
             'version'   => 'theme',
             'condition' => 'is_claude_terminal_page',
         ),
-        'bfluxco-chatbot' => array(
-            'src'       => '/assets/css/partials/_chatbot.css',
-            'deps'      => array('bfluxco-custom'),
-            'version'   => '2.0.0',
-            'condition' => 'has_chat_interface',
-        ),
         'bfluxco-contact' => array(
             'src'       => '/assets/css/partials/_contact.css',
             'deps'      => array('bfluxco-style'),
@@ -125,13 +119,6 @@ class BFLUXCO_Assets {
             'in_footer' => true,
             'condition' => 'is_about_person',
         ),
-        'bfluxco-chatbot' => array(
-            'src'       => '/assets/js/chatbot.js',
-            'deps'      => array(),
-            'version'   => '2.0.0',
-            'in_footer' => true,
-            'condition' => 'has_chat_interface',
-        ),
     );
 
     /**
@@ -191,25 +178,6 @@ class BFLUXCO_Assets {
             'nonce'   => wp_create_nonce('bfluxco_nonce'),
             'siteUrl' => home_url('/'),
         ));
-
-        // Localize chatbot script (on pages with chat interface)
-        if (self::check_condition('has_chat_interface')) {
-            wp_localize_script('bfluxco-chatbot', 'bfluxcoChatbot', array(
-                'apiUrl'      => rest_url('bfluxco/v1/chat'),
-                'nonce'       => wp_create_nonce('wp_rest'),
-                'scheduleUrl' => get_option('bfluxco_schedule_url', ''),
-                'strings'     => array(
-                    'placeholder'   => __('Ask how can we help you...', 'bfluxco'),
-                    'sending'       => __('Sending...', 'bfluxco'),
-                    'error'         => __('Sorry, something went wrong. Please try again.', 'bfluxco'),
-                    'handoffTitle'  => __('Let me connect you with Ray', 'bfluxco'),
-                    'handoffDesc'   => __('Leave your email and Ray will get back to you within 24 hours.', 'bfluxco'),
-                    'successTitle'  => __('Message sent!', 'bfluxco'),
-                    'successDesc'   => __('Ray will be in touch soon.', 'bfluxco'),
-                    'scheduleBtn'   => __('Or schedule a call', 'bfluxco'),
-                ),
-            ));
-        }
 
         // Comment reply script
         if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -315,9 +283,6 @@ class BFLUXCO_Assets {
 
             case 'is_front_page':
                 return is_front_page();
-
-            case 'has_chat_interface':
-                return is_front_page() || is_page_template('page-templates/template-transformation.php');
 
             case 'is_contact_page':
                 return is_page_template('page-templates/template-contact.php');
