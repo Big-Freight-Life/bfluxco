@@ -20,6 +20,13 @@ $apps_support = array(
         'description' => 'Premium oxalate tracking and health insights',
         'support_url' => home_url('/support/low-ox-life'),
     ),
+    array(
+        'name' => 'Bio Break',
+        'type' => 'iOS App',
+        'slug' => 'bio-break',
+        'description' => 'Bathroom health tracking and hydration insights',
+        'support_url' => home_url('/support/bio-break'),
+    ),
 );
 ?>
 

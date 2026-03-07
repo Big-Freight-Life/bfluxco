@@ -76,6 +76,12 @@ class BFLUXCO_Assets {
             'version'   => 'theme',
             'condition' => 'is_support_low_ox_life',
         ),
+        'bfluxco-support-bio-break' => array(
+            'src'       => '/assets/css/pages/support-bio-break.css',
+            'deps'      => array('bfluxco-style'),
+            'version'   => 'theme',
+            'condition' => 'is_support_bio_break',
+        ),
     );
 
     /**
@@ -341,6 +347,9 @@ class BFLUXCO_Assets {
 
             case 'is_support_low_ox_life':
                 return is_page_template('page-templates/template-support-low-ox-life.php');
+
+            case 'is_support_bio_break':
+                return is_page_template('page-templates/template-support-bio-break.php');
 
             case 'is_single':
                 return is_single();
