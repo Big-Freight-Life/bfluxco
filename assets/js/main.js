@@ -215,11 +215,19 @@
         const menuTriggers = document.querySelectorAll('.menu-item.has-megamenu');
         const megamenus = document.querySelectorAll('.megamenu');
         const header = document.querySelector('.site-header');
+        var isTouch = 'ontouchstart' in window;
 
         if (menuTriggers.length === 0 || megamenus.length === 0) return;
 
         // State
         let activeMenu = null;
+        let openTimer = null;
+        let closeTimer = null;
+
+        function clearTimers() {
+            clearTimeout(openTimer);
+            clearTimeout(closeTimer);
+        }
 
         // Get megamenu by ID
         function getMegamenu(menuType) {
@@ -258,6 +266,7 @@
 
         // Close all megamenus
         function closeAllMenus() {
+            clearTimers();
             megamenus.forEach(function(menu) {
                 menu.classList.remove('is-open');
             });
@@ -269,13 +278,10 @@
             activeMenu = null;
         }
 
-        // Toggle menu
-        function toggleMenu(menuType) {
-            if (activeMenu === menuType) {
-                closeAllMenus();
-            } else {
-                openMenu(menuType);
-            }
+        // Schedule closing with delay (cancellable)
+        function scheduleClose(delay) {
+            clearTimeout(closeTimer);
+            closeTimer = setTimeout(closeAllMenus, delay);
         }
 
         // Handle panel switching in left navigation (hover-based)
@@ -310,21 +316,68 @@
             initPanelSwitching(megamenu);
         });
 
-        // Click handlers for menu triggers
-        menuTriggers.forEach(function(trigger) {
-            const link = trigger.querySelector('a');
-            if (!link) return;
+        // Hover handlers for menu triggers (desktop only)
+        if (!isTouch) {
+            menuTriggers.forEach(function(trigger) {
+                trigger.addEventListener('mouseenter', function() {
+                    var menuType = trigger.dataset.megamenu;
+                    clearTimers();
+                    if (activeMenu && activeMenu !== menuType) {
+                        // Switching between menus — open immediately
+                        openMenu(menuType);
+                    } else if (!activeMenu) {
+                        // Opening fresh — short hover-intent delay
+                        openTimer = setTimeout(function() {
+                            openMenu(menuType);
+                        }, 100);
+                    }
+                });
 
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const menuType = trigger.dataset.megamenu;
-                toggleMenu(menuType);
+                trigger.addEventListener('mouseleave', function() {
+                    clearTimeout(openTimer);
+                    scheduleClose(300);
+                });
             });
-        });
+
+            // Keep menu open while hovering over the megamenu itself
+            megamenus.forEach(function(megamenu) {
+                megamenu.addEventListener('mouseenter', function() {
+                    clearTimers();
+                });
+
+                megamenu.addEventListener('mouseleave', function() {
+                    scheduleClose(200);
+                });
+            });
+        }
+
+        // Touch device handling — tap to toggle, second tap navigates
+        if (isTouch) {
+            menuTriggers.forEach(function(trigger) {
+                var link = trigger.querySelector('a');
+                if (!link) return;
+
+                link.addEventListener('click', function(e) {
+                    var menuType = trigger.dataset.megamenu;
+
+                    if (activeMenu === menuType) {
+                        // Menu already open — allow normal navigation
+                        return;
+                    }
+
+                    // Menu closed — open it instead of navigating
+                    e.preventDefault();
+                    if (activeMenu) {
+                        closeAllMenus();
+                    }
+                    openMenu(menuType);
+                });
+            });
+        }
 
         // Click on backdrop closes menu
         megamenus.forEach(function(megamenu) {
-            const backdrop = megamenu.querySelector('.megamenu-backdrop');
+            var backdrop = megamenu.querySelector('.megamenu-backdrop');
             if (backdrop) {
                 backdrop.addEventListener('click', function() {
                     closeAllMenus();
@@ -336,98 +389,59 @@
         document.addEventListener('click', function(e) {
             if (!activeMenu) return;
 
-            const clickedTrigger = e.target.closest('.menu-item.has-megamenu');
-            const clickedMenu = e.target.closest('.megamenu-container');
+            var clickedTrigger = e.target.closest('.menu-item.has-megamenu');
+            var clickedMenu = e.target.closest('.megamenu');
 
             if (!clickedTrigger && !clickedMenu) {
                 closeAllMenus();
             }
         });
 
-        // Keyboard navigation
+        // Keyboard: ESC to close
         document.addEventListener('keydown', function(e) {
-            // ESC to close
             if (e.key === 'Escape' && activeMenu) {
+                var triggerLink = document.querySelector('[data-megamenu="' + activeMenu + '"] a');
                 closeAllMenus();
-                // Return focus to trigger
-                const trigger = document.querySelector('[data-megamenu="' + activeMenu + '"] a');
-                if (trigger) trigger.focus();
-            }
-        });
-
-        // Close when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!activeMenu) return;
-
-            const clickedTrigger = e.target.closest('.menu-item.has-megamenu');
-            const clickedMenu = e.target.closest('.megamenu');
-
-            if (!clickedTrigger && !clickedMenu) {
-                closeAllMenus();
+                if (triggerLink) triggerLink.focus();
             }
         });
 
         // Handle focus for keyboard users
         menuTriggers.forEach(function(trigger) {
-            const link = trigger.querySelector('a');
+            var link = trigger.querySelector('a');
             if (!link) return;
 
             link.addEventListener('focus', function() {
-                const menuType = trigger.dataset.megamenu;
+                var menuType = trigger.dataset.megamenu;
                 openMenu(menuType);
             });
         });
 
         // Focus trap within megamenu
         megamenus.forEach(function(megamenu) {
-            const focusableElements = megamenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+            var focusableElements = megamenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
 
             if (focusableElements.length === 0) return;
 
-            const firstFocusable = focusableElements[0];
-            const lastFocusable = focusableElements[focusableElements.length - 1];
+            var firstFocusable = focusableElements[0];
+            var lastFocusable = focusableElements[focusableElements.length - 1];
 
             megamenu.addEventListener('keydown', function(e) {
                 if (e.key !== 'Tab') return;
 
                 if (e.shiftKey) {
-                    // Shift + Tab
                     if (document.activeElement === firstFocusable) {
-                        // If focus on first element, close menu and go back to trigger
                         e.preventDefault();
                         closeAllMenus();
                     }
                 } else {
-                    // Tab
                     if (document.activeElement === lastFocusable) {
-                        // If focus on last element, close menu
                         e.preventDefault();
                         closeAllMenus();
                     }
                 }
             });
         });
-
-        // Touch device handling - tap to toggle
-        if ('ontouchstart' in window) {
-            menuTriggers.forEach(function(trigger) {
-                const link = trigger.querySelector('a');
-                if (!link) return;
-
-                link.addEventListener('click', function(e) {
-                    const menuType = trigger.dataset.megamenu;
-
-                    if (activeMenu === menuType) {
-                        // Menu is open, allow navigation
-                        return;
-                    }
-
-                    // Menu is closed, open it instead of navigating
-                    e.preventDefault();
-                    openMenu(menuType);
-                });
-            });
-        }
     }
 
     /**

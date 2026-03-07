@@ -587,6 +587,7 @@ body.menu-open {
 
 /* Mega Menu Content Container */
 .megamenu-container {
+    position: relative;
     background-color: var(--surface-elevated);
     border-bottom: 1px solid var(--border-primary);
     box-shadow: var(--shadow-xl);
@@ -594,6 +595,16 @@ body.menu-open {
     opacity: 0;
     transition: transform var(--motion-smooth) var(--ease-out-expo),
         opacity var(--motion-smooth) var(--ease-out-expo);
+}
+
+/* Invisible bridge between nav trigger and dropdown to prevent hover gap */
+.megamenu-container::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;
+    height: 16px;
 }
 
 .megamenu.is-open .megamenu-container {
