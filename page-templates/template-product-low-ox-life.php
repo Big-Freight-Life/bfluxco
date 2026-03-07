@@ -18,10 +18,26 @@
 $product = array(
     // Basic Info
     'name'        => 'Low Ox Life',
+    'slug'        => 'low-ox-life',
     'tagline'     => 'Oxalate Management Companion',
     'description' => 'Browse the complete Harvard 2023 Oxalate Table for free. Upgrade to Starter to log meals, track your daily oxalate intake, and sync across devices.',
     'category'    => 'iOS App',
     'version'     => '1.0',
+
+    // Theme (product identity)
+    'theme' => array(
+        'accent'        => '#2D6A4F',
+        'accent_rgb'    => '45, 106, 79',
+        'hero_gradient' => 'linear-gradient(135deg, #1a3a2a 0%, #0d1b14 50%, #080f0c 100%)',
+        'hero_glow'     => 'rgba(45, 106, 79, 0.15)',
+    ),
+
+    // Hero
+    'hero_headline'    => 'Know Your Oxalates.',
+    'hero_subheadline' => 'The only iOS app built on the Harvard 2023 Oxalate Table. Browse 400+ foods free, or upgrade to track your daily intake.',
+
+    // Value Proposition
+    'value_prop' => 'Low Ox Life gives you evidence-based oxalate data at your fingertips. Search the complete Harvard 2023 database, filter by oxalate level, log meals to your journal, and sync across every device — designed for people who take their health seriously.',
 
     // Pricing
     'price'          => 'Free',
@@ -35,44 +51,66 @@ $product = array(
     'cta_text'       => 'View in App Store',
     'cta_external'   => true,
     'secondary_url'  => 'https://www.facebook.com/groups/lowoxlife',
-    'secondary_text' => 'Visit Facebook Group',
+    'secondary_text' => 'Join Facebook Community',
 
-    // Images
+    // Final CTA
+    'cta_headline'    => 'Start Tracking Today',
+    'cta_description' => 'Browse the Harvard 2023 Oxalate Table for free. Upgrade to Starter anytime to unlock food logging and cloud sync.',
+
+    // Legal Links
+    'legal_links' => array(
+        array('label' => 'Privacy Policy', 'url' => home_url('/legal/low-ox-life-privacy')),
+        array('label' => 'Terms of Service', 'url' => home_url('/legal/low-ox-life-terms')),
+        array('label' => 'Support', 'url' => home_url('/support/low-ox-life')),
+    ),
+
+    // Images (pre-composited device mockups)
     'images' => array(
         array(
-            'src' => '/wp-content/uploads/2026/01/lowOxLife-foods.png',
+            'src' => get_template_directory_uri() . '/assets/images/lowoxlife-launch-device.png',
+            'alt' => 'Low Ox Life - Oxalate management companion app launch screen',
+        ),
+        array(
+            'src' => get_template_directory_uri() . '/assets/images/lowoxlife-foodlist-device.png',
             'alt' => 'Low Ox Life Foods - Browse Harvard 2023 database with search and oxalate level filters',
         ),
         array(
-            'src' => '/wp-content/uploads/2026/01/lowOxLife-journal.png',
+            'src' => get_template_directory_uri() . '/assets/images/lowoxlife-journal-device.png',
             'alt' => 'Low Ox Life Journal - Log meals and track daily oxalate intake with date navigation',
         ),
         array(
-            'src' => '/wp-content/uploads/2026/01/lowOxLife-welcome.png',
-            'alt' => 'Low Ox Life Welcome - Sign in with Apple or continue as guest',
+            'src' => get_template_directory_uri() . '/assets/images/lowoxlife-fooddatabase-device.png',
+            'alt' => 'Low Ox Life Food Database - Manage databases and sync across devices',
         ),
     ),
 
-    // Rating (none yet - coming soon)
-    'rating'       => '',
-    'rating_count' => '',
-
-    // Quick Highlights
-    'highlights' => array(
-        'Free to browse 400+ foods',
-        'Harvard 2023 Oxalate Table',
-        'Search & filter by oxalate level',
-    ),
-
-    // Features
-    'features' => array(
-        // FREE TIER
+    // Feature Spotlights (3 hero features with large imagery)
+    'feature_spotlights' => array(
         array(
-            'title' => 'Harvard Database',
-            'desc'  => 'Browse 400+ foods with serving sizes and oxalate content from Harvard 2023.',
-            'tier'  => 'Free',
-            'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+            'title'       => 'Harvard Database',
+            'headline'    => '400+ Foods. One Search.',
+            'desc'        => 'Browse the complete Harvard 2023 Oxalate Table with serving sizes and oxalate content for every food. Search instantly and filter by oxalate level.',
+            'image_index' => 1,
+            'background'  => 'light',
         ),
+        array(
+            'title'       => 'Food Journal',
+            'headline'    => 'Log Meals. Track Intake.',
+            'desc'        => 'Add foods to your daily journal with one tap. Track your total oxalate intake over time with date navigation and daily summaries.',
+            'image_index' => 2,
+            'background'  => 'dark',
+        ),
+        array(
+            'title'       => 'Cloud Sync',
+            'headline'    => 'Your Data. Every Device.',
+            'desc'        => 'Sign in with Apple and your journal, favorites, and custom foods sync seamlessly across all your devices.',
+            'image_index' => 3,
+            'background'  => 'accent',
+        ),
+    ),
+
+    // Secondary Features (remaining features for grid — spotlights removed)
+    'features' => array(
         array(
             'title' => 'Quick Search',
             'desc'  => 'Find any food instantly with fast, responsive search.',
@@ -85,26 +123,12 @@ $product = array(
             'tier'  => 'Free',
             'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>',
         ),
-        // STARTER TIER
-        array(
-            'title' => 'Food Logging',
-            'desc'  => 'Log meals to your journal with one tap or double-tap quick add.',
-            'tier'  => 'Starter',
-            'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>',
-        ),
         array(
             'title' => 'Journal History',
             'desc'  => 'View past entries with date navigation.',
             'tier'  => 'Starter',
             'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
         ),
-        array(
-            'title' => 'Cloud Sync',
-            'desc'  => 'Access your data across all your devices.',
-            'tier'  => 'Starter',
-            'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
-        ),
-        // PRO TIER
         array(
             'title' => 'Custom Food Import',
             'desc'  => 'Import your own food lists from CSV files.',
@@ -117,7 +141,6 @@ $product = array(
             'tier'  => 'Pro',
             'icon'  => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
         ),
-        // ELITE TIER
         array(
             'title' => 'Insights & Trends',
             'desc'  => 'Review pattern-based insights and monitor progress over time.',
@@ -139,13 +162,53 @@ $product = array(
         ),
     ),
 
-    // Technical Specifications
-    'specs' => array(
-        'Platform'    => 'iPhone',
-        'Requires'    => 'iOS 16.7 or later',
-        'Price'       => 'Free / Starter $4.99 / Pro $9.99 / Elite $14.99',
-        'Developer'   => 'Big Freight Life',
-        'Data Source' => 'Harvard 2023 Oxalate Table',
+    // Pricing Tiers
+    'pricing_subtitle' => 'Start free. Upgrade when you\'re ready.',
+    'pricing_tiers' => array(
+        array(
+            'name'     => 'Free',
+            'price'    => '$0',
+            'period'   => 'forever',
+            'features' => array(
+                'Browse 400+ foods',
+                'Harvard 2023 Oxalate Table',
+                'Search & filter by level',
+            ),
+        ),
+        array(
+            'name'        => 'Starter',
+            'price'       => '$4.99',
+            'period'      => 'per month',
+            'highlighted' => true,
+            'badge'       => 'Most Popular',
+            'features'    => array(
+                'Everything in Free',
+                'Food logging & journal',
+                'Journal history',
+                'Cloud sync across devices',
+            ),
+        ),
+        array(
+            'name'     => 'Pro',
+            'price'    => '$9.99',
+            'period'   => 'per month',
+            'features' => array(
+                'Everything in Starter',
+                'Custom food imports (CSV)',
+                'Grocery list builder',
+            ),
+        ),
+        array(
+            'name'     => 'Elite',
+            'price'    => '$14.99',
+            'period'   => 'per month',
+            'features' => array(
+                'Everything in Pro',
+                'Insights & trends',
+                'Recipe builder',
+                'Oscar AI assistant',
+            ),
+        ),
     ),
 
     // FAQs
@@ -204,6 +267,12 @@ add_action('wp_head', function() use ($product) {
     // Meta description
     echo '<meta name="description" content="' . esc_attr($product['seo_description']) . '">' . "\n";
 
+    // Build featureList from spotlights + features
+    $feature_list = array_map(function($s) { return $s['headline']; }, $product['feature_spotlights']);
+    foreach ($product['features'] as $f) {
+        $feature_list[] = $f['title'] . ': ' . $f['desc'];
+    }
+
     // MobileApplication Schema
     $schema = array(
         '@context' => 'https://schema.org',
@@ -224,13 +293,7 @@ add_action('wp_head', function() use ($product) {
             'name'  => 'Big Freight Life',
             'url'   => home_url('/'),
         ),
-        'featureList' => array(
-            'Browse 400+ foods from Harvard 2023 Oxalate Table',
-            'Quick search and smart filters',
-            'Food logging to journal (Starter)',
-            'Journal history with date navigation (Starter)',
-            'Cloud sync across devices (Starter)',
-        ),
+        'featureList' => array_slice($feature_list, 0, 10),
     );
 
     echo '<!-- Low Ox Life Product Schema -->' . "\n";
@@ -262,337 +325,7 @@ $bfluxco_product_tagline = $product['tagline'];
 $bfluxco_product_category = $product['category'];
 
 get_header();
-?>
 
-<main id="main-content" class="site-main">
+get_template_part('template-parts/product-showcase', null, $product);
 
-    <?php /* Mobile product layout — inline for reliable cache-busting.
-       Gallery is first in DOM (mobile-first). Desktop CSS reorders via order property. */ ?>
-    <style>
-    @media (max-width: 1023px) {
-        .product-hero-premium { padding: 0 !important; }
-        .product-hero-premium > .container { padding: 0 !important; max-width: none !important; }
-        .product-hero-premium .product-hero-grid { display: flex !important; flex-direction: column !important; gap: 0 !important; }
-        .product-gallery-column { opacity: 1 !important; transform: none !important; transition: none !important; min-height: 52vh !important; }
-        .product-info { opacity: 1 !important; transform: none !important; transition: none !important; }
-        .product-gallery { gap: 0 !important; }
-        .product-gallery--phone { display: block !important; height: 100% !important; }
-        .product-gallery--phone .product-gallery-main { border-radius: 0 !important; border: none !important; height: 52vh !important; min-height: 52vh !important; max-height: none !important; aspect-ratio: unset !important; width: 100% !important; }
-        .product-gallery-thumbs { display: none !important; }
-        .product-gallery-counter { display: none !important; }
-        .product-gallery-dots { display: flex !important; position: relative !important; z-index: 2 !important; }
-        .product-info { background: #fff !important; border-radius: 24px 24px 0 0 !important; margin-top: -24px !important; position: relative !important; z-index: 1 !important; padding: 24px 16px 16px !important; }
-        .product-sticky-bar { display: none !important; }
-        body:has(.product-hero-premium) .breadcrumbs { display: none !important; }
-        .product-hero-premium .product-title { display: none !important; }
-        .product-hero-premium .product-tagline { display: none !important; }
-        .product-cta-group { align-items: flex-start !important; }
-        .product-cta-group .app-store-badge img { height: 64px !important; }
-        .app-store-badge--lg img { height: 64px !important; }
-        #main-content { padding-bottom: 140px !important; }
-    }
-    </style>
-
-    <!-- Breadcrumbs -->
-    <div class="container">
-        <?php bfluxco_breadcrumbs(); ?>
-    </div>
-
-    <!-- Product Hero -->
-    <section class="product-hero-premium">
-        <div class="container">
-            <div class="product-hero-grid">
-
-                <!-- Gallery Column (first in DOM for mobile-first; desktop reorders via CSS order) -->
-                <div class="product-gallery-column">
-                    <?php if (!empty($product['images'])) : ?>
-                    <div class="product-gallery product-gallery--phone">
-                        <!-- Main Image Display -->
-                        <div class="product-gallery-main" tabindex="0" aria-label="<?php esc_attr_e('Product screenshot gallery', 'bfluxco'); ?>">
-                            <?php foreach ($product['images'] as $index => $image) : ?>
-                                <div class="product-gallery-image<?php echo $index === 0 ? ' is-active' : ''; ?>" aria-hidden="<?php echo $index === 0 ? 'false' : 'true'; ?>">
-                                    <img src="<?php echo esc_url($image['src']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>">
-                                </div>
-                            <?php endforeach; ?>
-                            <?php if (count($product['images']) > 1) : ?>
-                            <span class="product-gallery-counter"><span class="gallery-counter-current">1</span> / <?php echo count($product['images']); ?></span>
-                            <?php endif; ?>
-                        </div>
-
-                        <!-- Dot Navigation (mobile) -->
-                        <?php if (count($product['images']) > 1) : ?>
-                        <div class="product-gallery-dots" role="tablist" aria-label="<?php esc_attr_e('Screenshot navigation', 'bfluxco'); ?>">
-                            <?php foreach ($product['images'] as $index => $image) : ?>
-                                <button type="button" class="product-gallery-dot<?php echo $index === 0 ? ' is-active' : ''; ?>" data-index="<?php echo $index; ?>" aria-label="<?php echo esc_attr(sprintf(__('View screenshot %d', 'bfluxco'), $index + 1)); ?>"></button>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php endif; ?>
-
-                        <!-- Thumbnail Navigation -->
-                        <div class="product-gallery-thumbs" role="tablist" aria-label="<?php esc_attr_e('Screenshot thumbnails', 'bfluxco'); ?>">
-                            <?php foreach ($product['images'] as $index => $image) : ?>
-                                <button type="button" class="product-thumb<?php echo $index === 0 ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>" tabindex="<?php echo $index === 0 ? '0' : '-1'; ?>" aria-label="<?php echo esc_attr(sprintf(__('View screenshot %d', 'bfluxco'), $index + 1)); ?>">
-                                    <img src="<?php echo esc_url($image['src']); ?>" alt="" loading="lazy">
-                                </button>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                    <?php else : ?>
-                    <div class="product-gallery-main">
-                        <div class="product-gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                                <line x1="12" y1="18" x2="12.01" y2="18"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <?php endif; ?>
-                </div>
-
-                <!-- Product Info Column -->
-                <div class="product-info reveal-text">
-
-                    <!-- Badges -->
-                    <div class="product-badges">
-                        <span class="product-badge product-badge-category"><?php echo esc_html($product['category']); ?></span>
-                    </div>
-
-                    <!-- Title & Tagline -->
-                    <h1 class="product-title"><?php echo esc_html($product['name']); ?></h1>
-                    <p class="product-tagline"><?php echo esc_html($product['tagline']); ?></p>
-
-                    <!-- Pricing Block -->
-                    <div class="product-pricing">
-                        <div class="product-price">
-                            <span class="product-price-current"><?php echo esc_html($product['price']); ?></span>
-                        </div>
-                        <span class="product-price-note"><?php echo esc_html($product['price_note']); ?></span>
-                    </div>
-
-                    <!-- Quick Highlights -->
-                    <ul class="product-highlights">
-                        <?php foreach ($product['highlights'] as $highlight) : ?>
-                            <li><?php echo esc_html($highlight); ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-
-                    <!-- CTA Buttons -->
-                    <div class="product-cta-group">
-                        <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="app-store-badge">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="<?php esc_attr_e('Download on the App Store', 'bfluxco'); ?>" width="156" height="52">
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Description Section -->
-    <section class="product-description-section">
-        <div class="container container-narrow">
-            <div class="reveal-text">
-                <h2><?php esc_html_e('Free to Browse, Starter to Track', 'bfluxco'); ?></h2>
-                <p><?php esc_html_e('Low Ox Life gives you free access to browse the complete Harvard 2023 Oxalate Table - over 400 foods with serving sizes and oxalate content. Search for any food and filter by oxalate level to make informed choices.', 'bfluxco'); ?></p>
-                <p><?php esc_html_e('Ready to track your intake? The Starter subscription adds food logging, journal history with date navigation, and cloud sync across all your devices. Designed for people who value evidence-based nutrition and sustainable habits.', 'bfluxco'); ?></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section-premium">
-        <div class="container">
-            <h2 class="section-title reveal-text"><?php esc_html_e('Key Features', 'bfluxco'); ?></h2>
-
-            <div class="features-grid-premium">
-                <?php foreach ($product['features'] as $index => $feature) :
-                    $is_coming_soon = !empty($feature['coming_soon']);
-                    $tier = isset($feature['tier']) ? $feature['tier'] : '';
-                ?>
-                    <div class="feature-card-premium reveal-up<?php echo $is_coming_soon ? ' feature-card--coming-soon' : ''; ?>" data-delay="<?php echo min($index + 1, 4); ?>">
-                        <?php if ($tier || $is_coming_soon) : ?>
-                        <div class="feature-badges">
-                            <?php if ($tier) : ?>
-                            <span class="feature-tier feature-tier--<?php echo esc_attr(strtolower($tier)); ?>"><?php echo esc_html($tier); ?></span>
-                            <?php endif; ?>
-                            <?php if ($is_coming_soon) : ?>
-                            <span class="feature-coming-soon"><?php esc_html_e('Coming Soon', 'bfluxco'); ?></span>
-                            <?php endif; ?>
-                        </div>
-                        <?php endif; ?>
-                        <div class="feature-icon-premium">
-                            <?php echo $feature['icon']; ?>
-                        </div>
-                        <h3><?php echo esc_html($feature['title']); ?></h3>
-                        <p><?php echo esc_html($feature['desc']); ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Specifications -->
-    <section class="specs-section">
-        <div class="container">
-            <h2 class="section-title reveal-text"><?php esc_html_e('Technical Specifications', 'bfluxco'); ?></h2>
-
-            <div class="specs-grid reveal-up" data-delay="1">
-                <?php
-                $specs_array = $product['specs'];
-                $half = ceil(count($specs_array) / 2);
-                $specs_chunks = array_chunk($specs_array, $half, true);
-                $chunk_titles = array(__('App Details', 'bfluxco'), __('Additional Info', 'bfluxco'));
-
-                foreach ($specs_chunks as $chunk_index => $chunk) :
-                ?>
-                <div class="specs-card">
-                    <h3 class="specs-table-header"><?php echo esc_html($chunk_titles[$chunk_index]); ?></h3>
-                    <table class="specs-table">
-                        <tbody>
-                            <?php foreach ($chunk as $label => $value) : ?>
-                                <tr>
-                                    <th><?php echo esc_html($label); ?></th>
-                                    <td><?php echo esc_html($value); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section bg-gray-50">
-        <div class="container">
-            <header class="section-header text-center reveal-text" style="margin-bottom: 20px;">
-                <h2><?php esc_html_e('Frequently Asked Questions', 'bfluxco'); ?></h2>
-            </header>
-
-            <div class="faq-list max-w-3xl mx-auto">
-                <?php foreach ($product['faqs'] as $index => $faq) : ?>
-                <div class="faq-item reveal-up" data-delay="<?php echo min($index + 1, 5); ?>">
-                    <h3 class="faq-question"><?php echo esc_html($faq['question']); ?></h3>
-                    <p class="faq-answer"><?php echo esc_html($faq['answer']); ?></p>
-                </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section text-center">
-        <div class="container">
-            <h2 class="reveal-text"><?php esc_html_e('Download Low Ox Life', 'bfluxco'); ?></h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mb-8 reveal-text" data-delay="1">
-                <?php esc_html_e('Browse the Harvard 2023 Oxalate Table for free. Upgrade to Starter anytime to unlock food logging and cloud sync.', 'bfluxco'); ?>
-            </p>
-            <div class="reveal flex justify-center mb-4" data-delay="2">
-                <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="app-store-badge app-store-badge--lg">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="<?php esc_attr_e('Download on the App Store', 'bfluxco'); ?>" width="156" height="52">
-                </a>
-            </div>
-            <div class="reveal flex justify-center" data-delay="3">
-                <a href="<?php echo esc_url($product['secondary_url']); ?>" class="btn btn-facebook btn-lg" target="_blank" rel="noopener">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    <?php esc_html_e('Join Facebook Community', 'bfluxco'); ?>
-                </a>
-            </div>
-            <div class="product-legal-links reveal" data-delay="3">
-                <a href="<?php echo esc_url(home_url('/legal/low-ox-life-privacy')); ?>"><?php esc_html_e('Privacy Policy', 'bfluxco'); ?></a>
-                <a href="<?php echo esc_url(home_url('/legal/low-ox-life-terms')); ?>"><?php esc_html_e('Terms of Service', 'bfluxco'); ?></a>
-                <a href="<?php echo esc_url(home_url('/support/low-ox-life')); ?>"><?php esc_html_e('Support', 'bfluxco'); ?></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sticky Bottom Bar (mobile) -->
-    <div class="product-sticky-bar">
-        <div class="product-sticky-bar-inner">
-            <div class="product-sticky-info">
-                <span class="product-sticky-price"><?php echo esc_html($product['price']); ?></span>
-                <span class="product-sticky-note"><?php echo esc_html($product['price_note']); ?></span>
-            </div>
-            <a href="<?php echo esc_url($product['cta_url']); ?>" target="_blank" rel="noopener" class="btn btn-primary">
-                <?php esc_html_e('Download', 'bfluxco'); ?>
-            </a>
-        </div>
-    </div>
-
-</main>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const thumbs = document.querySelectorAll('.product-thumb');
-    const dots = document.querySelectorAll('.product-gallery-dot');
-    const images = document.querySelectorAll('.product-gallery-image');
-    const galleryMain = document.querySelector('.product-gallery-main');
-    let currentIndex = 0;
-
-    function goToSlide(index) {
-        if (index < 0 || index >= images.length) return;
-        currentIndex = index;
-
-        images.forEach(img => {
-            img.classList.remove('is-active');
-            img.setAttribute('aria-hidden', 'true');
-        });
-        thumbs.forEach(t => {
-            t.classList.remove('is-active');
-            t.setAttribute('aria-selected', 'false');
-        });
-        dots.forEach(d => d.classList.remove('is-active'));
-
-        images[index].classList.add('is-active');
-        images[index].setAttribute('aria-hidden', 'false');
-        if (thumbs[index]) {
-            thumbs[index].classList.add('is-active');
-            thumbs[index].setAttribute('aria-selected', 'true');
-        }
-        if (dots[index]) dots[index].classList.add('is-active');
-
-        const counter = document.querySelector('.gallery-counter-current');
-        if (counter) counter.textContent = index + 1;
-    }
-
-    // Thumbnail clicks
-    thumbs.forEach((thumb, i) => thumb.addEventListener('click', () => goToSlide(i)));
-
-    // Dot clicks
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
-
-    // Touch swipe
-    if (galleryMain && images.length > 1) {
-        let startX = 0;
-        let startY = 0;
-        let distX = 0;
-
-        galleryMain.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-            distX = 0;
-        }, { passive: true });
-
-        galleryMain.addEventListener('touchmove', function(e) {
-            distX = e.touches[0].clientX - startX;
-            const distY = Math.abs(e.touches[0].clientY - startY);
-            if (Math.abs(distX) > distY) e.preventDefault();
-        }, { passive: false });
-
-        galleryMain.addEventListener('touchend', function() {
-            if (Math.abs(distX) > 50) {
-                if (distX < 0 && currentIndex < images.length - 1) {
-                    goToSlide(currentIndex + 1);
-                } else if (distX > 0 && currentIndex > 0) {
-                    goToSlide(currentIndex - 1);
-                }
-            }
-        }, { passive: true });
-    }
-});
-</script>
-
-<?php
 get_footer();
